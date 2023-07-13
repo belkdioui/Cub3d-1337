@@ -6,7 +6,7 @@
 #    By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 14:46:36 by bel-kdio          #+#    #+#              #
-#    Updated: 2023/07/11 20:09:02 by bel-kdio         ###   ########.fr        #
+#    Updated: 2023/07/13 23:52:41 by bel-kdio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = cub3D
 
 LIBFT = ./inc/libft/libft.a
 
-SRC = src/cub3D.c inc/get_next_line/get_next_line.c inc/get_next_line/get_next_line_utils.c src/verifaction_and_return_map.c src/utils1_cub3D.c src/check_the_map.c
+SRC = src/cub3D.c inc/get_next_line/get_next_line.c inc/get_next_line/get_next_line_utils.c src/verifaction_and_return_map.c src/utils1_cub3D.c src/check_the_map.c\
+		src/check_is_element_and_return_it.c src/check_is_element_and_return_it-1.c src/check_the_map-1.c src/check_space_is_protected.c
 
 OBJ := $(SRC:.c=.o)
 
