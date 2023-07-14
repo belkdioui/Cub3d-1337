@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/13 23:52:01 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/14 22:48:38 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 # include <stdio.h>
+
+typedef struct s_vars
+{
+	int		i;
+	int		j;
+	int		is_ele;
+	int		check;
+}	t_vars;
 
 typedef struct s_ele
 {
