@@ -6,11 +6,11 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:48:04 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/13 23:53:26 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:49:38 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 int	check_rgb(char *rgb)
 {

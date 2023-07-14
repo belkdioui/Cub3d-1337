@@ -6,11 +6,11 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:38:08 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/13 22:25:48 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:49:12 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 void	free_db(char **arr)
 {

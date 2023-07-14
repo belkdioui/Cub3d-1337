@@ -6,11 +6,11 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 10:30:25 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:49:20 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 int	if_first_and_last(char **map, int i, int *j)
 {

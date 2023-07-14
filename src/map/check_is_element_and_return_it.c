@@ -6,11 +6,11 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:51:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/13 22:14:32 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:49:28 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 char	*is_element_and_saveit(char **cnt_file, int which_ele, char ***save_map)
 {

@@ -6,11 +6,11 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:49:25 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 00:14:10 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:49:46 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 void	top(int *copy, int y, char **map, int *protect)
 {

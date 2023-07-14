@@ -6,11 +6,11 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:39:10 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/10 19:40:55 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:49:05 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 int	check_the_name(int ac, char **av)
 {

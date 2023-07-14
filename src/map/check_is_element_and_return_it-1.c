@@ -6,11 +6,11 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:56:11 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/13 23:20:48 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:48:45 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 char	*ret_element(char *line, int num_of_ele)
 {

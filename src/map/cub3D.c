@@ -6,11 +6,11 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:45 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/12 10:32:20 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:48:55 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 int	main(int ac, char **av)
 {
