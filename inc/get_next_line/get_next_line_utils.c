@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 08:05:57 by bel-kdio          #+#    #+#             */
-/*   Updated: 2022/11/20 09:16:52 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:45:57 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_1(char *s1, char *s2)
 {
 	char			*str;
 	unsigned int	i;

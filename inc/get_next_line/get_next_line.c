@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 08:06:01 by bel-kdio          #+#    #+#             */
-/*   Updated: 2022/11/21 09:05:52 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:46:30 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*read_and_add(char *save, int fd)
 			return (NULL);
 		}
 		buff[byt] = '\0';
-		save = ft_strjoin(save, buff);
+		save = ft_strjoin_1(save, buff);
 	}
 	free(buff);
 	return (save);
