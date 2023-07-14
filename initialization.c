@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/13 16:36:56 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:06:05 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,40 @@ void	protection(t_mlx *mlx_cub)
 	exit(1);
 }
 
-void	init(t_mlx *mlx_cub, t_data *data)
+void	big_width_and_height(int *big_width, int *height, char **mapp)
+{
+	int	i;
+	int	j;
+	int	count_width;
+
+	i = 0;
+	*big_width = 0;
+	*height = 0;
+	while (mapp[i])
+	{
+		count_width = 0;
+		j = 0;
+		if (mapp[i][j] == '1')
+		{
+			while (mapp[i][j] != '\n' && mapp[i][j++] != '\0')
+				count_width++;
+			// printf("%d\n", count_width);
+			if (*big_width < count_width)
+				*big_width = count_width;
+			(*height)++;
+		}
+		i++;
+	}
+}
+
+void	init(t_mlx *mlx_cub, t_data *data, char **mapp)
 {
 	mlx_cub->mlx_ptr = mlx_init();
-	mlx_cub->h = 800;
-	mlx_cub->w = 800;
+	big_width_and_height(&mlx_cub->w, &mlx_cub->h, mapp);
+	mlx_cub->h *= 80;
+	mlx_cub->w *= 80;
+	// printf("%d\n %d\n", mlx_cub->h, mlx_cub->w);
+	// exit(1);
 	if (!mlx_cub->mlx_ptr)
 	{
 		perror("");
