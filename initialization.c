@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 12:23:13 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:42:13 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	big_width_and_height(int *big_width, int *height, char **map)
 	{
 		count_width = 0;
 		j = 0;
-		
 		while (map[i][j] != '\n' && map[i][j++] != '\0')
 			count_width++;
 		if (*big_width < count_width)

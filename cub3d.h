@@ -6,13 +6,15 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:23:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 13:21:48 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:44:06 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "inc/libft/libft.h"
+# include "inc/get_next_line/get_next_line.h"
 # include <stdio.h>
 # include <mlx.h>
 # include <stdlib.h>
@@ -42,9 +44,6 @@ typedef struct s_mlx
 	int		x;
 	int		y;
 }				t_mlx;
-
-# include "inc/libft/libft.h"
-# include "inc/get_next_line/get_next_line.h"
 
 typedef struct s_ele
 {
@@ -80,7 +79,7 @@ int		key_hock(int keycode, t_mlx *mlx_cub);
 /*----- drawing map -------*/
 char	**get_map(int ac, char **av);
 void	init(t_mlx *mlx_cub, t_data *data, char **map);
-int 	search_beginning_the_map(char **map);
-void    window_coloring(t_mlx *mlx_cub, t_data *data);
+int		search_beginning_the_map(char **map);
+void	window_coloring(t_mlx *mlx_cub, t_data *data);
 void	drawing_map(char **map, t_mlx *mlx_cub, t_data *data);
 #endif
