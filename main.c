@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:22:41 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 19:32:13 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:42:12 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int ac, char **av)
 		mlx_hook(mlx_cub.mlx_win, 2, 0, key_hock, &mlx_cub);
 		mlx_hook(mlx_cub.mlx_win, ON_DESTROY, 0, close_window, &mlx_cub);
 		mlx_loop(mlx_cub.mlx_ptr);
+		
 	}
 	return (0);
 }

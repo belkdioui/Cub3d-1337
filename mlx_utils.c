@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 16:30:50 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:46:41 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	close_window(t_mlx *mlx_cub)
 {
 	mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
 	free(mlx_cub->mlx_ptr);
+	free_db(mlx_cub->map);
+	printf("\n\n\n");
+		system("leaks cub3D");
 	exit(0);
 	return (0);
 }
