@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/14 17:06:05 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:23:13 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	protection(t_mlx *mlx_cub)
 	exit(1);
 }
 
-void	big_width_and_height(int *big_width, int *height, char **mapp)
+void	big_width_and_height(int *big_width, int *height, char **map)
 {
 	int	i;
 	int	j;
@@ -28,31 +28,27 @@ void	big_width_and_height(int *big_width, int *height, char **mapp)
 	i = 0;
 	*big_width = 0;
 	*height = 0;
-	while (mapp[i])
+	i = search_beginning_the_map(map);
+	while (map[i])
 	{
 		count_width = 0;
 		j = 0;
-		if (mapp[i][j] == '1')
-		{
-			while (mapp[i][j] != '\n' && mapp[i][j++] != '\0')
-				count_width++;
-			// printf("%d\n", count_width);
-			if (*big_width < count_width)
-				*big_width = count_width;
-			(*height)++;
-		}
+		
+		while (map[i][j] != '\n' && map[i][j++] != '\0')
+			count_width++;
+		if (*big_width < count_width)
+			*big_width = count_width;
+		(*height)++;
 		i++;
 	}
 }
 
-void	init(t_mlx *mlx_cub, t_data *data, char **mapp)
+void	init(t_mlx *mlx_cub, t_data *data, char **map)
 {
 	mlx_cub->mlx_ptr = mlx_init();
-	big_width_and_height(&mlx_cub->w, &mlx_cub->h, mapp);
+	big_width_and_height(&mlx_cub->w, &mlx_cub->h, map);
 	mlx_cub->h *= 80;
 	mlx_cub->w *= 80;
-	// printf("%d\n %d\n", mlx_cub->h, mlx_cub->w);
-	// exit(1);
 	if (!mlx_cub->mlx_ptr)
 	{
 		perror("");

@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:23:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/14 19:33:24 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:13:40 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,5 @@ char	**get_map(int ac, char **av);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		close_window(t_mlx *mlx_cub);
 int		key_hock(int keycode, t_mlx *mlx_cub);
+int 	search_beginning_the_map(char **map);
 #endif
