@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 18:15:24 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:09:38 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	change_position_the_player(char **map, int keycode)
 				{
 					player = map[i][j];
 					map[i][j] = '0';
-					if (map[i - 1])
+					if (map[i - 1] && map[i - 1][j] != '\0' && map[i - 1][j] != '1')
 						map[i - 1][j] = player;
 				}
 				else if (keycode == ARROW_DOWN)
 				{
 					player = map[i][j];
 					map[i][j] = '0';
-					if (map[i + 1])
+					if (map[i + 1] && map[i + 1][j] != '\0' && map[i + 1][j] != '1')
 						map[i + 1][j] = player;
 				}
 				else if (keycode == ARROW_RIGHT)
@@ -68,15 +68,15 @@ void	change_position_the_player(char **map, int keycode)
 
 void	arrows_keys(int keycode, t_mlx *mlx_cub)
 {
-	// if (keycode == ARROW_UP)
-		// mlx_cub->y_player -= 5;
-	// else if (keycode == ARROW_DOWN)
-		// mlx_cub->y_player += 5;
-	// else if (keycode == ARROW_RIGHT)
-		// mlx_cub->x_player += 5;
-	// else if (keycode == ARROW_LEFT)
-		// mlx_cub->x_player -= 5;
-	change_position_the_player(mlx_cub->map, keycode);
+	if (keycode == ARROW_UP)
+		mlx_cub->y_player -= 2;
+	else if (keycode == ARROW_DOWN)
+		mlx_cub->y_player += 2;
+	else if (keycode == ARROW_RIGHT)
+		mlx_cub->x_player += 2;
+	else if (keycode == ARROW_LEFT)
+		mlx_cub->x_player -= 2;
+	// change_position_the_player(mlx_cub->map, keycode);
 	mlx_clear_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
 	drawing_map(mlx_cub->map, mlx_cub);
 	mlx_put_image_to_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win, \

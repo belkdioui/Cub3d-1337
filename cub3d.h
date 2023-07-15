@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:23:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 17:57:35 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:05:31 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct s_mlx
 	void	*mlx_win;
 	int		x;
 	int		y;
-	// int		x_player;
-	// int		y_player;
+	int		x_player;
+	int		y_player;
 	t_data	data;
 	char	**map;
 }				t_mlx;

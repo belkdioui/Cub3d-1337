@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 17:58:17 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:07:17 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	init(t_mlx *mlx_cub, char **map)
 	big_width_and_height(&mlx_cub->w, &mlx_cub->h, map);
 	mlx_cub->h *= 50;
 	mlx_cub->w *= 50;
-	// mlx_cub->x_player = -1;
-	// mlx_cub->y_player = -1;
+	mlx_cub->y_player = 0;
+	mlx_cub->x_player = 0;
 	if (!mlx_cub->mlx_ptr)
 	{
 		perror("");
