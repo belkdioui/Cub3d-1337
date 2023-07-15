@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 15:40:02 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:58:17 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ void	big_width_and_height(int *big_width, int *height, char **map)
 	}
 }
 
-void	init(t_mlx *mlx_cub, t_data *data, char **map)
+void	init(t_mlx *mlx_cub, char **map)
 {
 	mlx_cub->mlx_ptr = mlx_init();
 	big_width_and_height(&mlx_cub->w, &mlx_cub->h, map);
 	mlx_cub->h *= 50;
 	mlx_cub->w *= 50;
+	// mlx_cub->x_player = -1;
+	// mlx_cub->y_player = -1;
 	if (!mlx_cub->mlx_ptr)
 	{
 		perror("");
@@ -57,11 +59,11 @@ void	init(t_mlx *mlx_cub, t_data *data, char **map)
 		"cub3d");
 	if (!mlx_cub->mlx_win)
 		protection(mlx_cub);
-	data->img = mlx_new_image(mlx_cub->mlx_ptr, mlx_cub->w, mlx_cub->h);
-	if (!data->img)
+	mlx_cub->data.img = mlx_new_image(mlx_cub->mlx_ptr, mlx_cub->w, mlx_cub->h);
+	if (!mlx_cub->data.img)
 		protection(mlx_cub);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
-		&data->line_length, &data->endian);
-	if (!data->addr)
+	mlx_cub->data.addr = mlx_get_data_addr(mlx_cub->data.img, &mlx_cub->data.bits_per_pixel, \
+		&mlx_cub->data.line_length, &mlx_cub->data.endian);
+	if (!mlx_cub->data.addr)
 		protection(mlx_cub);
 }

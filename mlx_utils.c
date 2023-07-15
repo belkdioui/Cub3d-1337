@@ -6,22 +6,22 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 13:17:27 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:30:50 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	key_hock(int keycode, t_mlx *mlx_cub)
-{
-	if (keycode == ESC)
-	{
-		mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
-		free(mlx_cub->mlx_ptr);
-		exit(0);
-	}
-	return (0);
-}
+// int	key_hock(int keycode, t_mlx *mlx_cub)
+// {
+// 	if (keycode == ESC)
+// 	{
+// 		mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
+// 		free(mlx_cub->mlx_ptr);
+// 		exit(0);
+// 	}
+// 	return (0);
+// }
 
 int	close_window(t_mlx *mlx_cub)
 {

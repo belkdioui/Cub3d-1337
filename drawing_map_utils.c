@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 15:49:38 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:02:12 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,26 @@ int	search_beginning_the_map(char **map)
 	return (0);
 }
 
-void	window_coloring(t_mlx *mlx_cub, t_data *data)
+void	window_coloring(t_mlx *mlx_cub)
 {
 	int	x;
 	int	y;
 
 	x = 0;
+	// printf("%d\n", mlx_cub->data.bits_per_pixel);
 	while (x < mlx_cub->w)
 	{
 		y = 0;
 		while (y < mlx_cub->h)
 		{
-			my_mlx_pixel_put(data, x, y, 0xFFFFFF);
+			my_mlx_pixel_put(&mlx_cub->data, x, y, 0xFFFFFF);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	drawing_square(t_mlx *mlx_cub, t_data *data, int x, int y)
+void	drawing_square(t_mlx *mlx_cub, int x, int y)
 {
 	int	tmp_x;
 	int	tmp_y;
@@ -58,25 +59,25 @@ void	drawing_square(t_mlx *mlx_cub, t_data *data, int x, int y)
 	{
 		tmp_y = y;
 		while (tmp_y++ < y + 49 && y + 50 <= mlx_cub->h)
-			my_mlx_pixel_put(data, tmp_x, tmp_y, 0x000000);
+			my_mlx_pixel_put(&mlx_cub->data, tmp_x, tmp_y, 0x000000);
 	}
 }
 
-void	drawing_player(t_data *data, int x, int y)
+void	drawing_player(t_mlx *mlx_cub, int x, int y)
 {
 	int	tmp_x;
 	int	tmp_y;
 
 	tmp_x = x;
-	while (tmp_x++ < x + 20)
+	while (tmp_x++ < x + 20 && x + 20 <= mlx_cub->w)
 	{
 		tmp_y = y;
-		while (tmp_y++ < y + 20)
-			my_mlx_pixel_put(data, tmp_x, tmp_y, 0xFF0000);
+		while (tmp_y++ < y + 20 && y + 20 <= mlx_cub->h)
+			my_mlx_pixel_put(&mlx_cub->data, tmp_x, tmp_y, 0xFF0000);
 	}
 }
 
-void	drawing_map(char **map, t_mlx *mlx_cub, t_data *data)
+void	drawing_map(char **map, t_mlx *mlx_cub)
 {
 	int	i;
 	int	j;
@@ -86,6 +87,7 @@ void	drawing_map(char **map, t_mlx *mlx_cub, t_data *data)
 	x = 0;
 	y = -50;
 	i = search_beginning_the_map(map);
+	window_coloring(mlx_cub);
 	while (map[i])
 	{
 		j = 0;
@@ -94,10 +96,16 @@ void	drawing_map(char **map, t_mlx *mlx_cub, t_data *data)
 		while (map[i][j] != '\n' && map[i][j] != '\0')
 		{
 			if (map[i][j] == '1')
-				drawing_square(mlx_cub, data, x, y);
+				drawing_square(mlx_cub, x, y);
 			else if (map[i][j] == 'N' || map[i][j] == 'S' \
 				|| map[i][j] == 'E' || map[i][j] == 'W')
-				drawing_player(data, x, y);
+			{
+				// if (mlx_cub->x_player != -1)
+				// 	x = mlx_cub->x_player;
+				// if (mlx_cub->y_player != -1)
+				// 	y = mlx_cub->y_player;
+				drawing_player(mlx_cub, x, y);
+			}
 			x += 50;
 			j++;
 		}
