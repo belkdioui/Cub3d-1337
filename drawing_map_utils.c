@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 15:00:56 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 15:49:38 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	drawing_square(t_mlx *mlx_cub, t_data *data, int x, int y)
 	int	tmp_y;
 
 	tmp_x = x;
-	while (tmp_x++ < x + 79 && x + 80 <= mlx_cub->w)
+	while (tmp_x++ < x + 49 && x + 50 <= mlx_cub->w)
 	{
 		tmp_y = y;
-		while (tmp_y++ < y + 79 && y + 80 <= mlx_cub->h)
+		while (tmp_y++ < y + 49 && y + 50 <= mlx_cub->h)
 			my_mlx_pixel_put(data, tmp_x, tmp_y, 0x000000);
 	}
 }
@@ -68,10 +68,10 @@ void	drawing_player(t_data *data, int x, int y)
 	int	tmp_y;
 
 	tmp_x = x;
-	while (tmp_x++ < x + 30)
+	while (tmp_x++ < x + 20)
 	{
 		tmp_y = y;
-		while (tmp_y++ < y + 30)
+		while (tmp_y++ < y + 20)
 			my_mlx_pixel_put(data, tmp_x, tmp_y, 0xFF0000);
 	}
 }
@@ -84,13 +84,13 @@ void	drawing_map(char **map, t_mlx *mlx_cub, t_data *data)
 	int	y;
 
 	x = 0;
-	y = -80;
+	y = -50;
 	i = search_beginning_the_map(map);
 	while (map[i])
 	{
 		j = 0;
 		x = 0;
-		y += 80;
+		y += 50;
 		while (map[i][j] != '\n' && map[i][j] != '\0')
 		{
 			if (map[i][j] == '1')
@@ -98,7 +98,7 @@ void	drawing_map(char **map, t_mlx *mlx_cub, t_data *data)
 			else if (map[i][j] == 'N' || map[i][j] == 'S' \
 				|| map[i][j] == 'E' || map[i][j] == 'W')
 				drawing_player(data, x, y);
-			x += 80;
+			x += 50;
 			j++;
 		}
 		i++;
