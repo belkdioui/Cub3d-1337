@@ -6,36 +6,29 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:22:41 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 12:51:08 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:19:29 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	key_hock(int keycode, t_mlx *mlx_cub)
+int	main(int ac, char **av)
 {
-	if (keycode == ESC)
+	t_mlx	mlx_cub;
+	t_data	data;
+	char	**map;
+
+	map = get_map(ac, av);
+	if (map)
 	{
-		mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
-		free(mlx_cub->mlx_ptr);
-		exit(0);
+		init(&mlx_cub, &data, map);
+		window_coloring(&mlx_cub, &data);
+		drawing_map(map, &mlx_cub, &data);
+		mlx_put_image_to_window(mlx_cub.mlx_ptr, mlx_cub.mlx_win, \
+			data.img, 0, 0);
+		mlx_key_hook(mlx_cub.mlx_win, key_hock, &mlx_cub);
+		mlx_hook(mlx_cub.mlx_win, ON_DESTROY, 0, close_window, &mlx_cub);
+		mlx_loop(mlx_cub.mlx_ptr);
 	}
 	return (0);
 }
-
-int	close_window(t_mlx *mlx_cub)
-{
-	mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
-	free(mlx_cub->mlx_ptr);
-	exit(0);
-	return (0);
-}
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-

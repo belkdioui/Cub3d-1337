@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:23:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 12:13:40 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:21:48 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,15 @@ char	*is_element_and_saveit(char **cnt_file, int which_ele,
 char	**ver_and_ret_map(int ac, char **av);
 int		check_the_map(char **cnt_file, t_ele *ele);
 
-
-void	init(t_mlx *mlx_cub, t_data *data, char **map);
-char	**get_map(int ac, char **av);
+/*----- mlx utils -------*/
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		close_window(t_mlx *mlx_cub);
 int		key_hock(int keycode, t_mlx *mlx_cub);
+
+/*----- drawing map -------*/
+char	**get_map(int ac, char **av);
+void	init(t_mlx *mlx_cub, t_data *data, char **map);
 int 	search_beginning_the_map(char **map);
+void    window_coloring(t_mlx *mlx_cub, t_data *data);
+void	drawing_map(char **map, t_mlx *mlx_cub, t_data *data);
 #endif
