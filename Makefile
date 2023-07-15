@@ -6,7 +6,7 @@
 #    By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/13 12:48:27 by rrhnizar          #+#    #+#              #
-#    Updated: 2023/07/15 13:21:15 by rrhnizar         ###   ########.fr        #
+#    Updated: 2023/07/15 13:35:21 by rrhnizar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,12 @@ ${NAME} : ${OBJM}
 	@make -C ./inc/libft/
 	${CC} ${MLXFLAG} ${OBJM} ${LIBFT} -o ${NAME}
 
-clean : 
+clean :
+	@make clean -C ./inc/libft/
 	rm -rf ${OBJM}
 
 fclean : clean
+	@make fclean -C ./inc/libft/
 	rm -rf ${NAME}
 
 re : fclean all
