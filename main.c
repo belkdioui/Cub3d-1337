@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:22:41 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 18:51:16 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:32:13 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(int ac, char **av)
 		drawing_map(map, &mlx_cub);
 		mlx_put_image_to_window(mlx_cub.mlx_ptr, mlx_cub.mlx_win, \
 			mlx_cub.data.img, 0, 0);
-		mlx_key_hook(mlx_cub.mlx_win, key_hock, &mlx_cub);
+		// mlx_key_hook(mlx_cub.mlx_win, key_hock, &mlx_cub);
+		mlx_hook(mlx_cub.mlx_win, 2, 0, key_hock, &mlx_cub);
 		mlx_hook(mlx_cub.mlx_win, ON_DESTROY, 0, close_window, &mlx_cub);
 		mlx_loop(mlx_cub.mlx_ptr);
 	}
