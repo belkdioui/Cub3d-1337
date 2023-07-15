@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 19:09:38 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:09:04 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,25 @@ void	change_position_the_player(char **map, int keycode)
 void	arrows_keys(int keycode, t_mlx *mlx_cub)
 {
 	if (keycode == ARROW_UP)
-		mlx_cub->y_player -= 2;
+	{
+		if (mlx_cub->y_up != '1')
+			mlx_cub->y_player -= 20;
+	}
 	else if (keycode == ARROW_DOWN)
-		mlx_cub->y_player += 2;
+	{
+		if (mlx_cub->y_down != '1')
+			mlx_cub->y_player += 20;
+	}
 	else if (keycode == ARROW_RIGHT)
-		mlx_cub->x_player += 2;
+	{
+		if (mlx_cub->x_right != '1')
+			mlx_cub->x_player += 20;
+	}
 	else if (keycode == ARROW_LEFT)
-		mlx_cub->x_player -= 2;
+	{
+		if (mlx_cub->x_left != '1')
+			mlx_cub->x_player -= 20;
+	}
 	// change_position_the_player(mlx_cub->map, keycode);
 	mlx_clear_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
 	drawing_map(mlx_cub->map, mlx_cub);

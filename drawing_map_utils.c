@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 19:08:37 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:19:30 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,16 @@ void	drawing_map(char **map, t_mlx *mlx_cub)
 			else if (map[i][j] == 'N' || map[i][j] == 'S' \
 				|| map[i][j] == 'E' || map[i][j] == 'W')
 			{
+				printf("%c\n", map[i -1][j]);
+				// exit(1);
+				// mlx_cub->y_up = map[i -1][j];
+				// mlx_cub->y_down = map[i +1][j];
+				// mlx_cub->x_right = map[i][j +1];
+				// mlx_cub->x_left = map[i][j -1];
+				// mlx_cub->y_up = '1';
+				// mlx_cub->y_down = '1';
+				// mlx_cub->x_right = '1';
+				// mlx_cub->x_left = '1';
 				drawing_player(mlx_cub, x + mlx_cub->x_player, y + mlx_cub->y_player);
 			}
 			x += 50;

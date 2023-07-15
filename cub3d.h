@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:23:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 19:20:21 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:05:14 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ typedef struct s_mlx
 	int		y;
 	int		x_player;
 	int		y_player;
+	char	y_up;
+	char	y_down;
+	char	x_right;
+	char	x_left;
 	t_data	data;
 	char	**map;
 }				t_mlx;
