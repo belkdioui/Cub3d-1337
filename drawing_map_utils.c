@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 13:15:34 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 15:00:56 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ void	drawing_map(char **map, t_mlx *mlx_cub, t_data *data)
 		{
 			if (map[i][j] == '1')
 				drawing_square(mlx_cub, data, x, y);
-			else if (map[i][j] == '0')
+			else if (map[i][j] == 'N' || map[i][j] == 'S' \
+				|| map[i][j] == 'E' || map[i][j] == 'W')
 				drawing_player(data, x, y);
 			x += 80;
 			j++;

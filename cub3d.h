@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 12:23:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 13:44:06 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:42:06 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ typedef struct s_mlx
 	int		x;
 	int		y;
 }				t_mlx;
+
+typedef struct s_vars
+{
+	int		i;
+	int		j;
+	int		is_ele;
+	int		check;
+}	t_vars;
 
 typedef struct s_ele
 {

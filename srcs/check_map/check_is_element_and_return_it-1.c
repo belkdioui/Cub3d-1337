@@ -6,12 +6,11 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:56:11 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 10:48:32 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:44:08 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../inc/cub3D.h"
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 char	*ret_element(char *line, int num_of_ele)
 {

@@ -6,12 +6,11 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:38:08 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 10:48:11 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:43:46 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../inc/cub3D.h"
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	free_db(char **arr)
 {

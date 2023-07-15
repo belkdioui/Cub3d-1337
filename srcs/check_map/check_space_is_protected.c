@@ -6,12 +6,11 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:49:25 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 10:48:24 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:44:01 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../inc/cub3D.h"
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	top(int *copy, int y, char **map, int *protect)
 {

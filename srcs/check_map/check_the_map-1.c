@@ -6,12 +6,11 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:48:04 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 10:48:21 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:43:57 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../inc/cub3D.h"
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 int	check_rgb(char *rgb)
 {
