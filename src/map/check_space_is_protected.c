@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:49:25 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 10:49:46 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:03:05 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ void	right(int x, int *copy, char **map, int *protect)
 {
 	int	len;
 
-	len = ft_strlen(map[x]) - 1;
+	len = 0;
+	while (map[x][len] != '\n')
+		len++;
 	while (*copy <= len)
 	{
 		if (map[x][*copy] == '1')

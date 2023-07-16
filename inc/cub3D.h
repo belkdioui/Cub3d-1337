@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 22:48:38 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:06:10 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_ele
 int		search_and_ret_place(char *av);
 int		cal_number_of_lines_map(char **cnt_file);
 void	free_db(char **arr);
+int		len_of_longest_line(char **pre_map);
 //
 int		space_is_protected(char **map, int x, int y);
 int		check_rgb(char *rgb);

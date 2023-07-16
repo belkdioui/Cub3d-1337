@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 20:57:07 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:19:04 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	if_first_and_last(char **map, int i, int *j)
 {
-	while (map[i][*j])
+	while (map[i][*j] != '\n')
 	{
 		if (map[i][*j] != '1' && map[i][*j] != ' ' && map[i][*j] != '\n')
 			return (0);
@@ -28,11 +28,18 @@ int	if_first_and_last(char **map, int i, int *j)
 
 int	if_bet_first_and_last(char **map, int i, int *j, int *player)
 {
+	int	last;
+
+	last = 0;
+	while (map[i][last] != '\n')
+		last++;
 	while (map[i][*j] && map[i][*j] == ' ')
 		(*j)++;
-	if (map[i][*j] != '1' || map[i][ft_strlen(map[i]) - 2] != '1')
+	while (map[i][last] == '\n' || map[i][last] == ' ')
+		last--;
+	if (map[i][*j] != '1' || map[i][last] != '1')
 		return (0);
-	while (map[i][*j])
+	while (map[i][*j] != '\n')
 	{
 		if (map[i][*j] != '1' && map[i][*j] != ' ' && map[i][*j] != '\n'
 				&& map[i][*j] != '0' && map[i][*j] != 'N' && map[i][*j] != 'S'
@@ -77,13 +84,51 @@ int	check_map(char **map)
 	return (1);
 }
 
+void	convert_the_map_to_rect(char ***new_map, char **pre_map)
+{
+	int		i;
+	int		len;
+	int		lines;
+	int		j;
+	int		diff;
+
+	i = 0;
+	len = len_of_longest_line(pre_map);
+	lines = cal_number_of_lines_map(pre_map);
+	*new_map = malloc(sizeof(char *) * (lines + 1));
+	(*new_map)[lines] = NULL;
+	while (pre_map[i])
+	{
+		j = 0;
+		(*new_map)[i] = malloc(sizeof(char) * len);
+		while (pre_map[i][j] != '\n')
+		{
+			(*new_map)[i][j] = pre_map[i][j];
+			j++;
+		}
+		diff = len - j - 1;
+		while (diff)
+		{
+			(*new_map)[i][j] = ' ';
+			diff--;
+			j++;
+		}
+		if (!diff)
+			(*new_map)[i][j] = '\n';
+		i++;
+	}
+	free_db(pre_map);
+}
+
 int	check_the_map(char **cnt_file, t_ele *ele)
 {
 	char	*check;
+	char	**map;
 
-	check = is_element_and_saveit(cnt_file, 7, &ele->map);
+	check = is_element_and_saveit(cnt_file, 7, &map);
 	if (!check)
 		return (0);
+	convert_the_map_to_rect(&ele->map, map);
 	ele->no = is_element_and_saveit(cnt_file, 1, NULL);
 	ele->so = is_element_and_saveit(cnt_file, 2, NULL);
 	ele->we = is_element_and_saveit(cnt_file, 3, NULL);

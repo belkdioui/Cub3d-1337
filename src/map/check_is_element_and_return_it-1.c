@@ -6,34 +6,43 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:56:11 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 10:48:45 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:31:00 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
+void	get_i_and_j_for_substr(char *line, int *i, int *j)
+{
+	while (line[*i] == ' ')
+		(*i)++;
+	*j = *i;
+	while (line[*i] != '\n' && line[*i] != ' ')
+		(*i)++;
+}
+
 char	*ret_element(char *line, int num_of_ele)
 {
 	int		i;
 	char	*save_ele;
+	int		j;
 
 	i = 0;
+	j = 0;
 	save_ele = NULL;
 	while (line[i] == ' ')
 		i++;
 	if (num_of_ele >= 1 && num_of_ele <= 4)
 	{
 		i += 3;
-		while (line[i] == ' ')
-			i++;
-		save_ele = ft_substr(line, i, ft_strlen(line));
+		get_i_and_j_for_substr(line, &i, &j);
+		save_ele = ft_substr(line, j, i - j);
 	}
 	else if (num_of_ele == 5 || num_of_ele == 6)
 	{
 		i += 2;
-		while (line[i] == ' ')
-			i++;
-		save_ele = ft_substr(line, i, ft_strlen(line));
+		get_i_and_j_for_substr(line, &i, &j);
+		save_ele = ft_substr(line, j, i - j);
 	}
 	else if (num_of_ele == 7)
 		save_ele = ft_strdup(line);
@@ -62,6 +71,10 @@ int	is_element(char *line, int *ele)
 	i = 0;
 	while (line[i] == ' ')
 		i++;
+	if (line[i] == '\n')
+		return (10);
+	if (line[i] == '1')
+		return (7);
 	element = ft_substr(line, i, i + 3);
 	ret = valid_textures(element);
 	if (ret)
@@ -72,11 +85,5 @@ int	is_element(char *line, int *ele)
 		return (free(element), (*ele)++, 5);
 	else if (!ft_strncmp(element, "C ", 3))
 		return (free(element), (*ele)++, 6);
-	free (element);
-	element = ft_substr(line, i, i + 1);
-	if (!ft_strncmp(element, "1", 1))
-		return (free(element), 7);
-	if (!ft_strncmp(element, "\n", 1))
-		return (free(element), 10);
 	return (free(element), 0);
 }

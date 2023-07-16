@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:38:08 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 10:49:12 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:05:54 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,22 @@ int	cal_number_of_lines_map(char **cnt_file)
 		i++;
 	}
 	return (j);
+}
+
+int	len_of_longest_line(char **pre_map)
+{
+	int		i;
+	size_t	len;
+
+	i = 0;
+	len = 0;
+	while (pre_map[i])
+	{
+		if (len < ft_strlen(pre_map[i]))
+			len = ft_strlen(pre_map[i]);
+		i++;
+	}
+	return (len);
 }
 
 int	search_and_ret_place(char *av)
