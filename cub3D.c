@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:45 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/17 12:57:46 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/17 20:01:57 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_ele	*get_map(int ac, char **av)
 		exit(1);
 	}
 	ele = malloc(sizeof(t_ele));
+	if (!ele)
+		exit(1);
 	if (!check_the_map(cnt_file, ele))
 	{
 		ft_putstr_fd("error in the map\n", 2);

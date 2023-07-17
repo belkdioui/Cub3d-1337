@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/17 12:59:32 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:58:34 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void	convert_the_map_to_rect(char ***new_map, char **pre_map)
 	while (pre_map[i])
 	{
 		j = 0;
-		(*new_map)[i] = malloc(sizeof(char) * len);
+		(*new_map)[i] = malloc(sizeof(char) * len + 1);
+		(*new_map)[i][len] = '\0';
 		while (pre_map[i][j] != '\n' && pre_map[i][j] != '\0')
 		{
 			(*new_map)[i][j] = pre_map[i][j];

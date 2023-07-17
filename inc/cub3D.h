@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/17 12:19:35 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/17 19:59:52 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,10 @@ typedef struct s_mlx
 	void	*mlx_win;
 	int		x;
 	int		y;
-	int		x_player;
-	int		y_player;
-	char	y_up;
-	char	y_down;
-	char	x_right;
-	char	x_left;
+	double		x_player;
+	double		y_player;
+	int			x_p;
+	int			y_p;
 	t_data	data;
 	char	**map;
 }				t_mlx;
@@ -74,6 +72,7 @@ typedef struct s_ele
 	char	*f;
 	char	*c;
 	char	**map;
+	char	*str;
 }	t_ele;
 
 //utils
@@ -102,4 +101,5 @@ t_ele	*get_map(int ac, char **av);
 void	init(t_mlx *mlx_cub, char **map);
 void	window_coloring(t_mlx *mlx_cub);
 void	drawing_map(char **map, t_mlx *mlx_cub);
+void	drawing_player(t_mlx *mlx_cub, int x, int y);
 #endif
