@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_the_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/16 01:19:04 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:59:32 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	convert_the_map_to_rect(char ***new_map, char **pre_map)
 	{
 		j = 0;
 		(*new_map)[i] = malloc(sizeof(char) * len);
-		while (pre_map[i][j] != '\n')
+		while (pre_map[i][j] != '\n' && pre_map[i][j] != '\0')
 		{
 			(*new_map)[i][j] = pre_map[i][j];
 			j++;
