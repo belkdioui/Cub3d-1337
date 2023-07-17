@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/17 12:05:00 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:17:33 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,27 @@ void	protection(t_mlx *mlx_cub)
 	exit(1);
 }
 
-void	big_width_and_height(int *big_width, int *height, char **map)
+static void	width_and_height(int *width, int *height, char **map)
 {
 	int	i;
 	int	j;
-	int	count_width;
 
 	i = 0;
-	*big_width = 0;
-	*height = 0;
-	i = search_beginning_the_map(map);
 	while (map[i])
 	{
-		count_width = 0;
 		j = 0;
-		while (map[i][j] != '\n' && map[i][j++] != '\0')
-			count_width++;
-		if (*big_width < count_width)
-			*big_width = count_width;
-		(*height)++;
+		while (map[i][j] != '\n' && map[i][j] != '\0')
+			j++;
+		*width = j;
 		i++;
 	}
+	*height = i;
 }
 
 void	init(t_mlx *mlx_cub, char **map)
 {
 	mlx_cub->mlx_ptr = mlx_init();
-	big_width_and_height(&mlx_cub->w, &mlx_cub->h, map);
+	width_and_height(&mlx_cub->w, &mlx_cub->h, map);
 	mlx_cub->h *= 50;
 	mlx_cub->w *= 50;
 	mlx_cub->y_player = 0;

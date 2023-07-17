@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/17 12:05:06 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:27:52 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
-
-// int	key_hock(int keycode, t_mlx *mlx_cub)
-// {
-// 	if (keycode == ESC)
-// 	{
-// 		mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
-// 		free(mlx_cub->mlx_ptr);
-// 		exit(0);
-// 	}
-// 	return (0);
-// }
 
 int	close_window(t_mlx *mlx_cub)
 {

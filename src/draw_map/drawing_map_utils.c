@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/17 12:04:57 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:18:04 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
-
-int	search_beginning_the_map(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j] == ' ')
-			j++;
-		if (map[i][j] == '1')
-			return (i);
-		i++;
-	}
-	return (0);
-}
 
 void	window_coloring(t_mlx *mlx_cub)
 {
@@ -36,7 +18,6 @@ void	window_coloring(t_mlx *mlx_cub)
 	int	y;
 
 	x = 0;
-	// printf("%d\n", mlx_cub->data.bits_per_pixel);
 	while (x < mlx_cub->w)
 	{
 		y = 0;
@@ -86,7 +67,7 @@ void	drawing_map(char **map, t_mlx *mlx_cub)
 
 	x = 0;
 	y = -50;
-	i = search_beginning_the_map(map);
+	i = 0;
 	window_coloring(mlx_cub);
 	while (map[i])
 	{
@@ -99,19 +80,7 @@ void	drawing_map(char **map, t_mlx *mlx_cub)
 				drawing_square(mlx_cub, x, y);
 			else if (map[i][j] == 'N' || map[i][j] == 'S' \
 				|| map[i][j] == 'E' || map[i][j] == 'W')
-			{
-				printf("%c\n", map[i -1][j]);
-				// exit(1);
-				// mlx_cub->y_up = map[i -1][j];
-				// mlx_cub->y_down = map[i +1][j];
-				// mlx_cub->x_right = map[i][j +1];
-				// mlx_cub->x_left = map[i][j -1];
-				// mlx_cub->y_up = '1';
-				// mlx_cub->y_down = '1';
-				// mlx_cub->x_right = '1';
-				// mlx_cub->x_left = '1';
 				drawing_player(mlx_cub, x + mlx_cub->x_player, y + mlx_cub->y_player);
-			}
 			x += 50;
 			j++;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/17 11:53:31 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:19:35 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,8 @@ int		close_window(t_mlx *mlx_cub);
 int		key_hock(int keycode, t_mlx *mlx_cub);
 
 /*----- drawing map -------*/
-char	**get_map(int ac, char **av);
+t_ele	*get_map(int ac, char **av);
 void	init(t_mlx *mlx_cub, char **map);
-int		search_beginning_the_map(char **map);
 void	window_coloring(t_mlx *mlx_cub);
 void	drawing_map(char **map, t_mlx *mlx_cub);
 #endif

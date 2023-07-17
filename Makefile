@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+         #
+#    By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 14:46:36 by bel-kdio          #+#    #+#              #
-#    Updated: 2023/07/17 12:04:26 by bel-kdio         ###   ########.fr        #
+#    Updated: 2023/07/17 12:30:22 by rrhnizar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3D
 
 LIBFT = ./inc/libft/libft.a
 
-SRC = src/draw_mini_map/initialization.c src/draw_mini_map/mlx_utils.c src/draw_mini_map/drawing_map_utils.c src/draw_mini_map/key_hooks.c\
+SRC = src/draw_map/initialization.c src/draw_map/mlx_utils.c src/draw_map/drawing_map_utils.c src/draw_map/key_hooks.c\
 		cub3D.c inc/get_next_line/get_next_line.c inc/get_next_line/get_next_line_utils.c src/map/verifaction_and_return_map.c src/map/utils1_cub3D.c src/map/check_the_map.c\
 		src/map/check_is_element_and_return_it.c src/map/check_is_element_and_return_it-1.c src/map/check_the_map-1.c src/map/check_space_is_protected.c
 
@@ -24,7 +24,7 @@ CC = cc
 
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 MLXFLAG = -lmlx -framework OpenGL -framework AppKit
 
@@ -32,7 +32,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C ./inc/libft/
-	$(CC) $(MLXFLAG) $(OBJ) $(LIBFT) $(CFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLXFLAG) $(OBJ) $(LIBFT) -o $(NAME)
 
 clean:
 	@make clean -C ./inc/libft/
