@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/16 01:06:10 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:53:31 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,46 @@
 # include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 # include <stdio.h>
+# include <mlx.h>
+# include <stdlib.h>
+
+# define ESC 53
+# define ON_DESTROY 17
+# define ARROW_UP 126
+# define ARROW_DOWN 125
+# define ARROW_RIGHT 124
+# define ARROW_LEFT  123
+
+/*----- data the my_mlx_pixel_put --------*/
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+/*--------- strcut the mlx -----------*/
+
+typedef struct s_mlx
+{
+	int		w;
+	int		h;
+	void	*mlx_ptr;
+	void	*mlx_win;
+	int		x;
+	int		y;
+	int		x_player;
+	int		y_player;
+	char	y_up;
+	char	y_down;
+	char	x_right;
+	char	x_left;
+	t_data	data;
+	char	**map;
+}				t_mlx;
 
 typedef struct s_vars
 {
@@ -52,4 +92,15 @@ char	*is_element_and_saveit(char **cnt_file, int which_ele,
 char	**ver_and_ret_map(int ac, char **av);
 int		check_the_map(char **cnt_file, t_ele *ele);
 
+/*----- mlx utils -------*/
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		close_window(t_mlx *mlx_cub);
+int		key_hock(int keycode, t_mlx *mlx_cub);
+
+/*----- drawing map -------*/
+char	**get_map(int ac, char **av);
+void	init(t_mlx *mlx_cub, char **map);
+int		search_beginning_the_map(char **map);
+void	window_coloring(t_mlx *mlx_cub);
+void	drawing_map(char **map, t_mlx *mlx_cub);
 #endif
