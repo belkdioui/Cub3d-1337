@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:45 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/17 12:37:11 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:50:51 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int	main(int ac, char **av)
 
 	mlx_cub = NULL;
 	ele = get_map(ac, av);
-	exit(1);
-	if (ele->map)
-		draw_map(mlx_cub, ele);
+	draw_map(mlx_cub, ele);
 	return (1);
 }
