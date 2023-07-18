@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_space_is_protected.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:49:25 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/15 14:44:01 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:03:05 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../inc/cub3D.h"
 
 void	top(int *copy, int y, char **map, int *protect)
 {
@@ -70,7 +70,9 @@ void	right(int x, int *copy, char **map, int *protect)
 {
 	int	len;
 
-	len = ft_strlen(map[x]) - 1;
+	len = 0;
+	while (map[x][len] != '\n')
+		len++;
 	while (*copy <= len)
 	{
 		if (map[x][*copy] == '1')

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   verifaction_and_return_map.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:39:10 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/15 14:43:50 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:49:05 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../inc/cub3D.h"
 
 int	check_the_name(int ac, char **av)
 {

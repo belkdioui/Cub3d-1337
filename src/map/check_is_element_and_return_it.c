@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_is_element_and_return_it.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:51:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/15 14:44:04 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/15 23:43:20 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../inc/cub3D.h"
 
 char	**allocate_save_map(char **cnt_file)
 {

@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/07/13 12:48:27 by rrhnizar          #+#    #+#              #
-#    Updated: 2023/07/15 16:30:22 by rrhnizar         ###   ########.fr        #
+#    Created: 2023/07/10 14:46:36 by bel-kdio          #+#    #+#              #
+#    Updated: 2023/07/17 18:16:48 by rrhnizar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,39 +14,36 @@ NAME = cub3D
 
 LIBFT = ./inc/libft/libft.a
 
-SRCM = main.c initialization.c mlx_utils.c drawing_map_utils.c key_hooks.c\
-		srcs/check_map/cub3D.c inc/get_next_line/get_next_line.c inc/get_next_line/get_next_line_utils.c \
-		srcs/check_map/verifaction_and_return_map.c srcs/check_map/utils1_cub3D.c srcs/check_map/check_the_map.c \
-		srcs/check_map/check_is_element_and_return_it.c srcs/check_map/check_is_element_and_return_it-1.c \
-		srcs/check_map/check_the_map-1.c srcs/check_map/check_space_is_protected.c
+SRC = src/draw_map/initialization.c src/draw_map/mlx_utils.c src/draw_map/drawing_map_utils.c src/draw_map/key_hooks.c\
+		cub3D.c inc/get_next_line/get_next_line.c inc/get_next_line/get_next_line_utils.c src/map/verifaction_and_return_map.c src/map/utils1_cub3D.c src/map/check_the_map.c\
+		src/map/check_is_element_and_return_it.c src/map/check_is_element_and_return_it-1.c src/map/check_the_map-1.c src/map/check_space_is_protected.c
 
-RFLAG = -Wall -Werror -Wextra
+OBJ := $(SRC:.c=.o)
+
+CC = cc
+
+RM = rm -rf
+
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 
 MLXFLAG = -lmlx -framework OpenGL -framework AppKit
 
-CC = cc ${RFLAG}
+all: $(NAME)
 
-OBJM = ${SRCM:.c=.o}
-
-%.o : %.c
-	${CC} -c $< -o $@
-
-all : ${NAME}
-
-${NAME} : ${OBJM}
+$(NAME): $(OBJ)
 	@make -C ./inc/libft/
-	${CC} ${MLXFLAG} ${OBJM} ${LIBFT} -o ${NAME}
+	$(CC) $(CFLAGS) $(MLXFLAG) $(OBJ) $(LIBFT) -o $(NAME)
 
-clean :
+clean:
 	@make clean -C ./inc/libft/
-	rm -rf ${OBJM}
+	$(RM) $(OBJ)
 
-fclean : clean
+fclean:	clean
 	@make fclean -C ./inc/libft/
-	rm -rf ${NAME}
+	$(RM) $(NAME)
 
-re : fclean all
+re:	fclean all
 
-.PHONY : all clean fclean re
+bonus: all
 
-	
+.PHONY: all clean fclean re bonus

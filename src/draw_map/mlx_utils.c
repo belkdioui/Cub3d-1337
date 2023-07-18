@@ -3,33 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 19:46:41 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/18 10:34:25 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-// int	key_hock(int keycode, t_mlx *mlx_cub)
-// {
-// 	if (keycode == ESC)
-// 	{
-// 		mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
-// 		free(mlx_cub->mlx_ptr);
-// 		exit(0);
-// 	}
-// 	return (0);
-// }
+#include "../../inc/cub3D.h"
 
 int	close_window(t_mlx *mlx_cub)
 {
 	mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
 	free(mlx_cub->mlx_ptr);
 	free_db(mlx_cub->map);
-	printf("\n\n\n");
-		system("leaks cub3D");
 	exit(0);
 	return (0);
 }

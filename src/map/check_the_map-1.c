@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_the_map-1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:48:04 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/15 14:43:57 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:49:38 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d.h"
+#include "../../inc/cub3D.h"
 
 int	check_rgb(char *rgb)
 {

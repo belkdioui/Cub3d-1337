@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 12:23:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/15 20:05:14 by rrhnizar         ###   ########.fr       */
+/*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
+/*   Updated: 2023/07/18 10:30:30 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "inc/libft/libft.h"
-# include "inc/get_next_line/get_next_line.h"
+# include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 # include <stdio.h>
 # include <mlx.h>
 # include <stdlib.h>
@@ -41,20 +41,18 @@ typedef struct s_data
 
 typedef struct s_mlx
 {
-	int		w;
-	int		h;
-	void	*mlx_ptr;
-	void	*mlx_win;
-	int		x;
-	int		y;
-	int		x_player;
-	int		y_player;
-	char	y_up;
-	char	y_down;
-	char	x_right;
-	char	x_left;
-	t_data	data;
-	char	**map;
+	int			w;
+	int			h;
+	void		*mlx_ptr;
+	void		*mlx_win;
+	int			x;
+	int			y;
+	double		x_p_move;
+	double		y_p_move;
+	int			x_p;
+	int			y_p;
+	t_data		data;
+	char		**map;
 }				t_mlx;
 
 typedef struct s_vars
@@ -74,12 +72,14 @@ typedef struct s_ele
 	char	*f;
 	char	*c;
 	char	**map;
+	char	*str;
 }	t_ele;
 
 //utils
 int		search_and_ret_place(char *av);
 int		cal_number_of_lines_map(char **cnt_file);
 void	free_db(char **arr);
+int		len_of_longest_line(char **pre_map);
 //
 int		space_is_protected(char **map, int x, int y);
 int		check_rgb(char *rgb);
@@ -97,9 +97,7 @@ int		close_window(t_mlx *mlx_cub);
 int		key_hock(int keycode, t_mlx *mlx_cub);
 
 /*----- drawing map -------*/
-char	**get_map(int ac, char **av);
+t_ele	*get_map(int ac, char **av);
 void	init(t_mlx *mlx_cub, char **map);
-int		search_beginning_the_map(char **map);
-void	window_coloring(t_mlx *mlx_cub);
 void	drawing_map(char **map, t_mlx *mlx_cub);
 #endif
