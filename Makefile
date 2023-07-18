@@ -6,7 +6,7 @@
 #    By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 14:46:36 by bel-kdio          #+#    #+#              #
-#    Updated: 2023/07/17 18:16:48 by rrhnizar         ###   ########.fr        #
+#    Updated: 2023/07/18 10:53:37 by rrhnizar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CC = cc
 
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 
 MLXFLAG = -lmlx -framework OpenGL -framework AppKit
 
