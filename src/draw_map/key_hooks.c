@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/18 11:50:38 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:24:28 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,28 @@ void	move_keys(int keycode, t_mlx *mlx_cub)
 			mlx_cub->data.img, 0, 0);
 }
 
+void	free_ele(t_ele *ele)
+{
+	free(ele->c);
+	free(ele->f);
+	free(ele->ea);
+	free(ele->we);
+	free(ele->no);
+	free(ele->so);
+	free_db(ele->map);
+	free(ele);
+}
+
 int	key_hock(int keycode, t_mlx *mlx_cub)
 {
 	if (keycode == ESC)
 	{
 		mlx_destroy_image(mlx_cub->mlx_ptr, mlx_cub->data.img);
 		mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
-		free(mlx_cub->mlx_ptr);
-		/*hna mazal khas free dyal map ...*/
+		// free(mlx_cub->mlx_ptr);
+		free_ele(mlx_cub->ele);
 		free(mlx_cub);
-		// system("leaks cub3D");
+		system("leaks cub3D");
 		exit(0);
 	}
 	else if (keycode == ARROW_UP || keycode == ARROW_DOWN || \
