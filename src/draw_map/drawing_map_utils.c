@@ -6,13 +6,13 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/17 19:59:58 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/18 10:29:33 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-void	window_coloring(t_mlx *mlx_cub)
+static void	window_coloring(t_mlx *mlx_cub)
 {
 	int	x;
 	int	y;
@@ -30,7 +30,7 @@ void	window_coloring(t_mlx *mlx_cub)
 	}
 }
 
-void	drawing_square(t_mlx *mlx_cub, int x, int y)
+static void	drawing_square(t_mlx *mlx_cub, int x, int y)
 {
 	int	tmp_x;
 	int	tmp_y;
@@ -44,7 +44,7 @@ void	drawing_square(t_mlx *mlx_cub, int x, int y)
 	}
 }
 
-void	drawing_player(t_mlx *mlx_cub, int x, int y)
+static void	drawing_player(t_mlx *mlx_cub, int x, int y)
 {
 	int	tmp_x;
 	int	tmp_y;
@@ -65,36 +65,24 @@ void	drawing_map(char **map, t_mlx *mlx_cub)
 
 	mlx_cub->x = 0;
 	mlx_cub->y = -50;
-	i = 0;
+	i = -1;
 	window_coloring(mlx_cub);
-	while (map[i])
+	while (map[++i])
 	{
-		j = 0;
+		j = -1;
 		mlx_cub->x = 0;
 		mlx_cub->y += 50;
-		while (map[i][j] != '\n' && map[i][j] != '\0')
+		while (map[i][++j] != '\n' && map[i][j] != '\0')
 		{
 			if (map[i][j] == '1')
 				drawing_square(mlx_cub, mlx_cub->x, mlx_cub->y);
-			else if (map[i][j] == 'N' || map[i][j] == 'S' \
-				|| map[i][j] == 'E' || map[i][j] == 'W')
+			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
 			{
-				if (map[(mlx_cub->y + (int)mlx_cub->y_player) / 50] \
-				&& map[(mlx_cub->y + (int)mlx_cub->y_player) / 50][(mlx_cub->x + (int)mlx_cub->x_player) / 50] == '1')
-				{
-					printf("%d\n", mlx_cub->y_p);
-					drawing_player(mlx_cub, mlx_cub->x_p, mlx_cub->y_p);
-				}
-				else
-				{
-					mlx_cub->x_p = mlx_cub->x + mlx_cub->x_player;
-					mlx_cub->y_p = mlx_cub->y + mlx_cub->y_player;
-					drawing_player(mlx_cub, mlx_cub->x + mlx_cub->x_player, mlx_cub->y + mlx_cub->y_player);
-				}
+				mlx_cub->x_p = mlx_cub->x + mlx_cub->x_p_move;
+				mlx_cub->y_p = mlx_cub->y + mlx_cub->y_p_move;
+				drawing_player(mlx_cub, mlx_cub->x_p, mlx_cub->y_p);
 			}
 			mlx_cub->x += 50;
-			j++;
 		}
-		i++;
 	}
 }

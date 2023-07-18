@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/17 19:59:52 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/18 10:30:30 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ typedef struct s_data
 
 typedef struct s_mlx
 {
-	int		w;
-	int		h;
-	void	*mlx_ptr;
-	void	*mlx_win;
-	int		x;
-	int		y;
-	double		x_player;
-	double		y_player;
+	int			w;
+	int			h;
+	void		*mlx_ptr;
+	void		*mlx_win;
+	int			x;
+	int			y;
+	double		x_p_move;
+	double		y_p_move;
 	int			x_p;
 	int			y_p;
-	t_data	data;
-	char	**map;
+	t_data		data;
+	char		**map;
 }				t_mlx;
 
 typedef struct s_vars
@@ -99,7 +99,5 @@ int		key_hock(int keycode, t_mlx *mlx_cub);
 /*----- drawing map -------*/
 t_ele	*get_map(int ac, char **av);
 void	init(t_mlx *mlx_cub, char **map);
-void	window_coloring(t_mlx *mlx_cub);
 void	drawing_map(char **map, t_mlx *mlx_cub);
-void	drawing_player(t_mlx *mlx_cub, int x, int y);
 #endif

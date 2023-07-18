@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/17 20:00:06 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/18 10:11:31 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	init(t_mlx *mlx_cub, char **map)
 	width_and_height(&mlx_cub->w, &mlx_cub->h, map);
 	mlx_cub->h *= 50;
 	mlx_cub->w *= 50;
-	mlx_cub->y_player = 0;
-	mlx_cub->x_player = 0;
+	mlx_cub->y_p_move = 0;
+	mlx_cub->x_p_move = 0;
 	mlx_cub->x_p = 0;
 	mlx_cub->y_p = 0;
 	if (!mlx_cub->mlx_ptr)
@@ -58,7 +58,8 @@ void	init(t_mlx *mlx_cub, char **map)
 	mlx_cub->data.img = mlx_new_image(mlx_cub->mlx_ptr, mlx_cub->w, mlx_cub->h);
 	if (!mlx_cub->data.img)
 		protection(mlx_cub);
-	mlx_cub->data.addr = mlx_get_data_addr(mlx_cub->data.img, &mlx_cub->data.bits_per_pixel, \
+	mlx_cub->data.addr = mlx_get_data_addr(mlx_cub->data.img, \
+		&mlx_cub->data.bits_per_pixel, \
 		&mlx_cub->data.line_length, &mlx_cub->data.endian);
 	if (!mlx_cub->data.addr)
 		protection(mlx_cub);

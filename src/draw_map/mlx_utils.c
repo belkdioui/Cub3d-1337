@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/17 12:27:52 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/18 10:34:25 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	close_window(t_mlx *mlx_cub)
 	mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
 	free(mlx_cub->mlx_ptr);
 	free_db(mlx_cub->map);
-	printf("\n\n\n");
-		system("leaks cub3D");
 	exit(0);
 	return (0);
 }
