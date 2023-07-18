@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/18 10:30:30 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/18 11:23:28 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,18 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
+typedef struct s_ele
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*f;
+	char	*c;
+	char	**map;
+	char	*str;
+}	t_ele;
+
 /*--------- strcut the mlx -----------*/
 
 typedef struct s_mlx
@@ -52,7 +64,7 @@ typedef struct s_mlx
 	int			x_p;
 	int			y_p;
 	t_data		data;
-	char		**map;
+	t_ele		*ele;
 }				t_mlx;
 
 typedef struct s_vars
@@ -63,17 +75,6 @@ typedef struct s_vars
 	int		check;
 }	t_vars;
 
-typedef struct s_ele
-{
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char	*f;
-	char	*c;
-	char	**map;
-	char	*str;
-}	t_ele;
 
 //utils
 int		search_and_ret_place(char *av);

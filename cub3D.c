@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:45 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/17 20:01:57 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/18 11:25:22 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,7 @@ t_ele	*get_map(int ac, char **av)
 
 void	draw_map(t_mlx *mlx_cub, t_ele *ele)
 {
-	mlx_cub = malloc(sizeof(t_mlx));
-	if (!mlx_cub)
-		exit (1);
 	init(mlx_cub, ele->map);
-	mlx_cub->map = ele->map;
 	drawing_map(ele->map, mlx_cub);
 	mlx_put_image_to_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win,
 		mlx_cub->data.img, 0, 0);
@@ -51,11 +47,12 @@ void	draw_map(t_mlx *mlx_cub, t_ele *ele)
 
 int	main(int ac, char **av)
 {
-	t_ele	*ele;
 	t_mlx	*mlx_cub;
 
-	mlx_cub = NULL;
-	ele = get_map(ac, av);
-	draw_map(mlx_cub, ele);
+	mlx_cub = malloc(sizeof(t_mlx));
+	if (!mlx_cub)
+		exit (1);
+	mlx_cub->ele = get_map(ac, av);
+	draw_map(mlx_cub, mlx_cub->ele);
 	return (1);
 }
