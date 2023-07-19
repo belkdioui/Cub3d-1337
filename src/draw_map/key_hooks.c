@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/18 12:34:06 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/19 17:50:19 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	key_hock(int keycode, t_mlx *mlx_cub)
 	{
 		mlx_destroy_image(mlx_cub->mlx_ptr, mlx_cub->data.img);
 		mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
-		// free(mlx_cub->mlx_ptr);
 		free_ele(mlx_cub->ele);
 		free(mlx_cub);
 		system("leaks cub3D");

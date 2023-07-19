@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/18 10:29:33 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/19 17:50:00 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
+#define THRESHOLD 0.001
 static void	window_coloring(t_mlx *mlx_cub)
 {
 	int	x;
@@ -58,6 +59,34 @@ static void	drawing_player(t_mlx *mlx_cub, int x, int y)
 	}
 }
 
+int draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY, int color)
+{
+    double deltaX = endX - beginX;
+    double deltaY = endY - beginY;
+    int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
+
+    if (pixels == 0) {
+        my_mlx_pixel_put(&mlx_cub->data, beginX, beginY, color);
+        return 0;
+    }
+
+    deltaX /= pixels;
+    deltaY /= pixels;
+
+    double pixelX = beginX;
+    double pixelY = beginY;
+
+    while (pixels) {
+        my_mlx_pixel_put(&mlx_cub->data, pixelX, pixelY, color);
+        pixelX += deltaX;
+        pixelY += deltaY;
+        --pixels;
+    }
+
+    return 0;
+}
+
+
 void	drawing_map(char **map, t_mlx *mlx_cub)
 {
 	int	i;
@@ -81,6 +110,7 @@ void	drawing_map(char **map, t_mlx *mlx_cub)
 				mlx_cub->x_p = mlx_cub->x + mlx_cub->x_p_move;
 				mlx_cub->y_p = mlx_cub->y + mlx_cub->y_p_move;
 				drawing_player(mlx_cub, mlx_cub->x_p, mlx_cub->y_p);
+				draw_line(mlx_cub, mlx_cub->x_p + 5, mlx_cub->y_p + 5, mlx_cub->x_p + 5, mlx_cub->y_p + 5, 0x000000);
 			}
 			mlx_cub->x += 50;
 		}
