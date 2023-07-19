@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/19 17:46:57 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:48:59 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_mlx
 	double		y_p_move;
 	int			x_p;
 	int			y_p;
+	float			rot_pl;
 	t_data		data;
 	t_ele		*ele;
 }				t_mlx;

@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/19 17:50:19 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:51:10 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,25 @@ void	free_ele(t_ele *ele)
 	free_db(ele->map);
 	free(ele);
 }
+void	rotation_player(int keycode, t_mlx *mlx_cub)
+{
+	if (keycode == ARROW_RIGHT)
+	{
+		mlx_cub->rot_pl += 0.1;
+		if(mlx_cub->rot_pl >= M_PI*2)
+			mlx_cub->rot_pl -= M_PI*2;
+	}
+	if (keycode == ARROW_LEFT)
+	{
+		mlx_cub->rot_pl -= 0.1;
+		if(mlx_cub->rot_pl < 0)
+			mlx_cub->rot_pl += M_PI*2;
+	}
+	mlx_clear_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
+	drawing_map(mlx_cub->ele->map, mlx_cub);
+	mlx_put_image_to_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win, \
+			mlx_cub->data.img, 0, 0);
+}
 
 int	key_hock(int keycode, t_mlx *mlx_cub)
 {
@@ -80,5 +99,7 @@ int	key_hock(int keycode, t_mlx *mlx_cub)
 	else if (keycode == W || keycode == S || \
 		keycode == A || keycode == D)
 		move_keys(keycode, mlx_cub);
+	else if (keycode == ARROW_LEFT || keycode == ARROW_RIGHT)
+		rotation_player(keycode, mlx_cub);
 	return (0);
 }

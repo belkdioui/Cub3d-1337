@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/19 17:50:51 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/19 17:52:52 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	init(t_mlx *mlx_cub, char **map)
 	mlx_cub->w *= 50;
 	mlx_cub->y_p_move = 0;
 	mlx_cub->x_p_move = 0;
+	mlx_cub->rot_pl = 0;
 	mlx_cub->x_p = 0;
 	mlx_cub->y_p = 0;
 	if (!mlx_cub->mlx_ptr)

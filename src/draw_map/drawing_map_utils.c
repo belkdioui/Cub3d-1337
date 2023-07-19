@@ -6,13 +6,12 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/19 17:50:00 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:51:38 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-#define THRESHOLD 0.001
 static void	window_coloring(t_mlx *mlx_cub)
 {
 	int	x;
@@ -110,7 +109,9 @@ void	drawing_map(char **map, t_mlx *mlx_cub)
 				mlx_cub->x_p = mlx_cub->x + mlx_cub->x_p_move;
 				mlx_cub->y_p = mlx_cub->y + mlx_cub->y_p_move;
 				drawing_player(mlx_cub, mlx_cub->x_p, mlx_cub->y_p);
-				draw_line(mlx_cub, mlx_cub->x_p + 5, mlx_cub->y_p + 5, mlx_cub->x_p + 5, mlx_cub->y_p + 5, 0x000000);
+				float pdx = (mlx_cub->x_p + 5) + cos(mlx_cub->rot_pl) * 20;
+				float pdy = (mlx_cub->y_p + 5) + sin(mlx_cub->rot_pl) * 20;
+				draw_line(mlx_cub, mlx_cub->x_p + 5, mlx_cub->y_p + 5, pdx, pdy, 0x000000);
 			}
 			mlx_cub->x += 50;
 		}
