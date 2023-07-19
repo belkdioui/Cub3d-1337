@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/18 12:18:21 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:34:06 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	check_keys(int keycode, t_mlx *mlx_cub, int i, int j)
 {
-	if (keycode == ARROW_UP)
+	if (keycode == W)
 	{
 		if (mlx_cub->y_p - 10 >= 0)
 			if (mlx_cub->ele->map[(i - 10) / 50][j / 50] != '1')
 				mlx_cub->y_p_move -= 10;
 	}
-	else if (keycode == ARROW_DOWN)
+	else if (keycode == S)
 	{
 		if (mlx_cub->y_p + 10 <= mlx_cub->h)
 			if (mlx_cub->ele->map[(i + 10) / 50][j / 50] != '1')
 				mlx_cub->y_p_move += 10;
 	}
-	else if (keycode == ARROW_RIGHT)
+	else if (keycode == D)
 	{
 		if (mlx_cub->x_p + 10 <= mlx_cub->w)
 			if (mlx_cub->ele->map[i / 50][(j + 10) / 50] != '1')
 				mlx_cub->x_p_move += 10;
 	}
-	else if (keycode == ARROW_LEFT)
+	else if (keycode == A)
 	{
 		if (mlx_cub->x_p - 10 >= 0)
 			if (mlx_cub->ele->map[i / 50][(j - 10) / 50] != '1')
@@ -78,8 +78,8 @@ int	key_hock(int keycode, t_mlx *mlx_cub)
 		system("leaks cub3D");
 		exit(0);
 	}
-	else if (keycode == ARROW_UP || keycode == ARROW_DOWN || \
-		keycode == ARROW_RIGHT || keycode == ARROW_LEFT)
+	else if (keycode == W || keycode == S || \
+		keycode == A || keycode == D)
 		move_keys(keycode, mlx_cub);
 	return (0);
 }

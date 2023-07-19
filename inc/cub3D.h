@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/18 12:16:13 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:32:45 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # include <stdlib.h>
 
 # define ESC 53
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+
 # define ON_DESTROY 17
 # define ARROW_UP 126
 # define ARROW_DOWN 125
