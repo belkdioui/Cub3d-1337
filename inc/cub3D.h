@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/19 19:48:59 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:22:00 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_mlx
 	double		y_p_move;
 	int			x_p;
 	int			y_p;
-	float			rot_pl;
+	float		rot_pl;
 	t_data		data;
 	t_ele		*ele;
 }				t_mlx;
@@ -97,7 +97,7 @@ char	*ret_element(char *line, int num_of_ele);
 char	*is_element_and_saveit(char **cnt_file, int which_ele,
 			char ***save_map);
 char	**ver_and_ret_map(int ac, char **av);
-int		check_the_map(char **cnt_file, t_ele *ele);
+int		check_the_map(char **cnt_file, t_ele *ele, t_mlx *mlx_cub);
 
 /*----- mlx utils -------*/
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -105,7 +105,7 @@ int		close_window(t_mlx *mlx_cub);
 int		key_hock(int keycode, t_mlx *mlx_cub);
 
 /*----- drawing map -------*/
-t_ele	*get_map(int ac, char **av);
+t_ele	*get_map(int ac, char **av, t_mlx *mlx_cub);
 void	init(t_mlx *mlx_cub, char **map);
 void	drawing_map(char **map, t_mlx *mlx_cub);
 

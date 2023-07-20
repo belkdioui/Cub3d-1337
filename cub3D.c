@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:45 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/18 12:26:25 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:17:05 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/cub3D.h"
 
-t_ele	*get_map(int ac, char **av)
+t_ele	*get_map(int ac, char **av, t_mlx *mlx_cub)
 {
 	char	**cnt_file;
 	t_ele	*ele;
@@ -26,7 +26,7 @@ t_ele	*get_map(int ac, char **av)
 	ele = malloc(sizeof(t_ele));
 	if (!ele)
 		exit(1);
-	if (!check_the_map(cnt_file, ele))
+	if (!check_the_map(cnt_file, ele, mlx_cub))
 	{
 		ft_putstr_fd("error in the map\n", 2);
 		exit(1);
@@ -53,7 +53,7 @@ int	main(int ac, char **av)
 	mlx_cub = malloc(sizeof(t_mlx));
 	if (!mlx_cub)
 		exit (1);
-	mlx_cub->ele = get_map(ac, av);
+	mlx_cub->ele = get_map(ac, av, mlx_cub);
 	draw_map(mlx_cub, mlx_cub->ele);
 	return (1);
 }

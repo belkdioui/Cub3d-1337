@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/19 19:51:38 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:02:14 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY, int co
         pixelY += deltaY;
         --pixels;
     }
-
     return 0;
 }
 

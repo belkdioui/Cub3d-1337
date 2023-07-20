@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_the_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/17 18:58:34 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:28:36 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	if_first_and_last(char **map, int i, int *j)
 	return (1);
 }
 
-int	if_bet_first_and_last(char **map, int i, int *j, int *player)
+int	if_bet_first_and_last(char **map, int i, int *j, int *player, t_mlx *mlx_cub)
 {
 	int	last;
 
@@ -50,13 +50,23 @@ int	if_bet_first_and_last(char **map, int i, int *j, int *player)
 				return (0);
 		if (map[i][*j] == 'N' || map[i][*j] == 'S' || map[i][*j] == 'E'
 			|| map[i][*j] == 'W')
+		{
+			if (map[i][*j] == 'S')
+				mlx_cub->rot_pl = M_PI / 2;
+			if (map[i][*j] == 'N')
+				mlx_cub->rot_pl = (3 * M_PI) / 2;
+			if (map[i][*j] == 'E')
+				mlx_cub->rot_pl = 0;
+			if (map[i][*j] == 'W')
+				mlx_cub->rot_pl = M_PI;
 			(*player)++;
+		}
 		(*j)++;
 	}
 	return (1);
 }
 
-int	check_map(char **map)
+int	check_map(char **map, t_mlx *mlx_cub)
 {
 	int	num_lines;
 	int	i;
@@ -75,7 +85,7 @@ int	check_map(char **map)
 				return (0);
 		}
 		else
-			if (!if_bet_first_and_last(map, i, &j, &player))
+			if (!if_bet_first_and_last(map, i, &j, &player, mlx_cub))
 				return (0);
 		i++;
 	}
@@ -121,7 +131,7 @@ void	convert_the_map_to_rect(char ***new_map, char **pre_map)
 	free_db(pre_map);
 }
 
-int	check_the_map(char **cnt_file, t_ele *ele)
+int	check_the_map(char **cnt_file, t_ele *ele, t_mlx *mlx_cub)
 {
 	char	*check;
 	char	**map;
@@ -141,7 +151,7 @@ int	check_the_map(char **cnt_file, t_ele *ele)
 	if (!check_img(ele->ea) || !check_img(ele->no) || !check_img(ele->so)
 		|| !check_img(ele->we))
 		return (0);
-	if (!check_map(ele->map))
+	if (!check_map(ele->map, mlx_cub))
 		return (0);
 	return (1);
 }
