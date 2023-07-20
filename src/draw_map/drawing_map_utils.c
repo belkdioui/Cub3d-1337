@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/20 12:02:14 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/20 23:42:07 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,21 @@ void	drawing_map(char **map, t_mlx *mlx_cub)
 				mlx_cub->x_p = mlx_cub->x + mlx_cub->x_p_move;
 				mlx_cub->y_p = mlx_cub->y + mlx_cub->y_p_move;
 				drawing_player(mlx_cub, mlx_cub->x_p, mlx_cub->y_p);
-				float pdx = (mlx_cub->x_p + 5) + cos(mlx_cub->rot_pl) * 20;
-				float pdy = (mlx_cub->y_p + 5) + sin(mlx_cub->rot_pl) * 20;
-				draw_line(mlx_cub, mlx_cub->x_p + 5, mlx_cub->y_p + 5, pdx, pdy, 0x000000);
+				float pdx = (mlx_cub->x_p + 5) + cos(mlx_cub->rot_pl) * 50;
+				float pdy = (mlx_cub->y_p + 5) + sin(mlx_cub->rot_pl) * 50;
+				float angle_degrees = 60.0f;
+				float angle_radians = angle_degrees * (M_PI / 180.0f);
+				while(angle_radians >= -angle_radians)
+				{
+					float pdx_top = pdx + cos(mlx_cub->rot_pl + angle_radians) * 50;
+					float pdy_top = pdy + sin(mlx_cub->rot_pl + angle_radians) * 50;
+					float pdx_bottom = pdx + cos(mlx_cub->rot_pl - angle_radians) * 50;
+					float pdy_bottom = pdy + sin(mlx_cub->rot_pl - angle_radians) * 50;
+					draw_line(mlx_cub, mlx_cub->x_p + 5, mlx_cub->y_p + 5, pdx, pdy, 0x000000);
+					draw_line(mlx_cub, mlx_cub->x_p + 5, mlx_cub->y_p + 5, pdx_top, pdy_top, 0x000000);
+					draw_line(mlx_cub, mlx_cub->x_p + 5, mlx_cub->y_p + 5, pdx_bottom, pdy_bottom, 0x000000);
+					angle_radians -= 0.0008;
+				}
 			}
 			mlx_cub->x += 50;
 		}
