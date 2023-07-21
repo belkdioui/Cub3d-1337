@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/18 12:34:06 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:51:11 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,50 @@
 
 void	check_keys(int keycode, t_mlx *mlx_cub, int i, int j)
 {
-	if (keycode == W)
+	int	tmp_xp = 0;
+	int	tmp_yp = 0;
+
+	if (keycode == ARROW_RIGHT)
 	{
-		if (mlx_cub->y_p - 10 >= 0)
-			if (mlx_cub->ele->map[(i - 10) / 50][j / 50] != '1')
-				mlx_cub->y_p_move -= 10;
+		mlx_cub->rot_pl += 0.1;
+		if(mlx_cub->rot_pl >= M_PI*2)
+			mlx_cub->rot_pl -= M_PI*2;
+		mlx_cub->pdx =  cos(mlx_cub->rot_pl) * 50;
+		mlx_cub->pdy =  sin(mlx_cub->rot_pl) * 50;
+	}
+	else if (keycode == ARROW_LEFT)
+	{
+		mlx_cub->rot_pl -= 0.1;
+		if(mlx_cub->rot_pl < 0)
+			mlx_cub->rot_pl += M_PI*2;
+		mlx_cub->pdx =  cos(mlx_cub->rot_pl) * 50;
+		mlx_cub->pdy =  sin(mlx_cub->rot_pl) * 50;
+	}
+	else if (keycode == W)
+	{
+		tmp_yp += mlx_cub->y_p + ((int)mlx_cub->pdy / 4);
+		tmp_xp += mlx_cub->x_p + ((int)mlx_cub->pdx / 4);
+		if (tmp_yp  >= 0 && tmp_yp  <= mlx_cub->h && tmp_xp >= 0 && tmp_xp <= mlx_cub->w)
+		{
+			if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
+			{
+				mlx_cub->x_p_move += ((int)mlx_cub->pdx / 4);
+				mlx_cub->y_p_move += ((int)mlx_cub->pdy / 4);
+			}
+		}
 	}
 	else if (keycode == S)
 	{
-		if (mlx_cub->y_p + 10 <= mlx_cub->h)
-			if (mlx_cub->ele->map[(i + 10) / 50][j / 50] != '1')
-				mlx_cub->y_p_move += 10;
+		tmp_yp = mlx_cub->y_p - ((int)mlx_cub->pdy / 4);
+		tmp_xp = mlx_cub->x_p - ((int)mlx_cub->pdx / 4);
+		if (tmp_yp >= 0 && tmp_yp  <= mlx_cub->h && tmp_xp >= 0 && tmp_xp <= mlx_cub->w)
+		{
+			if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
+			{
+				mlx_cub->x_p_move -= ((int)mlx_cub->pdx / 4);
+				mlx_cub->y_p_move -= ((int)mlx_cub->pdy / 4);
+			}
+		}
 	}
 	else if (keycode == D)
 	{
@@ -79,7 +112,7 @@ int	key_hock(int keycode, t_mlx *mlx_cub)
 		exit(0);
 	}
 	else if (keycode == W || keycode == S || \
-		keycode == A || keycode == D)
+		keycode == A || keycode == D || keycode == ARROW_RIGHT || keycode == ARROW_LEFT)
 		move_keys(keycode, mlx_cub);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/18 12:32:45 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:04:31 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <stdlib.h>
+# include <math.h>
 
 # define ESC 53
 # define W 13
@@ -70,6 +71,9 @@ typedef struct s_mlx
 	int			y_p;
 	t_data		data;
 	t_ele		*ele;
+	float		pdx;
+	float		pdy;
+	float		rot_pl;
 }				t_mlx;
 
 typedef struct s_vars
@@ -95,7 +99,7 @@ char	*ret_element(char *line, int num_of_ele);
 char	*is_element_and_saveit(char **cnt_file, int which_ele,
 			char ***save_map);
 char	**ver_and_ret_map(int ac, char **av);
-int		check_the_map(char **cnt_file, t_ele *ele);
+int		check_the_map(char **cnt_file, t_ele *ele, t_mlx *mlx_cub);
 
 /*----- mlx utils -------*/
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -103,7 +107,7 @@ int		close_window(t_mlx *mlx_cub);
 int		key_hock(int keycode, t_mlx *mlx_cub);
 
 /*----- drawing map -------*/
-t_ele	*get_map(int ac, char **av);
+t_ele	*get_map(int ac, char **av, t_mlx *mlx_cub);
 void	init(t_mlx *mlx_cub, char **map);
 void	drawing_map(char **map, t_mlx *mlx_cub);
 

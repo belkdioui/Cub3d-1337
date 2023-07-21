@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/18 10:11:31 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:10:34 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	init(t_mlx *mlx_cub, char **map)
 	mlx_cub->x_p_move = 0;
 	mlx_cub->x_p = 0;
 	mlx_cub->y_p = 0;
+	mlx_cub->pdx = cos(mlx_cub->rot_pl) * 50;
+	mlx_cub->pdy = sin(mlx_cub->rot_pl) * 50;
 	if (!mlx_cub->mlx_ptr)
 	{
 		perror("");
