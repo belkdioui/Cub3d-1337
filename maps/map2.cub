@@ -3,18 +3,21 @@ SO textures/blue.jpeg
 
 
 WE textures/red.png
-EA                          textures/white.png
+EA                          textures/white.png    
 
-
-F 20,100,0
+F 25,100,0
 
 C 225,30,0
 
-11111111
-10100001
-10100001
+111    11
+101    101
+101111101
 10100001
 10000101
-100W0001
+100E0001
 10000001
 11111111
+
+
+
+

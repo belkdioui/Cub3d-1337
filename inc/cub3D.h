@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/21 12:04:31 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/22 21:26:53 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,17 @@
 # define ARROW_DOWN 125
 # define ARROW_RIGHT 124
 # define ARROW_LEFT  123
+# define FOV_ANGLE 60 // Field of view angle in degrees
+
+
+/*----------- struct the player ------------*/
+
+typedef struct s_player{
+    double 	x;
+    double	y;
+    double 	angle;
+	int 	player_size;
+} 				t_player;
 
 /*----- data the my_mlx_pixel_put --------*/
 
@@ -71,9 +82,12 @@ typedef struct s_mlx
 	int			y_p;
 	t_data		data;
 	t_ele		*ele;
-	float		pdx;
-	float		pdy;
-	float		rot_pl;
+	t_player	*player;
+	double		pdx;
+	double		pdy;
+	double		rot_pl;
+	double 		endpoint_x;
+	double 		endpoint_y;
 }				t_mlx;
 
 typedef struct s_vars
@@ -108,8 +122,7 @@ int		key_hock(int keycode, t_mlx *mlx_cub);
 
 /*----- drawing map -------*/
 t_ele	*get_map(int ac, char **av, t_mlx *mlx_cub);
-void	init(t_mlx *mlx_cub, char **map);
-void	drawing_map(char **map, t_mlx *mlx_cub);
-
+void	init(t_mlx *mlx_cub, char **map, t_player *player);
+void	drawing_map(char **map, t_mlx *mlx_cub, t_player *player);
 void	free_ele(t_ele *ele);
 #endif
