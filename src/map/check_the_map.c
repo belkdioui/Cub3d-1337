@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/20 11:28:36 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:42:30 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	if_bet_first_and_last(char **map, int i, int *j, int *player, t_mlx *mlx_cub
 		if (map[i][*j] == 'N' || map[i][*j] == 'S' || map[i][*j] == 'E'
 			|| map[i][*j] == 'W')
 		{
+				// mlx_cub->rot_pl = 0;
+
 			if (map[i][*j] == 'S')
 				mlx_cub->rot_pl = M_PI / 2;
 			if (map[i][*j] == 'N')
