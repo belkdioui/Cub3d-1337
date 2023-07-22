@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/22 15:27:06 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:26:26 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@
 # include <math.h>
 
 # define ESC 53
+
 # define PI M_PI
+# define P2 PI / 2
+# define P3 3 * (PI / 2)
+
 # define W 13
 # define A 0
 # define S 1
