@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/22 17:16:58 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/23 15:16:13 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,18 @@ static void	window_coloring(t_mlx *mlx_cub)
 	}
 }
 
-float calc_dist(float px, float py, float dx, float dy)
+float	calc_dist(float px, float py, float dx, float dy)
 {
-	float a;
-	float b;
-	float c;
+	float	a;
+	float	b;
+	float	c;
 
-	a = (dx -px);
-	b = (dy -py);
-	c = sqrt((a*a) + (b*b));
-	return c;
+	a = (dx - px);
+	b = (dy - py);
+	c = sqrt((a * a) + (b * b));
+	return (c);
 }
+
 static void	drawing_square(t_mlx *mlx_cub, int x, int y)
 {
 	int	tmp_x;
@@ -55,52 +56,96 @@ static void	drawing_square(t_mlx *mlx_cub, int x, int y)
 	}
 }
 
-static void	drawing_player(t_mlx *mlx_cub, int x, int y)
+static void	drawing_player(t_mlx *mlx_cub, t_player *player)
 {
-	int	tmp_x;
-	int	tmp_y;
+	int	x;
+	int	y;
+	int	i;
+	int	j;
 
-	tmp_x = x;
-	while (tmp_x++ < x + 10 && x + 10 <= mlx_cub->w)
+	x = player->x - player->player_size / 2;
+	y = player->y - player->player_size / 2;
+	i = 0;
+	while (x + player->player_size <= mlx_cub->w && i < player->player_size)
 	{
-		tmp_y = y;
-		while (tmp_y++ < y + 10 && y + 10 <= mlx_cub->h)
-			my_mlx_pixel_put(&mlx_cub->data, tmp_x, tmp_y, 0xFF0000);
+		j = 0;
+		while (y + player->player_size <= mlx_cub->h && j < player->player_size)
+		{
+			my_mlx_pixel_put(&mlx_cub->data, x + i, y + j, 0xFF0000);
+			j++;
+		}
+		i++;
 	}
 }
 
-int draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY, int color)
+int	draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY,
+		int color)
 {
-    double deltaX = endX - beginX;
-    double deltaY = endY - beginY;
-    int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
+	double	deltax;
+	double	deltay;
+	int		pixels;
+	double	pixelx;
+	double	pixely;
 
-    if (pixels == 0) {
-        my_mlx_pixel_put(&mlx_cub->data, beginX, beginY, color);
-        return 0;
-    }
-
-    deltaX /= pixels;
-    deltaY /= pixels;
-
-    double pixelX = beginX;
-    double pixelY = beginY;
-
-    while (pixels) {
-        if(pixelX >= 0 && pixelX < mlx_cub->w && pixelY >= 0 && pixelY < mlx_cub->h)
-	        my_mlx_pixel_put(&mlx_cub->data, pixelX, pixelY, color);
-        pixelX += deltaX;
-        pixelY += deltaY;
-        --pixels;
-    }
-    return 0;
+	deltax = endX - beginX;
+	deltay = endY - beginY;
+	pixels = sqrt((deltax * deltax) + (deltay * deltay));
+	if (pixels == 0)
+	{
+		my_mlx_pixel_put(&mlx_cub->data, beginX, beginY, color);
+		return (0);
+	}
+	deltax /= pixels;
+	deltay /= pixels;
+	pixelx = beginX;
+	pixely = beginY;
+	while (pixels)
+	{
+		if (pixelx >= 0 && pixelx < mlx_cub->w && pixely >= 0
+			&& pixely < mlx_cub->h)
+			my_mlx_pixel_put(&mlx_cub->data, pixelx, pixely, color);
+		pixelx += deltax;
+		pixely += deltay;
+		--pixels;
+	}
+	return (0);
 }
 
-
-void	drawing_map(char **map, t_mlx *mlx_cub)
+void	cast_ray(t_mlx *mlx_cub, t_player *player, double ray_angle)
 {
-	int	i;
-	int	j;
+	double	wall_distance;
+
+	wall_distance = 50;
+	mlx_cub->pdx = cos(ray_angle) * wall_distance;
+	mlx_cub->pdy = sin(ray_angle) * wall_distance;
+	mlx_cub->endpoint_x = player->x + mlx_cub->pdx;
+	mlx_cub->endpoint_y = player->y + mlx_cub->pdy;
+}
+
+void	drawing_map(char **map, t_mlx *mlx_cub, t_player *player)
+{
+	int		i;
+	int		j;
+	int		num_of_rays;
+	float	dr;
+	int		rays;
+	float	ry;
+	float	rx;
+	float	dish;
+	float	hx;
+	float	hy;
+	float	disv;
+	float	vx;
+	float	vy;
+	float	final_dis;
+	float	atan;
+	float	ntan;
+	int		dof;
+	int		mx;
+	int		my;
+	float	xo;
+	float	yo;
+	float	ra;
 
 	mlx_cub->x = 0;
 	mlx_cub->y = -50;
@@ -115,92 +160,66 @@ void	drawing_map(char **map, t_mlx *mlx_cub)
 		{
 			if (map[i][j] == '1')
 				drawing_square(mlx_cub, mlx_cub->x, mlx_cub->y);
-			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
+			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
+				|| map[i][j] == 'W')
 			{
-				mlx_cub->x_p = mlx_cub->x + mlx_cub->x_p_move;
-				mlx_cub->y_p = mlx_cub->y + mlx_cub->y_p_move;
-				drawing_player(mlx_cub, mlx_cub->x_p, mlx_cub->y_p);
+				player->x = mlx_cub->x + 30 + mlx_cub->x_p_move;
+				player->y = mlx_cub->y + 30 + mlx_cub->y_p_move;
+				drawing_player(mlx_cub, player);
 			}
 			mlx_cub->x += 50;
 		}
 	}
-		// float pdx = (mlx_cub->x_p + 5) + cos(mlx_cub->rot_pl) * 50;
-		// float pdy = (mlx_cub->y_p + 5) + sin(mlx_cub->rot_pl) * 50;
-		// float angle_degrees = 60.0f;
-		// float angle_radians = angle_degrees * (M_PI / 180.0f);
-		// while(angle_radians >= -angle_radians)
-		// {
-		// 	float pdx_top = pdx + cos(mlx_cub->rot_pl + angle_radians) * 50;
-		// 	float pdy_top = pdy + sin(mlx_cub->rot_pl + angle_radians) * 50;
-		// 	float pdx_bottom = pdx + cos(mlx_cub->rot_pl - angle_radians) * 50;
-		// 	float pdy_bottom = pdy + sin(mlx_cub->rot_pl - angle_radians) * 50;
-			// draw_line(mlx_cub, mlx_cub->x_p + 5, mlx_cub->y_p + 5, pdx, pdy, 0x00FF00);
-		// 	draw_line(mlx_cub, mlx_cub->x_p + 5, mlx_cub->y_p + 5, pdx_top, pdy_top, 0x000000);
-		// 	draw_line(mlx_cub, mlx_cub->x_p + 5, mlx_cub->y_p + 5, pdx_bottom, pdy_bottom, 0x000000);
-		// 	angle_radians -= 0.0008;
-		// }
-	int dof, mx, my;
-	float xo,yo, ra;
-	int NUM_OF_RAYS = 1920;
-
-	float DR = ((2 * PI) / NUM_OF_RAYS) / ((float)360 / 90);
-	ra = mlx_cub->rot_pl - (DR * NUM_OF_RAYS / 2);
-	if(ra > 2 * PI)
+	player->angle = mlx_cub->rot_pl;
+	cast_ray(mlx_cub, player, player->angle);
+	
+	mlx_cub->x_p = player->x;
+	mlx_cub->y_p = player->y;
+	num_of_rays = 1920;
+	dr = ((2 * PI) / num_of_rays) / ((float)360 / 90);
+	ra = mlx_cub->rot_pl - (dr * num_of_rays / 2);
+	if (ra > 2 * PI)
 		ra -= 2 * PI;
-	if(ra < 0)
+	if (ra < 0)
 		ra += 2 * PI;
-	int rays = 0;
-	float ry;
-	float rx;
-	float disH;
-	float hx;
-	float hy;
-	float disV;
-	float vx;
-	float vy;
-	float final_dis;
-	while(rays < NUM_OF_RAYS)
+	rays = 0;
+	while (rays < num_of_rays)
 	{
-		disH = 100000000;
-		disV = 100000000;
-		/*Check Horizental*/
+		dish = 100000000;
+		disv = 100000000;
 		dof = 0;
-		float aTan = -1/tan(ra);
-		if(ra > PI)
+		atan = -1 / tan(ra);
+		if (ra > PI)
 		{
-			// printf("ra > PI -- ry: %f rx: %f  ra: %f\n",ry,rx,ra);
 			ry = ((mlx_cub->y_p / 50) * 50) - 0.0001;
-			rx = (mlx_cub->y_p - ry) * aTan  + (float)mlx_cub->x_p;
-			yo  = -50;
-			xo  = -yo*aTan;
+			rx = (mlx_cub->y_p - ry) * atan + (float)mlx_cub->x_p;
+			yo = -50;
+			xo = -yo * atan;
 		}
-		if(ra < PI)
+		if (ra < PI)
 		{
-			// printf("ra < PI ++ ry: %f rx: %f  ra: %f\n",ry,rx,ra);
 			ry = ((mlx_cub->y_p / 50) * 50) + 50;
-			rx = (mlx_cub->y_p - ry) * aTan + (float)mlx_cub->x_p;
-			yo  =  50;
-			xo  = -yo*aTan;
+			rx = (mlx_cub->y_p - ry) * atan + (float)mlx_cub->x_p;
+			yo = 50;
+			xo = -yo * atan;
 		}
 		if (ra == 0 || ra == (float)PI)
 		{
-			// printf("ra == PI ++ ry: %f rx: %f  ra: %f\n",ry,rx,ra);
 			rx = (float)mlx_cub->x_p;
 			ry = (float)mlx_cub->y_p;
-			dof = mlx_cub->w/50;
+			dof = mlx_cub->w / 50;
 		}
-		
-		while(dof < mlx_cub->w/50)
+		while (dof < mlx_cub->w / 50)
 		{
-			mx = (int) (rx / 50);
-			my = (int) (ry / 50);
-			if(mx >= 0 && mx < mlx_cub->w/50 && my >= 0 && my < mlx_cub->h/50 && mlx_cub->ele->map[my][mx] == '1')
+			mx = (int)(rx / 50);
+			my = (int)(ry / 50);
+			if (mx >= 0 && mx < mlx_cub->w / 50 && my >= 0 && my < mlx_cub->h
+				/ 50 && mlx_cub->ele->map[my][mx] == '1')
 			{
-				//hit  a wall;
-				dof = mlx_cub->w/50;
+				dof = mlx_cub->w / 50;
 				hx = rx;
-				hy  =ry;
-				disH = calc_dist(mlx_cub->x_p, mlx_cub->y_p, rx, ry);
+				hy = ry;
+				dish = calc_dist(mlx_cub->x_p, mlx_cub->y_p, rx, ry);
 			}
 			else
 			{
@@ -209,48 +228,39 @@ void	drawing_map(char **map, t_mlx *mlx_cub)
 				dof += 1;
 			}
 		}
-		// draw_line(mlx_cub, mlx_cub->x_p, mlx_cub->y_p, rx, ry,0x00FF00);
-
-		/*Check Vertical*/
 		dof = 0;
-		float nTan = -tan(ra);
-		if(ra > P2 && ra <P3)
+		ntan = -tan(ra);
+		if (ra > P2 && ra < P3)
 		{
-			// printf("+++");
-			// printf("ra > PI -- ry: %f rx: %f  ra: %f\n",ry,rx,ra);
 			rx = ((mlx_cub->x_p / 50) * 50) - 0.0001;
-			ry = (mlx_cub->x_p - rx) * nTan  + (float)mlx_cub->y_p;
-			xo  = -50;
-			yo  = -xo*nTan;
+			ry = (mlx_cub->x_p - rx) * ntan + (float)mlx_cub->y_p;
+			xo = -50;
+			yo = -xo * ntan;
 		}
-		if(ra < P2 || ra > P3)
+		if (ra < P2 || ra > P3)
 		{
-			// printf("---");
 			rx = ((mlx_cub->x_p / 50) * 50) + 50;
-			ry = (mlx_cub->x_p - rx) * nTan  + (float)mlx_cub->y_p;
-			xo  = 50;
-			yo  = -xo*nTan;
+			ry = (mlx_cub->x_p - rx) * ntan + (float)mlx_cub->y_p;
+			xo = 50;
+			yo = -xo * ntan;
 		}
 		if (ra == 0 || ra == (float)PI)
 		{
-			// printf("====");
-			// printf("ra == PI ++ ry: %f rx: %f  ra: %f\n",ry,rx,ra);
 			rx = (float)mlx_cub->x_p;
 			ry = (float)mlx_cub->y_p;
-			dof = mlx_cub->w/50;
+			dof = mlx_cub->w / 50;
 		}
-		
-		while(dof < mlx_cub->w/50)
+		while (dof < mlx_cub->w / 50)
 		{
-			mx = (int) (rx / 50);
-			my = (int) (ry / 50);
-			if(mx >= 0 && mx < mlx_cub->w/50 && my >= 0 && my < mlx_cub->h/50 && mlx_cub->ele->map[my][mx] == '1')
+			mx = (int)(rx / 50);
+			my = (int)(ry / 50);
+			if (mx >= 0 && mx < mlx_cub->w / 50 && my >= 0 && my < mlx_cub->h
+				/ 50 && mlx_cub->ele->map[my][mx] == '1')
 			{
-				//hit  a wall;
-				dof = mlx_cub->w/50;
+				dof = mlx_cub->w / 50;
 				vx = rx;
-				vy  =ry;
-				disV = calc_dist(mlx_cub->x_p, mlx_cub->y_p, rx, ry);
+				vy = ry;
+				disv = calc_dist(mlx_cub->x_p, mlx_cub->y_p, rx, ry);
 			}
 			else
 			{
@@ -259,33 +269,23 @@ void	drawing_map(char **map, t_mlx *mlx_cub)
 				dof += 1;
 			}
 		}
-
-		// draw_line(mlx_cub, mlx_cub->x_p, mlx_cub->y_p, rx, ry,0xFF0000);
-
-
-		//pick the shortest ray
-		if(disH < disV )
+		if (dish < disv)
 		{
 			rx = hx;
 			ry = hy;
-			// final_dis = disH;
+			final_dis = dish;
 		}
 		else
 		{
 			rx = vx;
 			ry = vy;
-			// final_dis = disV;
+			final_dis = disv;
 		}
-		(void) final_dis;
-		//final ray
-		draw_line(mlx_cub, mlx_cub->x_p, mlx_cub->y_p, rx, ry,0x0000FF);
-				
-		
-		// printf("rx: %f ry: %f ra: %f\n",rx,ry,ra);
-		ra += DR;
-		if(ra > 2 * PI)
+		draw_line(mlx_cub, mlx_cub->x_p, mlx_cub->y_p, rx, ry, 0x0000FF);
+		ra += dr;
+		if (ra > 2 * PI)
 			ra -= 2 * PI;
-		if(ra < 0)
+		if (ra < 0)
 			ra += 2 * PI;
 		rays++;
 	}
