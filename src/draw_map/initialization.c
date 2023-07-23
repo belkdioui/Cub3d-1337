@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/23 15:13:20 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/23 17:43:03 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init(t_mlx *mlx_cub, char **map, t_player *player)
 	width_and_height(&mlx_cub->w, &mlx_cub->h, map);
 	player->x = 0;
 	player->y = 0;
-	player->player_size = 10;
+	player->player_size = 20;
 	player->angle = 0;
 	mlx_cub->h *= 50;
 	mlx_cub->w *= 50;

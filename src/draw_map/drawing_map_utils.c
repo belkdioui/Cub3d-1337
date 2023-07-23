@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/23 16:55:52 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/23 17:45:21 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,27 @@ static void	drawing_square(t_mlx *mlx_cub, int x, int y)
 	}
 }
 
-// static void	drawing_player(t_mlx *mlx_cub, t_player *player)
-// {
-// 	int	x;
-// 	int	y;
-// 	int	i;
-// 	int	j;
+static void	drawing_player(t_mlx *mlx_cub, t_player *player)
+{
+	int	x;
+	int	y;
+	int	i;
+	int	j;
 
-// 	x = player->x - player->player_size / 2;
-// 	y = player->y - player->player_size / 2;
-// 	i = 0;
-// 	while (x + player->player_size <= mlx_cub->w && i < player->player_size)
-// 	{
-// 		j = 0;
-// 		while (y + player->player_size <= mlx_cub->h && j < player->player_size)
-// 		{
-// 			my_mlx_pixel_put(&mlx_cub->data, x + i, y + j, 0xFF0000);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
+	x = player->x - player->player_size / 2;
+	y = player->y - player->player_size / 2;
+	i = 0;
+	while (x + player->player_size <= mlx_cub->w && i < player->player_size)
+	{
+		j = 0;
+		while (y + player->player_size <= mlx_cub->h && j < player->player_size)
+		{
+			my_mlx_pixel_put(&mlx_cub->data, x + i, y + j, 0xFF0000);
+			j++;
+		}
+		i++;
+	}
+}
 
 int	draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY,
 		int color)
@@ -164,9 +164,9 @@ void	drawing_map(char **map, t_mlx *mlx_cub, t_player *player)
 			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
 			{
-				player->x = mlx_cub->x + 25 + mlx_cub->x_p_move;
-				player->y = mlx_cub->y + 25 + mlx_cub->y_p_move;
-				// drawing_player(mlx_cub, player);
+				player->x = mlx_cub->x  + mlx_cub->x_p_move;
+				player->y = mlx_cub->y  + mlx_cub->y_p_move;
+				drawing_player(mlx_cub, player);
 				// my_mlx_pixel_put(&mlx_cub->data, player->x, player->y, 0xFF0000);
 			}
 			mlx_cub->x += 50;
@@ -291,5 +291,5 @@ void	drawing_map(char **map, t_mlx *mlx_cub, t_player *player)
 			ra += 2 * PI;
 		rays++;
 	}
-	my_mlx_pixel_put(&mlx_cub->data, player->x, player->y, 0xFF0000);
+	// my_mlx_pixel_put(&mlx_cub->data, player->x, player->y, 0xFF0000);
 }

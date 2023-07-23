@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/23 16:25:21 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/23 19:25:11 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,15 @@ void	check_keys(int keycode, t_mlx *mlx_cub)
 		if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
 			&& tmp_xp <= mlx_cub->w)
 		{
-			if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
+			if (mlx_cub->ele->map[(tmp_yp + 50) / 50][(tmp_xp) / 50] == '1' && (mlx_cub->h - ((tmp_yp / 50) * 50) + 10 - 50 > mlx_cub->h - tmp_yp))
+				return ;
+			if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp - 50) / 50] == '1' && (((tmp_xp / 50) * 50) + 10  > tmp_xp))
+				return ;
+			if (mlx_cub->ele->map[(tmp_yp - 50) / 50][(tmp_xp) / 50] == '1' && ((tmp_yp / 50) * 50 + 5 >= tmp_yp))
+				return ;
+			if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp + 50) / 50] == '1' && (mlx_cub->w - ((tmp_xp / 50) * 50) + 10 - 50 > mlx_cub->w - tmp_xp))
+				return ;
+			else if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
 			{
 				mlx_cub->x_p_move += mlx_cub->pdx;
 				mlx_cub->y_p_move += mlx_cub->pdy;
@@ -35,6 +43,14 @@ void	check_keys(int keycode, t_mlx *mlx_cub)
 	{
 		tmp_yp = mlx_cub->player->y - mlx_cub->pdy;
 		tmp_xp = mlx_cub->player->x - mlx_cub->pdx;
+		if (mlx_cub->ele->map[(tmp_yp + 50) / 50][(tmp_xp) / 50] == '1' && (mlx_cub->h - ((tmp_yp / 50) * 50) + 10 - 50 > mlx_cub->h - tmp_yp))
+				return ;
+		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp - 50) / 50] == '1' && (((tmp_xp / 50) * 50) + 10  > tmp_xp))
+				return ;
+		if (mlx_cub->ele->map[(tmp_yp - 50) / 50][(tmp_xp) / 50] == '1' && ((tmp_yp / 50) * 50 + 5 >= tmp_yp))
+				return ;
+		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp + 50) / 50] == '1' && (mlx_cub->w - ((tmp_xp / 50) * 50) + 10 - 50 > mlx_cub->w - tmp_xp))
+				return ;
 		if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
 			&& tmp_xp <= mlx_cub->w)
 		{
@@ -49,6 +65,14 @@ void	check_keys(int keycode, t_mlx *mlx_cub)
 	{
 		tmp_xp = mlx_cub->player->x + (mlx_cub->pdx * cos(-M_PI / 2) - mlx_cub->pdy * sin(-M_PI / 2));
 		tmp_yp = mlx_cub->player->y + (mlx_cub->pdx * sin(-M_PI / 2) + mlx_cub->pdy * cos(-M_PI / 2));
+		if (mlx_cub->ele->map[(tmp_yp + 50) / 50][(tmp_xp) / 50] == '1' && (mlx_cub->h - ((tmp_yp / 50) * 50) + 10 - 50 > mlx_cub->h - tmp_yp))
+				return ;
+		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp - 50) / 50] == '1' && (((tmp_xp / 50) * 50) + 10  > tmp_xp))
+				return ;
+		if (mlx_cub->ele->map[(tmp_yp - 50) / 50][(tmp_xp) / 50] == '1' && (((tmp_yp / 50) * 50) + 10 >= tmp_yp))
+				return ;
+		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp + 50) / 50] == '1' && (mlx_cub->w - ((tmp_xp / 50) * 50) + 10 - 50 > mlx_cub->w - tmp_xp))
+				return ;
 		if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0 && tmp_xp <= mlx_cub->w)
 		{
 			if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
@@ -62,6 +86,14 @@ void	check_keys(int keycode, t_mlx *mlx_cub)
 	{
 		tmp_xp = mlx_cub->player->x + (mlx_cub->pdx * cos(M_PI / 2) - mlx_cub->pdy * sin(M_PI / 2));
 		tmp_yp = mlx_cub->player->y + (mlx_cub->pdx * sin(M_PI / 2) + mlx_cub->pdy * cos(M_PI / 2));
+		if (mlx_cub->ele->map[(tmp_yp + 50) / 50][(tmp_xp) / 50] == '1' && (mlx_cub->h - ((tmp_yp / 50) * 50) + 10 - 50 > mlx_cub->h - tmp_yp))
+				return ;
+		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp - 50) / 50] == '1' && (((tmp_xp / 50) * 50) + 10  > tmp_xp))
+				return ;
+		if (mlx_cub->ele->map[(tmp_yp - 50) / 50][(tmp_xp) / 50] == '1' && (((tmp_yp / 50) * 50) + 10 >= tmp_yp))
+				return ;
+		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp + 50) / 50] == '1' && (mlx_cub->w - ((tmp_xp / 50) * 50) + 10 - 50 > mlx_cub->w - tmp_xp))
+				return ;
 		if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
 			&& tmp_xp <= mlx_cub->w)
 		{
