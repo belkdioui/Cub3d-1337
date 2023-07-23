@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/23 15:12:30 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/23 16:25:21 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,72 +17,127 @@ void	check_keys(int keycode, t_mlx *mlx_cub)
 	int	tmp_xp;
 	int	tmp_yp;
 
-	tmp_xp = 0;
-	tmp_yp = 0;
 	if (keycode == W)
 	{
-		tmp_yp = mlx_cub->player->y + (((int)mlx_cub->pdy) / 10);
-		tmp_xp = mlx_cub->player->x + (((int)mlx_cub->pdx) / 10);
+		tmp_yp = mlx_cub->player->y + mlx_cub->pdy;
+		tmp_xp = mlx_cub->player->x + mlx_cub->pdx;
 		if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
 			&& tmp_xp <= mlx_cub->w)
 		{
 			if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
 			{
-				mlx_cub->x_p_move += (mlx_cub->pdx / 10);
-				mlx_cub->y_p_move += (mlx_cub->pdy / 10);
+				mlx_cub->x_p_move += mlx_cub->pdx;
+				mlx_cub->y_p_move += mlx_cub->pdy;
 			}
 		}
 	}
 	else if (keycode == S)
 	{
-		tmp_yp = mlx_cub->player->y - (((int)mlx_cub->pdy) / 10);
-		tmp_xp = mlx_cub->player->x - (((int)mlx_cub->pdx) / 10);
+		tmp_yp = mlx_cub->player->y - mlx_cub->pdy;
+		tmp_xp = mlx_cub->player->x - mlx_cub->pdx;
 		if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
 			&& tmp_xp <= mlx_cub->w)
 		{
 			if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
 			{
-				mlx_cub->x_p_move -= (mlx_cub->pdx / 10);
-				mlx_cub->y_p_move -= (mlx_cub->pdy / 10);
+				mlx_cub->x_p_move -= mlx_cub->pdx;
+				mlx_cub->y_p_move -= mlx_cub->pdy;
 			}
 		}
 	}
 	else if (keycode == A)
 	{
-		tmp_xp = mlx_cub->player->x + (((int)(mlx_cub->pdx * cos(-M_PI / 2)
-						- mlx_cub->pdy * sin(-M_PI / 2))) / 10);
-		tmp_yp = mlx_cub->player->y + (((int)(mlx_cub->pdx * sin(-M_PI / 2)
-						+ mlx_cub->pdy * cos(-M_PI / 2))) / 10);
-		if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
-			&& tmp_xp <= mlx_cub->w)
+		tmp_xp = mlx_cub->player->x + (mlx_cub->pdx * cos(-M_PI / 2) - mlx_cub->pdy * sin(-M_PI / 2));
+		tmp_yp = mlx_cub->player->y + (mlx_cub->pdx * sin(-M_PI / 2) + mlx_cub->pdy * cos(-M_PI / 2));
+		if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0 && tmp_xp <= mlx_cub->w)
 		{
 			if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
 			{
-				mlx_cub->x_p_move += (mlx_cub->pdx * cos(-M_PI / 2)
-						- mlx_cub->pdy * sin(-M_PI / 2)) / 10;
-				mlx_cub->y_p_move += (mlx_cub->pdx * sin(-M_PI / 2)
-						+ mlx_cub->pdy * cos(-M_PI / 2)) / 10;
+				mlx_cub->x_p_move += (mlx_cub->pdx * cos(-M_PI / 2) - mlx_cub->pdy * sin(-M_PI / 2));
+				mlx_cub->y_p_move += (mlx_cub->pdx * sin(-M_PI / 2) + mlx_cub->pdy * cos(-M_PI / 2));
 			}
 		}
 	}
 	else if (keycode == D)
 	{
-		tmp_xp = mlx_cub->player->x + (((int)(mlx_cub->pdx * cos(M_PI / 2)
-						- mlx_cub->pdy * sin(M_PI / 2))) / 10);
-		tmp_yp = mlx_cub->player->y + (((int)(mlx_cub->pdx * sin(M_PI / 2)
-						+ mlx_cub->pdy * cos(M_PI / 2))) / 10);
+		tmp_xp = mlx_cub->player->x + (mlx_cub->pdx * cos(M_PI / 2) - mlx_cub->pdy * sin(M_PI / 2));
+		tmp_yp = mlx_cub->player->y + (mlx_cub->pdx * sin(M_PI / 2) + mlx_cub->pdy * cos(M_PI / 2));
 		if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
 			&& tmp_xp <= mlx_cub->w)
 		{
 			if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
 			{
-				mlx_cub->x_p_move += (mlx_cub->pdx * cos(M_PI / 2)
-						- mlx_cub->pdy * sin(M_PI / 2)) / 10;
-				mlx_cub->y_p_move += (mlx_cub->pdx * sin(M_PI / 2)
-						+ mlx_cub->pdy * cos(M_PI / 2)) / 10;
+				mlx_cub->x_p_move += (mlx_cub->pdx * cos(M_PI / 2) - mlx_cub->pdy * sin(M_PI / 2));
+				mlx_cub->y_p_move += (mlx_cub->pdx * sin(M_PI / 2) + mlx_cub->pdy * cos(M_PI / 2));
 			}
 		}
 	}
+	// tmp_xp = 0;
+	// tmp_yp = 0;
+	// if (keycode == W)
+	// {
+	// 	tmp_yp = mlx_cub->player->y + (((int)mlx_cub->pdy) / 10);
+	// 	tmp_xp = mlx_cub->player->x + (((int)mlx_cub->pdx) / 10);
+	// 	if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
+	// 		&& tmp_xp <= mlx_cub->w)
+	// 	{
+	// 		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
+	// 		{
+	// 			mlx_cub->x_p_move += (mlx_cub->pdx / 10);
+	// 			mlx_cub->y_p_move += (mlx_cub->pdy / 10);
+	// 		}
+	// 	}
+	// }
+	// else if (keycode == S)
+	// {
+	// 	tmp_yp = mlx_cub->player->y - (((int)mlx_cub->pdy) / 10);
+	// 	tmp_xp = mlx_cub->player->x - (((int)mlx_cub->pdx) / 10);
+	// 	if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
+	// 		&& tmp_xp <= mlx_cub->w)
+	// 	{
+	// 		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
+	// 		{
+	// 			mlx_cub->x_p_move -= (mlx_cub->pdx / 10);
+	// 			mlx_cub->y_p_move -= (mlx_cub->pdy / 10);
+	// 		}
+	// 	}
+	// }
+	// else if (keycode == A)
+	// {
+	// 	tmp_xp = mlx_cub->player->x + (((int)(mlx_cub->pdx * cos(-M_PI / 2)
+	// 					- mlx_cub->pdy * sin(-M_PI / 2))) / 10);
+	// 	tmp_yp = mlx_cub->player->y + (((int)(mlx_cub->pdx * sin(-M_PI / 2)
+	// 					+ mlx_cub->pdy * cos(-M_PI / 2))) / 10);
+	// 	if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
+	// 		&& tmp_xp <= mlx_cub->w)
+	// 	{
+	// 		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
+	// 		{
+	// 			mlx_cub->x_p_move += (mlx_cub->pdx * cos(-M_PI / 2)
+	// 					- mlx_cub->pdy * sin(-M_PI / 2)) / 10;
+	// 			mlx_cub->y_p_move += (mlx_cub->pdx * sin(-M_PI / 2)
+	// 					+ mlx_cub->pdy * cos(-M_PI / 2)) / 10;
+	// 		}
+	// 	}
+	// }
+	// else if (keycode == D)
+	// {
+	// 	tmp_xp = mlx_cub->player->x + (((int)(mlx_cub->pdx * cos(M_PI / 2)
+	// 					- mlx_cub->pdy * sin(M_PI / 2))) / 10);
+	// 	tmp_yp = mlx_cub->player->y + (((int)(mlx_cub->pdx * sin(M_PI / 2)
+	// 					+ mlx_cub->pdy * cos(M_PI / 2))) / 10);
+	// 	if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
+	// 		&& tmp_xp <= mlx_cub->w)
+	// 	{
+	// 		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
+	// 		{
+	// 			mlx_cub->x_p_move += (mlx_cub->pdx * cos(M_PI / 2)
+	// 					- mlx_cub->pdy * sin(M_PI / 2)) / 10;
+	// 			mlx_cub->y_p_move += (mlx_cub->pdx * sin(M_PI / 2)
+	// 					+ mlx_cub->pdy * cos(M_PI / 2)) / 10;
+	// 		}
+	// 	}
+	// }
 }
 
 void	move_keys(int keycode, t_mlx *mlx_cub)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/23 15:16:13 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/23 16:55:52 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,27 @@ static void	drawing_square(t_mlx *mlx_cub, int x, int y)
 	}
 }
 
-static void	drawing_player(t_mlx *mlx_cub, t_player *player)
-{
-	int	x;
-	int	y;
-	int	i;
-	int	j;
+// static void	drawing_player(t_mlx *mlx_cub, t_player *player)
+// {
+// 	int	x;
+// 	int	y;
+// 	int	i;
+// 	int	j;
 
-	x = player->x - player->player_size / 2;
-	y = player->y - player->player_size / 2;
-	i = 0;
-	while (x + player->player_size <= mlx_cub->w && i < player->player_size)
-	{
-		j = 0;
-		while (y + player->player_size <= mlx_cub->h && j < player->player_size)
-		{
-			my_mlx_pixel_put(&mlx_cub->data, x + i, y + j, 0xFF0000);
-			j++;
-		}
-		i++;
-	}
-}
+// 	x = player->x - player->player_size / 2;
+// 	y = player->y - player->player_size / 2;
+// 	i = 0;
+// 	while (x + player->player_size <= mlx_cub->w && i < player->player_size)
+// 	{
+// 		j = 0;
+// 		while (y + player->player_size <= mlx_cub->h && j < player->player_size)
+// 		{
+// 			my_mlx_pixel_put(&mlx_cub->data, x + i, y + j, 0xFF0000);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
 
 int	draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY,
 		int color)
@@ -113,13 +113,14 @@ int	draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY,
 
 void	cast_ray(t_mlx *mlx_cub, t_player *player, double ray_angle)
 {
-	double	wall_distance;
+	(void)player;
 
-	wall_distance = 50;
-	mlx_cub->pdx = cos(ray_angle) * wall_distance;
-	mlx_cub->pdy = sin(ray_angle) * wall_distance;
-	mlx_cub->endpoint_x = player->x + mlx_cub->pdx;
-	mlx_cub->endpoint_y = player->y + mlx_cub->pdy;
+	// mlx_cub->pdx = cos(ray_angle) * wall_distance;
+	// mlx_cub->pdy = sin(ray_angle) * wall_distance;
+	mlx_cub->pdx = cos(ray_angle) * 6;
+	mlx_cub->pdy = sin(ray_angle) * 6;
+	// mlx_cub->endpoint_x = player->x + mlx_cub->pdx;
+	// mlx_cub->endpoint_y = player->y + mlx_cub->pdy;
 }
 
 void	drawing_map(char **map, t_mlx *mlx_cub, t_player *player)
@@ -163,9 +164,10 @@ void	drawing_map(char **map, t_mlx *mlx_cub, t_player *player)
 			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
 			{
-				player->x = mlx_cub->x + 30 + mlx_cub->x_p_move;
-				player->y = mlx_cub->y + 30 + mlx_cub->y_p_move;
-				drawing_player(mlx_cub, player);
+				player->x = mlx_cub->x + 25 + mlx_cub->x_p_move;
+				player->y = mlx_cub->y + 25 + mlx_cub->y_p_move;
+				// drawing_player(mlx_cub, player);
+				// my_mlx_pixel_put(&mlx_cub->data, player->x, player->y, 0xFF0000);
 			}
 			mlx_cub->x += 50;
 		}
@@ -281,7 +283,7 @@ void	drawing_map(char **map, t_mlx *mlx_cub, t_player *player)
 			ry = vy;
 			final_dis = disv;
 		}
-		draw_line(mlx_cub, mlx_cub->x_p, mlx_cub->y_p, rx, ry, 0x0000FF);
+		draw_line(mlx_cub, mlx_cub->x_p, mlx_cub->y_p, rx, ry, 0x4ff507);
 		ra += dr;
 		if (ra > 2 * PI)
 			ra -= 2 * PI;
@@ -289,4 +291,5 @@ void	drawing_map(char **map, t_mlx *mlx_cub, t_player *player)
 			ra += 2 * PI;
 		rays++;
 	}
+	my_mlx_pixel_put(&mlx_cub->data, player->x, player->y, 0xFF0000);
 }
