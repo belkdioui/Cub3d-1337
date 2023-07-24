@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/23 15:07:55 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:50:05 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,30 @@
 # define ARROW_RIGHT 124
 # define ARROW_LEFT 123
 
-/*----------- struct the player ------------*/
-
-typedef struct s_player
+/*---------- struct cast rays ---------*/
+typedef	struct	s_cast_ray
 {
-	double		x;
-	double		y;
-	double		angle;
-	int			player_size;
-}				t_player;
-
+	int		num_of_rays;
+	float	dr;
+	int		rays;
+	float	ry;
+	float	rx;
+	float	dish;
+	float	hx;
+	float	hy;
+	float	disv;
+	float	vx;
+	float	vy;
+	float	final_dis;
+	float	atan;
+	float	ntan;
+	int		dof;
+	int		mx;
+	int		my;
+	float	xo;
+	float	yo;
+	float	ra;
+}				t_cast_ray;
 /*----- data the my_mlx_pixel_put --------*/
 
 typedef struct s_data
@@ -82,13 +96,13 @@ typedef struct s_mlx
 	int			x_p;
 	int			y_p;
 	float		rot_pl;
-	t_player	*player;
 	double		pdx;
 	double		pdy;
 	double		endpoint_x;
 	double		endpoint_y;
 	t_data		data;
 	t_ele		*ele;
+	t_cast_ray	*cast_ray;
 }				t_mlx;
 
 typedef struct s_vars
@@ -121,8 +135,14 @@ int				key_hock(int keycode, t_mlx *mlx_cub);
 
 /*----- drawing map -------*/
 t_ele			*get_map(int ac, char **av, t_mlx *mlx_cub);
-void			init(t_mlx *mlx_cub, char **map, t_player *player);
-void			drawing_map(char **map, t_mlx *mlx_cub, t_player *player);
-
+void			init(t_mlx *mlx_cub, char **map);
+void			drawing_map(char **map, t_mlx *mlx_cub);
 void			free_ele(t_ele *ele);
+void			cast_rays(t_mlx *mlx_cub);
+int				draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY, int color);
+
+/*-------- cast rays ------------*/
+t_cast_ray	*init_strcut_cast_ray(t_mlx *mlx_cub);
+float	calc_dist(float px, float py, float dx, float dy);
+
 #endif

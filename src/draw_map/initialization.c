@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/23 17:43:03 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:39:12 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,18 @@ static void	width_and_height(int *width, int *height, char **map)
 	*height = i;
 }
 
-void	init(t_mlx *mlx_cub, char **map, t_player *player)
+void	init(t_mlx *mlx_cub, char **map)
 {
 	mlx_cub->mlx_ptr = mlx_init();
 	width_and_height(&mlx_cub->w, &mlx_cub->h, map);
-	player->x = 0;
-	player->y = 0;
-	player->player_size = 20;
-	player->angle = 0;
 	mlx_cub->h *= 50;
 	mlx_cub->w *= 50;
 	mlx_cub->y_p_move = 0;
 	mlx_cub->x_p_move = 0;
 	mlx_cub->x_p = 0;
 	mlx_cub->y_p = 0;
+	mlx_cub->x = 0;
+	mlx_cub->y = -50;
 	if (!mlx_cub->mlx_ptr)
 	{
 		perror("");
