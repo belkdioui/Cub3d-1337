@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:19:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/24 14:49:15 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:15:49 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	check_vertical(t_mlx *mlx_cub, t_cast_ray *ca_ray)
 {
 	ca_ray->dof = 0;
 	ca_ray->ntan = -tan(ca_ray->ra);
-	if (ca_ray->ra > P2 && ca_ray->ra < P3)
+	if (ca_ray->ra > (M_PI / 2) && ca_ray->ra < ((3 * M_PI) / 2))
 	{
 		ca_ray->rx = ((mlx_cub->x_p / 50) * 50) - 0.0001;
 		ca_ray->ry = (mlx_cub->x_p - ca_ray->rx) * \
@@ -73,7 +73,7 @@ void	check_vertical(t_mlx *mlx_cub, t_cast_ray *ca_ray)
 		ca_ray->xo = -50;
 		ca_ray->yo = -ca_ray->xo * ca_ray->ntan;
 	}
-	if (ca_ray->ra < P2 || ca_ray->ra > P3)
+	if (ca_ray->ra < (M_PI / 2) || ca_ray->ra > ((3 * M_PI) / 2))
 	{
 		ca_ray->rx = ((mlx_cub->x_p / 50) * 50) + 50;
 		ca_ray->ry = (mlx_cub->x_p - ca_ray->rx) * \
