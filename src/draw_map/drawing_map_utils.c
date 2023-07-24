@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/24 16:37:38 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/24 17:44:25 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ void	drawing_map(char **map, t_mlx *mlx_cub)
 			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
 			{
-				mlx_cub->x_p = mlx_cub->x + mlx_cub->x_p_move;
-				mlx_cub->y_p = mlx_cub->y + mlx_cub->y_p_move;
+				mlx_cub->x_p = mlx_cub->x + 25 + mlx_cub->x_p_move;
+				mlx_cub->y_p = mlx_cub->y + 25 + mlx_cub->y_p_move;
 				drawing_player(mlx_cub);
 			}
 			mlx_cub->x += 50;

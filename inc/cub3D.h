@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/24 16:52:15 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/24 17:45:54 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,11 @@ int				draw_line(t_mlx *mlx_cub, int beginX, int beginY);
 t_cast_ray		*init_strcut_cast_ray(t_mlx *mlx_cub);
 float			calc_dist(float px, float py, float dx, float dy);
 void			set_the_min_pos(t_mlx *mlx_cub);
+
+/*--------- key hooks ------------*/
+void			key_w(t_mlx *mlx_cub, int tmp_xp, int tmp_yp);
+void			key_s(t_mlx *mlx_cub, int tmp_xp, int tmp_yp);
+void			key_a(t_mlx *mlx_cub, int tmp_xp, int tmp_yp);
+void			key_d(t_mlx *mlx_cub, int tmp_xp, int tmp_yp);
 
 #endif
