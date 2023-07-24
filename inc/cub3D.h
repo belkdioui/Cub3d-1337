@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/24 14:50:05 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/24 15:11:23 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 
 # define ESC 53
 # define PI M_PI
-# define P2 (M_PI / 2)
-# define P3 (3 * (M_PI / 2))
 # define W 13
 # define A 0
 # define S 1
@@ -98,6 +96,7 @@ typedef struct s_mlx
 	float		rot_pl;
 	double		pdx;
 	double		pdy;
+	int			num_of_player;
 	double		endpoint_x;
 	double		endpoint_y;
 	t_data		data;
