@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:48:40 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/24 14:49:19 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:51:56 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,20 @@ float	calc_dist(float px, float py, float dx, float dy)
 	b = (dy - py);
 	c = sqrt((a * a) + (b * b));
 	return (c);
+}
+
+void	set_the_min_pos(t_mlx *mlx_cub)
+{
+	if (mlx_cub->cast_ray->dish < mlx_cub->cast_ray->disv)
+	{
+		mlx_cub->endpoint_x = mlx_cub->cast_ray->hx;
+		mlx_cub->endpoint_y = mlx_cub->cast_ray->hy;
+		mlx_cub->cast_ray->final_dis = mlx_cub->cast_ray->dish;
+	}
+	else
+	{
+		mlx_cub->endpoint_x = mlx_cub->cast_ray->vx;
+		mlx_cub->endpoint_y = mlx_cub->cast_ray->vy;
+		mlx_cub->cast_ray->final_dis = mlx_cub->cast_ray->disv;
+	}
 }

@@ -6,16 +6,14 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:19:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/24 15:15:49 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:51:48 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-void	check_horiental(t_mlx *mlx_cub, t_cast_ray *ca_ray)
+void	check_greater_or_less_in_part_horiz(t_mlx *mlx_cub, t_cast_ray *ca_ray)
 {
-	ca_ray->dof = 0;
-	ca_ray->atan = -1 / tan(ca_ray->ra);
 	if (ca_ray->ra > PI)
 	{
 		ca_ray->ry = ((mlx_cub->y_p / 50) * 50) - 0.0001;
@@ -38,6 +36,13 @@ void	check_horiental(t_mlx *mlx_cub, t_cast_ray *ca_ray)
 		ca_ray->ry = (float)mlx_cub->y_p;
 		ca_ray->dof = mlx_cub->w / 50;
 	}
+}
+
+void	check_horiental(t_mlx *mlx_cub, t_cast_ray *ca_ray)
+{
+	ca_ray->dof = 0;
+	ca_ray->atan = -1 / tan(ca_ray->ra);
+	check_greater_or_less_in_part_horiz(mlx_cub, ca_ray);
 	while (ca_ray->dof < mlx_cub->w / 50)
 	{
 		ca_ray->mx = (int)(ca_ray->rx / 50);
@@ -61,10 +66,8 @@ void	check_horiental(t_mlx *mlx_cub, t_cast_ray *ca_ray)
 	}
 }
 
-void	check_vertical(t_mlx *mlx_cub, t_cast_ray *ca_ray)
+void	check_greater_or_less_in_part_verti(t_mlx *mlx_cub, t_cast_ray *ca_ray)
 {
-	ca_ray->dof = 0;
-	ca_ray->ntan = -tan(ca_ray->ra);
 	if (ca_ray->ra > (M_PI / 2) && ca_ray->ra < ((3 * M_PI) / 2))
 	{
 		ca_ray->rx = ((mlx_cub->x_p / 50) * 50) - 0.0001;
@@ -87,6 +90,13 @@ void	check_vertical(t_mlx *mlx_cub, t_cast_ray *ca_ray)
 		ca_ray->ry = (float)mlx_cub->y_p;
 		ca_ray->dof = mlx_cub->w / 50;
 	}
+}
+
+void	check_vertical(t_mlx *mlx_cub, t_cast_ray *ca_ray)
+{
+	ca_ray->dof = 0;
+	ca_ray->ntan = -tan(ca_ray->ra);
+	check_greater_or_less_in_part_verti(mlx_cub, ca_ray);
 	while (ca_ray->dof < mlx_cub->w / 50)
 	{
 		ca_ray->mx = (int)(ca_ray->rx / 50);
@@ -119,20 +129,8 @@ void	cast_rays(t_mlx *mlx_cub)
 		mlx_cub->cast_ray->disv = 100000000;
 		check_horiental(mlx_cub, mlx_cub->cast_ray);
 		check_vertical(mlx_cub, mlx_cub->cast_ray);
-		if (mlx_cub->cast_ray->dish < mlx_cub->cast_ray->disv)
-		{
-			mlx_cub->endpoint_x = mlx_cub->cast_ray->hx;
-			mlx_cub->endpoint_y = mlx_cub->cast_ray->hy;
-			mlx_cub->cast_ray->final_dis = mlx_cub->cast_ray->dish;
-		}
-		else
-		{
-			mlx_cub->endpoint_x = mlx_cub->cast_ray->vx;
-			mlx_cub->endpoint_y = mlx_cub->cast_ray->vy;
-			mlx_cub->cast_ray->final_dis = mlx_cub->cast_ray->disv;
-		}
-		draw_line(mlx_cub, mlx_cub->x_p, mlx_cub->y_p, \
-			mlx_cub->endpoint_x, mlx_cub->endpoint_y, 0x4ff507);
+		set_the_min_pos(mlx_cub);
+		draw_line(mlx_cub, mlx_cub->x_p, mlx_cub->y_p);
 		mlx_cub->cast_ray->ra += mlx_cub->cast_ray->dr;
 		if (mlx_cub->cast_ray->ra > 2 * PI)
 			mlx_cub->cast_ray->ra -= 2 * PI;

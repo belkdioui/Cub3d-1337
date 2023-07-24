@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/24 14:47:02 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:37:38 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ static void	drawing_player(t_mlx *mlx_cub)
 	}
 }
 
-int	draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY, \
-	int color)
+int	draw_line(t_mlx *mlx_cub, int beginX, int beginY)
 {
 	double	deltax;
 	double	deltay;
@@ -75,8 +74,8 @@ int	draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY, \
 	double	pixelx;
 	double	pixely;
 
-	deltax = endX - beginX;
-	deltay = endY - beginY;
+	deltax = mlx_cub->endpoint_x - beginX;
+	deltay = mlx_cub->endpoint_y - beginY;
 	pixels = sqrt((deltax * deltax) + (deltay * deltay));
 	deltax /= pixels;
 	deltay /= pixels;
@@ -86,7 +85,7 @@ int	draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY, \
 	{
 		if (pixelx >= 0 && pixelx < mlx_cub->w && pixely >= 0
 			&& pixely < mlx_cub->h)
-			my_mlx_pixel_put(&mlx_cub->data, pixelx, pixely, color);
+			my_mlx_pixel_put(&mlx_cub->data, pixelx, pixely, 0x4ff507);
 		pixelx += deltax;
 		pixely += deltay;
 		--pixels;

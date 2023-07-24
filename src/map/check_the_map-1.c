@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:48:04 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 10:49:38 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:12:22 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,51 @@ int	check_img(char *textures)
 	if (fd == -1)
 		return (free(textures), 0);
 	return (free(textures), 1);
+}
+
+int	in_loop(char **map, int i, int *j, t_mlx *mlx_cub)
+{
+	if (map[i][*j] != '1' && map[i][*j] != ' ' && map[i][*j] != '\n'
+			&& map[i][*j] != '0' && map[i][*j] != 'N' && map[i][*j] != 'S'
+			&& map[i][*j] != 'E' && map[i][*j] != 'W')
+		return (0);
+	if (map[i][*j] == ' ')
+		if (!space_is_protected(map, i, *j))
+			return (0);
+	if (map[i][*j] == 'N' || map[i][*j] == 'S' || map[i][*j] == 'E'
+		|| map[i][*j] == 'W')
+	{
+		if (map[i][*j] == 'S')
+			mlx_cub->rot_pl = (M_PI / 2) - 0000.3;
+		if (map[i][*j] == 'N')
+			mlx_cub->rot_pl = ((3 * M_PI) / 2) - 000.3;
+		if (map[i][*j] == 'E')
+			mlx_cub->rot_pl = 0000.3;
+		if (map[i][*j] == 'W')
+			mlx_cub->rot_pl = M_PI - 0000.3;
+		mlx_cub->num_of_player++;
+	}
+	return (1);
+}
+
+int	if_bet_first_and_last(char **map, int i, int *j, t_mlx *mlx_cub)
+{
+	int	last;
+
+	last = 0;
+	while (map[i][last] != '\n')
+		last++;
+	while (map[i][*j] && map[i][*j] == ' ')
+		(*j)++;
+	while (map[i][last] == '\n' || map[i][last] == ' ')
+		last--;
+	if (map[i][*j] != '1' || map[i][last] != '1')
+		return (0);
+	while (map[i][*j] != '\n')
+	{
+		if (!in_loop(map, i, j, mlx_cub))
+			return (0);
+		(*j)++;
+	}
+	return (1);
 }

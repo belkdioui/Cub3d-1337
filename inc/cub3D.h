@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/24 15:11:23 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:52:15 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define ARROW_LEFT 123
 
 /*---------- struct cast rays ---------*/
-typedef	struct	s_cast_ray
+typedef struct s_cast_ray
 {
 	int		num_of_rays;
 	float	dr;
@@ -119,6 +119,8 @@ void			free_db(char **arr);
 int				len_of_longest_line(char **pre_map);
 //
 int				space_is_protected(char **map, int x, int y);
+int				if_bet_first_and_last(char **map, int i, int *j,
+					t_mlx *mlx_cub);
 int				check_rgb(char *rgb);
 int				check_img(char *textures);
 int				is_element(char *line, int *ele);
@@ -138,10 +140,11 @@ void			init(t_mlx *mlx_cub, char **map);
 void			drawing_map(char **map, t_mlx *mlx_cub);
 void			free_ele(t_ele *ele);
 void			cast_rays(t_mlx *mlx_cub);
-int				draw_line(t_mlx *mlx_cub, int beginX, int beginY, int endX, int endY, int color);
+int				draw_line(t_mlx *mlx_cub, int beginX, int beginY);
 
 /*-------- cast rays ------------*/
-t_cast_ray	*init_strcut_cast_ray(t_mlx *mlx_cub);
-float	calc_dist(float px, float py, float dx, float dy);
+t_cast_ray		*init_strcut_cast_ray(t_mlx *mlx_cub);
+float			calc_dist(float px, float py, float dx, float dy);
+void			set_the_min_pos(t_mlx *mlx_cub);
 
 #endif
