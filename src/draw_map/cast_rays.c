@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:19:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/24 16:51:48 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:23:04 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,31 @@ void	cast_rays(t_mlx *mlx_cub)
 		check_vertical(mlx_cub, mlx_cub->cast_ray);
 		set_the_min_pos(mlx_cub);
 		draw_line(mlx_cub, mlx_cub->x_p, mlx_cub->y_p);
+		
+		float fish_eye = mlx_cub->rot_pl - mlx_cub->cast_ray->ra;
+		if(fish_eye > 2 * PI)
+			fish_eye -= 2 * PI;
+		else if(fish_eye < 0)
+			fish_eye += 2 * PI;
+		mlx_cub->cast_ray->final_dis = mlx_cub->cast_ray->final_dis * cos(fish_eye);
+		float lineH = (HIGHT*72)/mlx_cub->cast_ray->final_dis;
+		if(lineH > HIGHT)
+			lineH = HIGHT;
+		float celling = HIGHT/2 - lineH/2;
+		float y = 0;
+		while(y < lineH)
+		{
+			my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, 0xFF00000);
+			y++;
+		}
+		while(celling > 0)
+		{
+			my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling, 0x00000FF);
+			celling--;
+		}
+
+
+
 		mlx_cub->cast_ray->ra += mlx_cub->cast_ray->dr;
 		if (mlx_cub->cast_ray->ra > 2 * PI)
 			mlx_cub->cast_ray->ra -= 2 * PI;

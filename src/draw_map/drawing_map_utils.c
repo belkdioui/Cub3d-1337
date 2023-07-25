@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/24 17:44:25 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:16:06 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ static void	window_coloring(t_mlx *mlx_cub)
 	int	y;
 
 	x = 0;
-	while (x < mlx_cub->w)
+	while (x < WIDTH)
 	{
 		y = 0;
-		while (y < mlx_cub->h)
+		while (y < HIGHT)
 		{
-			my_mlx_pixel_put(&mlx_cub->data, x, y, 0xFFFFFF);
+			// my_mlx_pixel_put(&mlx_cub->data, x, y, 0xFFFFFF);
+			my_mlx_pixel_put(&mlx_cub->data, x, y, 0x000000);
 			y++;
 		}
 		x++;
@@ -40,7 +41,9 @@ static void	drawing_square(t_mlx *mlx_cub, int x, int y)
 	{
 		tmp_y = y;
 		while (tmp_y++ < y + 49 && y + 50 <= mlx_cub->h)
-			my_mlx_pixel_put(&mlx_cub->data, tmp_x, tmp_y, 0x000000);
+		{
+			// my_mlx_pixel_put(&mlx_cub->data, tmp_x, tmp_y, 0x000000);
+		}
 	}
 }
 
@@ -51,15 +54,15 @@ static void	drawing_player(t_mlx *mlx_cub)
 	int	i;
 	int	j;
 
-	x = mlx_cub->x_p - 20 / 2;
-	y = mlx_cub->y_p - 20 / 2;
+	x = mlx_cub->x_p - 50 / 2;
+	y = mlx_cub->y_p - 50 / 2;
 	i = 0;
-	while (x + 20 <= mlx_cub->w && i < 20)
+	while (x + 50 <= mlx_cub->w && i < 50)
 	{
 		j = 0;
-		while (y + 20 <= mlx_cub->h && j < 20)
+		while (y + 50 <= mlx_cub->h && j < 50)
 		{
-			my_mlx_pixel_put(&mlx_cub->data, x + i, y + j, 0xFF0000);
+			// my_mlx_pixel_put(&mlx_cub->data, x + i, y + j, 0xFF0000);
 			j++;
 		}
 		i++;
@@ -83,9 +86,9 @@ int	draw_line(t_mlx *mlx_cub, int beginX, int beginY)
 	pixely = beginY;
 	while (pixels)
 	{
-		if (pixelx >= 0 && pixelx < mlx_cub->w && pixely >= 0
-			&& pixely < mlx_cub->h)
-			my_mlx_pixel_put(&mlx_cub->data, pixelx, pixely, 0x4ff507);
+		// if (pixelx >= 0 && pixelx < mlx_cub->w && pixely >= 0
+		// 	&& pixely < mlx_cub->h)
+		// 	my_mlx_pixel_put(&mlx_cub->data, pixelx, pixely, 0x4ff507);
 		pixelx += deltax;
 		pixely += deltay;
 		--pixels;

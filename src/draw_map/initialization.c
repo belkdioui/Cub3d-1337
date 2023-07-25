@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/24 14:39:12 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:07:08 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	init(t_mlx *mlx_cub, char **map)
 		perror("");
 		exit(1);
 	}
-	mlx_cub->mlx_win = mlx_new_window(mlx_cub->mlx_ptr, mlx_cub->w, mlx_cub->h,
+	mlx_cub->mlx_win = mlx_new_window(mlx_cub->mlx_ptr, WIDTH/*mlx_cub->w*/, HIGHT/*mlx_cub->h*/,
 			"cub3d");
 	if (!mlx_cub->mlx_win)
 		protection(mlx_cub);
-	mlx_cub->data.img = mlx_new_image(mlx_cub->mlx_ptr, mlx_cub->w, mlx_cub->h);
+	mlx_cub->data.img = mlx_new_image(mlx_cub->mlx_ptr, WIDTH/*mlx_cub->w*/, HIGHT/*mlx_cub->h*/);
 	if (!mlx_cub->data.img)
 		protection(mlx_cub);
 	mlx_cub->data.addr = mlx_get_data_addr(mlx_cub->data.img,

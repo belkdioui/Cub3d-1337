@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/24 17:45:54 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:15:09 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define ARROW_DOWN 125
 # define ARROW_RIGHT 124
 # define ARROW_LEFT 123
+# define WIDTH 1920
+# define HIGHT 1080
 
 /*---------- struct cast rays ---------*/
 typedef struct s_cast_ray

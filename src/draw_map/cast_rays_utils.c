@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:48:40 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/24 16:51:56 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:06:56 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_cast_ray	*init_strcut_cast_ray(t_mlx *mlx_cub)
 		free(mlx_cub);
 		exit(1);
 	}
-	ca_ray->num_of_rays = 1920;
+	ca_ray->num_of_rays = WIDTH;
 	ca_ray->dr = ((2 * PI) / ca_ray->num_of_rays) / ((float)360 / 90);
 	ca_ray->ra = mlx_cub->rot_pl - (ca_ray->dr * ca_ray->num_of_rays / 2);
 	if (ca_ray->ra > 2 * PI)
