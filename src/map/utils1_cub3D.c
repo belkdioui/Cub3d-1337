@@ -1,0 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils1_cub3D.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 18:38:08 by bel-kdio          #+#    #+#             */
+/*   Updated: 2023/07/16 01:05:54 by bel-kdio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../inc/cub3D.h"
+
+void	free_db(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free (arr[i]);
+		i++;
+	}
+	free (arr);
+}
+
+int	cal_number_of_lines_map(char **cnt_file)
+{
+	int	i;
+	int	j;
+	int	is_ele;
+	int	num_of_ele;
+
+	j = 0;
+	num_of_ele = 0;
+	i = 0;
+	while (cnt_file[i])
+	{
+		num_of_ele = is_element(cnt_file[i], &is_ele);
+		if (num_of_ele == 7)
+			j++;
+		i++;
+	}
+	return (j);
+}
+
+int	len_of_longest_line(char **pre_map)
+{
+	int		i;
+	size_t	len;
+
+	i = 0;
+	len = 0;
+	while (pre_map[i])
+	{
+		if (len < ft_strlen(pre_map[i]))
+			len = ft_strlen(pre_map[i]);
+		i++;
+	}
+	return (len);
+}
+
+int	search_and_ret_place(char *av)
+{
+	int	i;
+
+	i = 0;
+	while (av)
+	{
+		if (av[i] == '.')
+			break ;
+		i++ ;
+	}
+	return (i);
+}
