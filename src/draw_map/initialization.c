@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/26 15:39:43 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/27 12:43:00 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,58 +19,18 @@ void	protection(t_mlx *mlx_cub)
 	exit(1);
 }
 
-// static void	width_and_height(int *width, int *height, char **map)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (map[i])
-// 	{
-// 		j = 0;
-// 		while (map[i][j] != '\n' && map[i][j] != '\0')
-// 			j++;
-// 		*width = j;
-// 		i++;
-// 	}
-// 	*height = i;
-// }
-
-void	calcul_width_height_the_square(t_game *game, char **map, int wi, int he)
+void	calcul_width_height_the_map(char **map, int *i, int *j)
 {
-	int	w;
-	int	h;
+	*i = 0;
+	*j = 0;
 
-	w = 0;
-	h = 0;
-	while (map[h])
+	while (map[*i])
 	{
-		while (map[h][w] != '\n' && map[h][w] != '\0')
-			w++;
-		h++;
+		while (map[*i][*j] != '\n' && map[*i][*j] != '\0')
+			(*j)++;
+		(*i)++;
 	}
-	game->h_sq = he / h;
-	game->w_sq = wi / w;
 }
-
-// void	calcul_width_height_the_square(t_mlx *mlx_cub)
-// {
-// 	int	w;
-// 	int	h;
-
-// 	w = 0;
-// 	h = 0;
-// 	while (mlx_cub->ele->map[h])
-// 	{
-// 		while (mlx_cub->ele->map[h][w] != '\n' && mlx_cub->ele->map[h][w] != '\0')
-// 			w++;
-// 		h++;
-// 	}
-// 	mlx_cub->h_sq = height / h;
-// 	mlx_cub->w_sq = width / w;
-// 	mlx_cub->h_sq_map = height_map / h;
-// 	mlx_cub->w_sq_map = width_map / w;
-// }
 
 t_mlx	*init_mlx()
 {
@@ -110,27 +70,34 @@ t_mlx	*init_mlx()
 t_game	*init_game(t_gloabl *glob, int check)
 {
 	t_game	*game;
+	int	i;
+	int	j;
 
 	game = malloc(sizeof(t_game));
 	if (!game)
 		exit(1);
+	calcul_width_height_the_map(glob->ele->map, &i, &j);
 	if (check == 0)
 	{
 		game->w = width;
 		game->h = height;
-		calcul_width_height_the_square(game, glob->ele->map, width, height);
+		game->w_sq = 50;
+		game->h_sq = 50;
 		game->data = glob->mlx_cub->data;
 	}
 	else
 	{
 		game->w = width_map;
 		game->h = height_map;
-		calcul_width_height_the_square(game, glob->ele->map, width_map, height_map);
+		game->w_sq = 10;
+		game->h_sq = 10;
 		game->data = glob->mlx_cub->data2;
 	}
 	game->x_p_move = 0;
 	game->y_p_move = 0;
 	game->rot_pl = glob->rot_pl;
+	game->i = i;
+	game->j = j;
 	return (game);
 }
 

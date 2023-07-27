@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 17:19:17 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/26 16:37:50 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/27 12:24:20 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@ void	key_w(t_game *game, char **map, int tmp_xp, int tmp_yp)
 {
 	tmp_yp = game->y_p + game->pdy;
 	tmp_xp = game->x_p + game->pdx;
-	if (tmp_yp >= 0 && tmp_yp <= height && tmp_xp >= 0
-		&& tmp_xp <= width)
+	if (tmp_yp >= 0 && tmp_yp <= game->h && tmp_xp >= 0
+		&& tmp_xp <= game->w)
 	{
 		// if (map[(tmp_yp + game->h_sq) / game->h_sq][(tmp_xp) / game->w_sq] == '1'
-		// 	&& (height - ((tmp_yp / mlx_cub->h_sq) * mlx_cub->h_sq) + 10 - mlx_cub->h_sq > height
+		// 	&& (game->h - ((tmp_yp / game->h_sq) * game->h_sq) + 10 - game->h_sq > game->h
 		// 		- tmp_yp))
 		// 	return ;
-		// if (map[(tmp_yp) / mlx_cub->h_sq][(tmp_xp - mlx_cub->w_sq) / mlx_cub->w_sq] == '1'
-		// 	&& (((tmp_xp / mlx_cub->w_sq) * mlx_cub->w_sq) + 10 > tmp_xp))
+		// if (map[(tmp_yp) / game->h_sq][(tmp_xp - game->w_sq) / game->w_sq] == '1'
+		// 	&& (((tmp_xp / game->w_sq) * game->w_sq) + 10 > tmp_xp))
 		// 	return ;
-		// if (map[(tmp_yp - mlx_cub->h_sq) / mlx_cub->h_sq][(tmp_xp) / mlx_cub->w_sq] == '1'
-		// 	&& ((tmp_yp / mlx_cub->h_sq) * mlx_cub->h_sq + 5 >= tmp_yp))
+		// if (map[(tmp_yp - game->h_sq) / game->h_sq][(tmp_xp) / game->w_sq] == '1'
+		// 	&& ((tmp_yp / game->h_sq) * game->h_sq + 5 >= tmp_yp))
 		// 	return ;
-		// if (map[(tmp_yp) / mlx_cub->h_sq][(tmp_xp + mlx_cub->w_sq) / mlx_cub->w_sq] == '1'
-		// 	&& (width - ((tmp_xp / mlx_cub->w_sq) * mlx_cub->w_sq) + 10 - mlx_cub->h_sq > width
+		// if (map[(tmp_yp) / game->h_sq][(tmp_xp + game->w_sq) / game->w_sq] == '1'
+		// 	&& (game->w - ((tmp_xp / game->w_sq) * game->w_sq) + 10 - game->h_sq > game->w
 		// 		- tmp_xp))
 		// 	return ;
-		if (map[(tmp_yp) / game->h_sq][(tmp_xp) / game->w_sq] != '1')
+		if (map[(tmp_yp) / game->h_sq] && map[(tmp_yp) / game->h_sq][(tmp_xp) / game->w_sq] != '1')
 		{
 			game->x_p_move += game->pdx;
 			game->y_p_move += game->pdy;
@@ -45,24 +45,24 @@ void	key_s(t_game *game, char **map, int tmp_xp, int tmp_yp)
 {
 	tmp_yp = game->y_p - game->pdy;
 	tmp_xp = game->x_p - game->pdx;
-	// if (mlx_cub->ele->map[(tmp_yp + mlx_cub->h_sq) / mlx_cub->h_sq][(tmp_xp) / mlx_cub->w_sq] == '1'
-	// 	&& (height - ((tmp_yp / mlx_cub->h_sq) * mlx_cub->h_sq) + 10 - mlx_cub->h_sq > height
+	// if (map[(tmp_yp + game->h_sq) / game->h_sq][(tmp_xp) / game->w_sq] == '1'
+	// 	&& (game->h - ((tmp_yp / game->h_sq) * game->h_sq) + 10 - game->h_sq > game->h
 	// 		- tmp_yp))
 	// 	return ;
-	// if (mlx_cub->ele->map[(tmp_yp) / mlx_cub->h_sq][(tmp_xp - mlx_cub->h_sq) / mlx_cub->h_sq] == '1'
-	// 	&& (((tmp_xp / mlx_cub->w_sq) * mlx_cub->w_sq) + 10 > tmp_xp))
+	// if (map[(tmp_yp) / game->h_sq][(tmp_xp - game->h_sq) / game->h_sq] == '1'
+	// 	&& (((tmp_xp / game->w_sq) * game->w_sq) + 10 > tmp_xp))
 	// 	return ;
-	// if (mlx_cub->ele->map[(tmp_yp - mlx_cub->h_sq) / mlx_cub->h_sq][(tmp_xp) / mlx_cub->w_sq] == '1'
-	// 	&& ((tmp_yp / mlx_cub->h_sq) * mlx_cub->h_sq + 5 >= tmp_yp))
+	// if (map[(tmp_yp - game->h_sq) / game->h_sq][(tmp_xp) / game->w_sq] == '1'
+	// 	&& ((tmp_yp / game->h_sq) * game->h_sq + 5 >= tmp_yp))
 	// 	return ;
-	// if (mlx_cub->ele->map[(tmp_yp) / mlx_cub->h_sq][(tmp_xp + mlx_cub->w_sq) / mlx_cub->h_sq] == '1'
-	// 	&& (width - ((tmp_xp / mlx_cub->w_sq) * mlx_cub->h_sq) + 10 - mlx_cub->w_sq > width
+	// if (map[(tmp_yp) / game->h_sq][(tmp_xp + game->w_sq) / game->h_sq] == '1'
+	// 	&& (width - ((tmp_xp / game->w_sq) * game->h_sq) + 10 - game->w_sq > game->w
 	// 		- tmp_xp))
 	// 	return ;
 	if (tmp_yp >= 0 && tmp_yp <= game->h && tmp_xp >= 0
 		&& tmp_xp <= game->w)
 	{
-		if (map[(tmp_yp) / game->h_sq][(tmp_xp) / game->w_sq] != '1')
+		if (map[(tmp_yp) / game->h_sq] && map[(tmp_yp) / game->h_sq][(tmp_xp) / game->w_sq] != '1')
 		{
 			game->x_p_move -= game->pdx;
 			game->y_p_move -= game->pdy;
@@ -76,24 +76,24 @@ void	key_a(t_game *game, char **map, int tmp_xp, int tmp_yp)
 			* sin(-M_PI / 2));
 	tmp_yp = game->y_p + (game->pdx * sin(-M_PI / 2) + game->pdy
 			* cos(-M_PI / 2));
-	// if (mlx_cub->ele->map[(tmp_yp + 50) / 50][(tmp_xp) / 50] == '1'
-	// 	&& (height - ((tmp_yp / 50) * 50) + 10 - 50 > height
+	// if (map[(tmp_yp + game->h_sq) / game->h][(tmp_xp) / game->h] == '1'
+	// 	&& (game->h - ((tmp_yp / game->h_sq) * game->h_sq) + 10 - game->h_sq > game->h
 	// 		- tmp_yp))
 	// 	return ;
-	// if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp - 50) / 50] == '1'
-	// 	&& (((tmp_xp / 50) * 50) + 10 > tmp_xp))
+	// if (map[(tmp_yp) / game->h_sq][(tmp_xp - game->w_sq) / game->w_sq] == '1'
+	// 	&& (((tmp_xp / game->w_sq) * game->w_sq) + 10 > tmp_xp))
 	// 	return ;
-	// if (mlx_cub->ele->map[(tmp_yp - 50) / 50][(tmp_xp) / 50] == '1'
-	// 	&& (((tmp_yp / 50) * 50) + 10 >= tmp_yp))
+	// if (map[(tmp_yp - game->h_sq) / game->h_sq][(tmp_xp) / game->h_sq] == '1'
+	// 	&& (((tmp_yp / game->h_sq) * game->h_sq) + 10 >= tmp_yp))
 	// 	return ;
-	// if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp + 50) / 50] == '1'
-	// 	&& (width - ((tmp_xp / 50) * 50) + 10 - 50 > width
+	// if (map[(tmp_yp) / game->h_sq][(tmp_xp + game->h_sq) / 50] == '1'
+	// 	&& (game->w - ((tmp_xp / game->w_sq) * game->w_sq) + 10 - game->w_sq > game->w
 	// 		- tmp_xp))
 	// 	return ;
 	if (tmp_yp >= 0 && tmp_yp <= game->h && tmp_xp >= 0
 		&& tmp_xp <= game->w)
 	{
-		if (map[(tmp_yp) / game->h_sq][(tmp_xp) / game->w_sq] != '1')
+		if (map[(tmp_yp) / game->h_sq] && map[(tmp_yp) / game->h_sq][(tmp_xp) / game->w_sq] != '1')
 		{
 			game->x_p_move += (game->pdx * cos(-M_PI / 2)
 					- game->pdy * sin(-M_PI / 2));
@@ -109,24 +109,24 @@ void	key_d(t_game *game, char **map, int tmp_xp, int tmp_yp)
 			* sin(M_PI / 2));
 	tmp_yp = game->y_p + (game->pdx * sin(M_PI / 2) + game->pdy
 			* cos(M_PI / 2));
-	// if (mlx_cub->ele->map[(tmp_yp + 50) / 50][(tmp_xp) / 50] == '1'
-	// 	&& (height - ((tmp_yp / 50) * 50) + 10 - 50 > height
+	// if (map[(tmp_yp + game->h_sq) / game->h_sq][(tmp_xp) / game->w_sq] == '1'
+	// 	&& (game->h - ((tmp_yp / game->h_sq) * game->h_sq) + 10 - game->h_sq > game->h
 	// 		- tmp_yp))
 	// 	return ;
-	// if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp - 50) / 50] == '1'
-	// 	&& (((tmp_xp / 50) * 50) + 10 > tmp_xp))
+	// if (map[(tmp_yp) / game->h_sq][(tmp_xp - game->h_sq) / 50] == '1'
+	// 	&& (((tmp_xp / game->w_sq) * game->w_sq) + 10 > tmp_xp))
 	// 	return ;
-	// if (mlx_cub->ele->map[(tmp_yp - 50) / 50][(tmp_xp) / 50] == '1'
-	// 	&& (((tmp_yp / 50) * 50) + 10 >= tmp_yp))
+	// if (map[(tmp_yp - game->h_sq) / game->h_sq][(tmp_xp) / game->w_sq] == '1'
+	// 	&& (((tmp_yp / game->h_sq) * game->h_sq) + 10 >= tmp_yp))
 	// 	return ;
-	// if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp + 50) / 50] == '1'
-	// 	&& (width- ((tmp_xp / 50) * 50) + 10 - 50 > width
+	// if (map[(tmp_yp) / game->h_sq][(tmp_xp + game->w_sq) / 50] == '1'
+	// 	&& (game->w - ((tmp_xp / game->w_sq) * game->h_sq) + 10 - game->h_sq > game->w
 	// 		- tmp_xp))
 	// 	return ;
 	if (tmp_yp >= 0 && tmp_yp <= game->h && tmp_xp >= 0
 		&& tmp_xp <= game->w)
 	{
-		if (map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
+		if (map[(tmp_yp) / game->h_sq] && map[(tmp_yp) / game->h_sq][(tmp_xp) / game->w_sq] != '1')
 		{
 			game->x_p_move += (game->pdx * cos(M_PI / 2)
 					- game->pdy * sin(M_PI / 2));

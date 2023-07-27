@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:19:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/26 17:12:43 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/27 12:50:22 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,18 @@ void	check_horiental(t_game *game, t_cast_ray *ca_ray, char **map)
 	ca_ray->dof = 0;
 	ca_ray->atan = -1 / tan(ca_ray->ra);
 	check_greater_or_less_in_part_horiz(game, ca_ray);
-	while (ca_ray->dof < game->w / game->w_sq)
+	while (ca_ray->dof < game->j)
 	{
-		
 		ca_ray->mx = (int)(ca_ray->rx / game->w_sq);
 		ca_ray->my = (int)(ca_ray->ry / game->h_sq);
-		if (ca_ray->mx >= 0 && ca_ray->mx < game->w / game->w_sq \
-			&& ca_ray->my >= 0 && ca_ray->my < game->h / game->h_sq && map[ca_ray->my][ca_ray->mx] == '1')
+		// printf("%d\n", game->w);
+		// exit(1);
+		// printf("%d\n", ca_ray->mx);
+		// if (ca_ray->mx >= 0 && ca_ray->mx < game->w / game->w_sq \
+		// 	&& ca_ray->my >= 0 && ca_ray->my < game->h / game->h_sq && map[ca_ray->my][ca_ray->mx] == '1')
+		
+		if (ca_ray->mx >= 0 && ca_ray->mx < game->j \
+			&& ca_ray->my >= 0 && ca_ray->my < game->i && map[ca_ray->my][ca_ray->mx] == '1')
 		{
 			ca_ray->dof = game->w / game->w_sq;
 			ca_ray->hx = ca_ray->rx;
@@ -97,13 +102,12 @@ void	check_vertical(t_game *game, t_cast_ray *ca_ray, char **map)
 	ca_ray->dof = 0;
 	ca_ray->ntan = -tan(ca_ray->ra);
 	check_greater_or_less_in_part_verti(game, ca_ray);
-	while (ca_ray->dof < game->w / game->w_sq)
+	while (ca_ray->dof < game->j)
 	{
 		ca_ray->mx = (int)(ca_ray->rx / game->w_sq);
 		ca_ray->my = (int)(ca_ray->ry / game->h_sq);
-		if (ca_ray->mx >= 0 && ca_ray->mx < game->w / game->w_sq && \
-			ca_ray->my >= 0 && ca_ray->my < game->h
-			/ game->h_sq && map[ca_ray->my][ca_ray->mx] == '1')
+		if (ca_ray->mx >= 0 && ca_ray->mx < game->j && ca_ray->my >= 0 && \
+			ca_ray->my < game->i && map[ca_ray->my][ca_ray->mx] == '1')
 		{
 			ca_ray->dof = game->w / game->w_sq;
 			ca_ray->vx = ca_ray->rx;
@@ -120,9 +124,9 @@ void	check_vertical(t_game *game, t_cast_ray *ca_ray, char **map)
 	}
 }
 
-void	cast_rays(t_game *game, char **map)
+void	cast_rays(t_game *game, char **map, int check)
 {
-	game->cast_ray = init_strcut_cast_ray(game);
+	game->cast_ray = init_strcut_cast_ray(game, check);
 	while (game->cast_ray->rays < game->cast_ray->num_of_rays)
 	{
 		game->cast_ray->dish = 100000000;
@@ -130,7 +134,43 @@ void	cast_rays(t_game *game, char **map)
 		check_horiental(game, game->cast_ray, map);
 		check_vertical(game, game->cast_ray, map);
 		set_the_min_pos(game);
-		draw_line(game, game->x_p, game->y_p);
+		draw_line(game, game->x_p, game->y_p, check);
+
+
+
+		if (check == 0)
+		{
+			float fish_eye = game->rot_pl - game->cast_ray->ra;
+			if(fish_eye > 2 * PI)
+				fish_eye -= 2 * PI;
+			else if(fish_eye < 0)
+				fish_eye += 2 * PI;
+			game->cast_ray->final_dis = game->cast_ray->final_dis * cos(fish_eye);
+			float lineH = (game->h*72)/game->cast_ray->final_dis;
+			if(lineH > game->h)
+				lineH = game->h;
+			float	celling = game->h/2 - lineH/2;
+			float	floor = lineH + celling;
+			// printf("%d   %f   %f\n", game->h, lineH, celling);
+			float y = 0;
+			while(y < lineH)
+			{
+				my_mlx_pixel_put(&game->data, game->cast_ray->rays, celling + y, 0xFF00000);
+				y++;
+			}
+			while(celling > 0)
+			{
+				my_mlx_pixel_put(&game->data, game->cast_ray->rays, celling, 0xb3cde0);
+				celling--;
+			}
+			while(floor < game->h)
+			{
+				my_mlx_pixel_put(&game->data, game->cast_ray->rays, floor, 0x011f4b);
+				floor++;
+			}
+		}
+
+		
 		game->cast_ray->ra += game->cast_ray->dr;
 		if (game->cast_ray->ra > 2 * PI)
 			game->cast_ray->ra -= 2 * PI;

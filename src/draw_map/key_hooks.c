@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/26 17:14:05 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:30:02 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@
 void	draw_after_event(t_mlx *mlx_cub, t_gloabl *global)
 {
 	mlx_clear_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
-	draw_game(global->game, global->ele->map);
-	draw_game(global->mini_game, global->ele->map);
+	draw(global);
+	// // finish(global);
+	// draw_game(global->game, global->ele->map, 0);
+	// draw_game(global->mini_game, global->ele->map, 1);
 
-	/* i think in this part i want separt bonus and mandatory */
-	mlx_put_image_to_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win,
-		global->game->data.img, 0, 0);
-	mlx_put_image_to_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win,\
-		global->mini_game->data.img, 0, 0);
+	// /* i think in this part i want separt bonus and mandatory */
+	// mlx_put_image_to_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win,
+	// 	global->game->data.img, 0, 0);
+	// mlx_put_image_to_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win,\
+	// 	global->mini_game->data.img, 0, 0);
 }
 
 void	check_keys(int keycode, t_game *game, char **map)

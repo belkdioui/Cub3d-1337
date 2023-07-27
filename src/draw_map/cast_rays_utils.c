@@ -6,13 +6,13 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:48:40 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/26 15:49:54 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/27 11:55:15 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-t_cast_ray	*init_strcut_cast_ray(t_game *game)
+t_cast_ray	*init_strcut_cast_ray(t_game *game, int check)
 {
 	t_cast_ray	*ca_ray;
 
@@ -29,8 +29,17 @@ t_cast_ray	*init_strcut_cast_ray(t_game *game)
 	if (ca_ray->ra < 0)
 		ca_ray->ra += 2 * PI;
 	ca_ray->rays = 0;
-	game->pdx = cos(game->rot_pl) * 6;
-	game->pdy = sin(game->rot_pl) * 6;
+	(void)check;
+	if (check == 0)
+	{
+		game->pdx = cos(game->rot_pl) * 6;
+		game->pdy = sin(game->rot_pl) * 6;
+	}
+	else
+	{
+		game->pdx = cos(game->rot_pl) * 1.2;
+		game->pdy = sin(game->rot_pl) * 1.2;
+	}
 	return (ca_ray);
 }
 

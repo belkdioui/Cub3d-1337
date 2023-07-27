@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/26 16:06:37 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:48:42 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,37 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+t_ele	*get_map(int ac, char **av, t_gloabl *glob)
+{
+	char	**cnt_file;
+	t_ele	*ele;
+
+	cnt_file = ver_and_ret_map(ac, av);
+	if (!cnt_file)
+	{
+		ft_putstr_fd("error in the name\n", 2);
+		exit(1);
+	}
+	ele = malloc(sizeof(t_ele));
+	if (!ele)
+		exit(1);
+	if (!check_the_map(cnt_file, ele, glob))
+	{
+		ft_putstr_fd("error in the map\n", 2);
+		exit(1);
+	}
+	free_db(cnt_file);
+	return (ele);
+}
+
+void		check_size(t_gloabl *glob, t_game *game)
+{
+	if (game->w_sq * game->j > game->w || game->h_sq * game->i > game->h)
+	{
+		// free here
+		printf("error\n");
+		exit(1);
+	}
 }

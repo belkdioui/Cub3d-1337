@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/26 17:00:47 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:29:36 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 #define  height 1080
 #define	width 1920
-#define  height_map 150
-#define	width_map 250
+#define  height_map 250
+#define	width_map 350
 
 # define ESC 53
 # define PI M_PI
@@ -105,6 +105,8 @@ typedef	struct s_game
 	t_data		data;
 	t_cast_ray	*cast_ray;
 	float		rot_pl;
+	int			i;
+	int			j;
 }			t_game;
 
 /*--------- strcut the mlx -----------*/
@@ -184,11 +186,11 @@ t_ele			*get_map(int ac, char **av, t_gloabl *glob);
 void			init(t_mlx *mlx_cub);
 void			drawing_map(char **map, t_mlx *mlx_cub, t_data *data);
 void			free_ele(t_ele *ele);
-void			cast_rays(t_game *game, char **map);
-int				draw_line(t_game *game, int beginX, int beginY);
+void			cast_rays(t_game *game, char **map, int check);
+int				draw_line(t_game *game, int beginX, int beginY, int check);
 
 /*-------- cast rays ------------*/
-t_cast_ray		*init_strcut_cast_ray(t_game *game);
+t_cast_ray		*init_strcut_cast_ray(t_game *game, int check);
 float			calc_dist(float px, float py, float dx, float dy);
 void			set_the_min_pos(t_game *game);
 
@@ -201,6 +203,10 @@ void			key_d(t_game *game, char **map, int tmp_xp, int tmp_yp);
 
 /*--------- last update ------------*/
 t_gloabl	*init_global(t_gloabl *glob, int ac, char **av);
-void		draw_game(t_game *game, char **map);
+void		draw_game(t_game *game, char **map, int check);
+t_ele		*get_map(int ac, char **av, t_gloabl *glob);
+void		finish(t_gloabl *glob);
+void		check_size(t_gloabl *glob, t_game *game);
+void		draw(t_gloabl *glob);
 
 #endif
