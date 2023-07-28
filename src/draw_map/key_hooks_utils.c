@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 17:19:17 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/27 12:24:20 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/28 19:06:22 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,28 @@ void	key_w(t_game *game, char **map, int tmp_xp, int tmp_yp)
 {
 	tmp_yp = game->y_p + game->pdy;
 	tmp_xp = game->x_p + game->pdx;
+	if (game->rot_pl >= 0 && game->rot_pl < (2 * M_PI) / 4)
+	{
+		printf("here\n");
+		tmp_xp += game->h_sq / 4;
+		tmp_yp += game->h_sq / 4;
+	}
+	else if (game->rot_pl > (2 * M_PI) / 4 && game->rot_pl <= (2 * M_PI) / 2)
+	{
+		printf("here22\n");
+		tmp_xp += game->h_sq / 4;
+		tmp_yp += game->h_sq / 4;
+	}
+	else if (game->rot_pl > (2 * M_PI) / 2 && game->rot_pl <= -((2 * M_PI) / 4))
+	{
+		tmp_xp -= game->h_sq / 4;
+		tmp_yp -= game->h_sq / 4;
+	}
+	else if (game->rot_pl > -((2 * M_PI) / 4) && game->rot_pl <= 2 * M_PI)
+	{
+		tmp_xp += game->h_sq / 4;
+		tmp_yp -= game->h_sq / 4;
+	}
 	if (tmp_yp >= 0 && tmp_yp <= game->h && tmp_xp >= 0
 		&& tmp_xp <= game->w)
 	{

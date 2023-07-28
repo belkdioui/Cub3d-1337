@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/27 13:48:42 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:01:16 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,26 @@ void		check_size(t_gloabl *glob, t_game *game)
 		printf("error\n");
 		exit(1);
 	}
+}
+
+void	free_ele(t_ele *ele)
+{
+	free(ele->c);
+	free(ele->f);
+	free(ele->ea);
+	free(ele->we);
+	free(ele->no);
+	free(ele->so);
+	free_db(ele->map);
+	free(ele);
+}
+
+void	free_all(t_gloabl *global)
+{
+	free_ele(global->ele);
+	free(global->game->cast_ray);
+	free(global->mini_game->cast_ray);
+	free(global->game);
+	free(global->mini_game);
+	free(global->mlx_cub);
 }

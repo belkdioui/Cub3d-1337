@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/27 15:29:36 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:59:49 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,5 +208,7 @@ t_ele		*get_map(int ac, char **av, t_gloabl *glob);
 void		finish(t_gloabl *glob);
 void		check_size(t_gloabl *glob, t_game *game);
 void		draw(t_gloabl *glob);
+t_mlx		*init_mlx(void);
+void		free_all(t_gloabl *global);
 
 #endif

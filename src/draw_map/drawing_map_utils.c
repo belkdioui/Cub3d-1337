@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/27 12:50:09 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/27 19:50:06 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	draw_line(t_game *game, int beginX, int beginY, int check)
 
 	deltax = game->endpoint_x - beginX;
 	deltay = game->endpoint_y - beginY;
-	
 	pixels = sqrt((deltax * deltax) + (deltay * deltay));
 	deltax /= pixels;
 	deltay /= pixels;
@@ -30,11 +29,11 @@ int	draw_line(t_game *game, int beginX, int beginY, int check)
 	pixely = beginY;
 	while (pixels)
 	{
-		if (check == 1)
-		{
+		// if (check == 1)
+		// {
 			if (pixelx >= 0 && pixelx < width && pixely >= 0 && pixely < height)
 				my_mlx_pixel_put(&game->data, pixelx, pixely, 0xebf1f2);
-		}
+		// }
 		pixelx += deltax;
 		pixely += deltay;
 		--pixels;

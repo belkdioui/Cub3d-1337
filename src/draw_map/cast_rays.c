@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:19:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/27 12:50:22 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:58:46 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,6 @@ void	check_horiental(t_game *game, t_cast_ray *ca_ray, char **map)
 	{
 		ca_ray->mx = (int)(ca_ray->rx / game->w_sq);
 		ca_ray->my = (int)(ca_ray->ry / game->h_sq);
-		// printf("%d\n", game->w);
-		// exit(1);
-		// printf("%d\n", ca_ray->mx);
-		// if (ca_ray->mx >= 0 && ca_ray->mx < game->w / game->w_sq \
-		// 	&& ca_ray->my >= 0 && ca_ray->my < game->h / game->h_sq && map[ca_ray->my][ca_ray->mx] == '1')
-		
 		if (ca_ray->mx >= 0 && ca_ray->mx < game->j \
 			&& ca_ray->my >= 0 && ca_ray->my < game->i && map[ca_ray->my][ca_ray->mx] == '1')
 		{
@@ -136,39 +130,37 @@ void	cast_rays(t_game *game, char **map, int check)
 		set_the_min_pos(game);
 		draw_line(game, game->x_p, game->y_p, check);
 
-
-
-		if (check == 0)
-		{
-			float fish_eye = game->rot_pl - game->cast_ray->ra;
-			if(fish_eye > 2 * PI)
-				fish_eye -= 2 * PI;
-			else if(fish_eye < 0)
-				fish_eye += 2 * PI;
-			game->cast_ray->final_dis = game->cast_ray->final_dis * cos(fish_eye);
-			float lineH = (game->h*72)/game->cast_ray->final_dis;
-			if(lineH > game->h)
-				lineH = game->h;
-			float	celling = game->h/2 - lineH/2;
-			float	floor = lineH + celling;
-			// printf("%d   %f   %f\n", game->h, lineH, celling);
-			float y = 0;
-			while(y < lineH)
-			{
-				my_mlx_pixel_put(&game->data, game->cast_ray->rays, celling + y, 0xFF00000);
-				y++;
-			}
-			while(celling > 0)
-			{
-				my_mlx_pixel_put(&game->data, game->cast_ray->rays, celling, 0xb3cde0);
-				celling--;
-			}
-			while(floor < game->h)
-			{
-				my_mlx_pixel_put(&game->data, game->cast_ray->rays, floor, 0x011f4b);
-				floor++;
-			}
-		}
+		// if (check == 0)
+		// {
+		// 	float fish_eye = game->rot_pl - game->cast_ray->ra;
+		// 	if(fish_eye > 2 * PI)
+		// 		fish_eye -= 2 * PI;
+		// 	else if(fish_eye < 0)
+		// 		fish_eye += 2 * PI;
+		// 	game->cast_ray->final_dis = game->cast_ray->final_dis * cos(fish_eye);
+		// 	float lineH = (game->h*72)/game->cast_ray->final_dis;
+		// 	if(lineH > game->h)
+		// 		lineH = game->h;
+		// 	float	celling = game->h/2 - lineH/2;
+		// 	float	floor = lineH + celling;
+		// 	// printf("%d   %f   %f\n", game->h, lineH, celling);
+		// 	float y = 0;
+		// 	while(y < lineH)
+		// 	{
+		// 		my_mlx_pixel_put(&game->data, game->cast_ray->rays, celling + y, 0xFF00000);
+		// 		y++;
+		// 	}
+		// 	while(celling > 0)
+		// 	{
+		// 		my_mlx_pixel_put(&game->data, game->cast_ray->rays, celling, 0xb3cde0);
+		// 		celling--;
+		// 	}
+		// 	while(floor < game->h)
+		// 	{
+		// 		my_mlx_pixel_put(&game->data, game->cast_ray->rays, floor, 0x011f4b);
+		// 		floor++;
+		// 	}
+		// }
 
 		
 		game->cast_ray->ra += game->cast_ray->dr;

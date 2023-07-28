@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:48:40 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/27 11:55:15 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:40:43 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ t_cast_ray	*init_strcut_cast_ray(t_game *game, int check)
 
 	ca_ray = malloc(sizeof(t_cast_ray));
 	if (!ca_ray)
-	{
 		exit(1);
-	}
 	ca_ray->num_of_rays = 1920;
 	ca_ray->dr = ((2 * PI) / ca_ray->num_of_rays) / ((float)360 / 90);
 	ca_ray->ra = game->rot_pl - (ca_ray->dr * ca_ray->num_of_rays / 2);
@@ -29,7 +27,6 @@ t_cast_ray	*init_strcut_cast_ray(t_game *game, int check)
 	if (ca_ray->ra < 0)
 		ca_ray->ra += 2 * PI;
 	ca_ray->rays = 0;
-	(void)check;
 	if (check == 0)
 	{
 		game->pdx = cos(game->rot_pl) * 6;
