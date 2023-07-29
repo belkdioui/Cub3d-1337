@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:27:08 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/27 19:49:49 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:09:30 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,77 +30,74 @@ static void	img_coloring(t_data *data, int w, int h)
 	}
 }
 
-void	drawing_square(t_game *game, int x, int y, int check)
+void	drawing_square(t_map *map_draw, int x, int y)
 {
 	int	tmp_x;
 	int	tmp_y;
 
 	tmp_y = y;
-	while (tmp_y < (y + game->h_sq - 1) && (y + game->h_sq) <= game->h)
+	while (tmp_y < (y + map_draw->h_sq - 1) && (y + map_draw->h_sq) <= map_draw->h)
 	{
 		tmp_x = x;
-		while (tmp_x < (x + game->w_sq - 1) && (x + game->w_sq) <= game->w)
+		while (tmp_x < (x + map_draw->w_sq - 1) && (x + map_draw->w_sq) <= map_draw->w)
 		{
-			// if (check == 1)
-				my_mlx_pixel_put(&game->data, tmp_x, tmp_y, 0x00cc1a);
+			my_mlx_pixel_put(&map_draw->data, tmp_x, tmp_y, 0x00cc1a);
 			tmp_x++;
 		}
 		tmp_y++;
 	}
 }
 
-void	drawing_player(t_game *game, int i, int j, int check)
+void	drawing_player(t_map *map_draw, int i, int j)
 {
 	int	x;
 	int	y;
 	int	h_p;
 	int	w_p;
 
-	h_p = game->h_sq / 2;
-	w_p = game->w_sq / 2;
-	x = game->x_p - (w_p / 2);
-	y = game->y_p - (h_p / 2);
-	while (y + h_p < game->h && i < h_p)
+	h_p = map_draw->h_sq / 2;
+	w_p = map_draw->w_sq / 2;
+	x = map_draw->x_p - (w_p / 2);
+	y = map_draw->y_p - (h_p / 2);
+	while (y + h_p < map_draw->h && i < h_p)
 	{
 		j = 0;
-		while (x + w_p < game->w && j < w_p)
+		while (x + w_p < map_draw->w && j < w_p)
 		{
-			// if (check == 1)
-				my_mlx_pixel_put(&game->data, x + j, y + i, 0xFF0000);
+			my_mlx_pixel_put(&map_draw->data, x + j, y + i, 0xFF0000);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	draw_game(t_game *game, char **map, int check)
+void	draw_map(t_global *glob, t_map *map_draw, char **map)
 {
 	int		i;
 	int		j;
 
 	i = -1;
-	game->x = 0;
-	game->y = -game->h_sq;
-	img_coloring(&game->data, game->w, game->h);
+	map_draw->x = 0;
+	map_draw->y = -map_draw->h_sq;
+	img_coloring(&map_draw->data, map_draw->w, map_draw->h);
 	while (map[++i])
 	{
 		j = -1;
-		game->x = 0;
-		game->y += game->h_sq;
+		map_draw->x = 0;
+		map_draw->y += map_draw->h_sq;
 		while (map[i][++j] != '\n' && map[i][j] != '\0')
 		{
 			if (map[i][j] == '1')
-				drawing_square(game, game->x, game->y, check);
+				drawing_square(map_draw, map_draw->x, map_draw->y);
 			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
 			{
-				game->x_p = game->x + (game->w_sq / 2) + game->x_p_move;
-				game->y_p = game->y + (game->h_sq / 2) + game->y_p_move;
-				drawing_player(game, 0, 0, check);
+				map_draw->x_p = map_draw->x + (map_draw->w_sq / 2) + map_draw->x_p_move;
+				map_draw->y_p = map_draw->y + (map_draw->h_sq / 2) + map_draw->y_p_move;
+				drawing_player(map_draw, 0, 0);
 			}
-			game->x += game->w_sq;
+			map_draw->x += map_draw->w_sq;
 		}
 	}
-	(void)check;
-	cast_rays(game, map, check);
+	cast_rays(glob, map_draw, map);
 }

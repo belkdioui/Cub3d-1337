@@ -6,13 +6,13 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/27 16:49:14 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/29 19:03:18 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-void	calcul_width_height_the_map(char **map, t_game *game)
+void	calcul_width_height_the_map(char **map, t_map *mapp)
 {
 	int	i;
 	int	j;
@@ -25,52 +25,38 @@ void	calcul_width_height_the_map(char **map, t_game *game)
 			j++;
 		i++;
 	}
-	game->i = i;
-	game->j = j;
+	mapp->i = i;
+	mapp->j = j;
 }
 
-void	init_game2(t_gloabl *glob, t_game *game)
-{
-	calcul_width_height_the_map(glob->ele->map, game);
-	game->x_p_move = 0;
-	game->y_p_move = 0;
-	game->rot_pl = glob->rot_pl;
-}
 
-t_game	*init_game(t_gloabl *glob, int check)
+
+t_map	*init_map(t_global *glob, int check)
 {
-	t_game	*game;
+	t_map	*map;
 	int		i;
 	int		j;
 
-	game = malloc(sizeof(t_game));
-	if (!game)
+	map = malloc(sizeof(t_map));
+	if (!map)
 		exit(1);
-	init_game2(glob, game);
-	if (check == 0)
-	{
-		game->w = width;
-		game->h = height;
-		game->w_sq = 50;
-		game->h_sq = 50;
-		game->data = glob->mlx_cub->data;
-	}
-	else
-	{
-		game->w = width_map;
-		game->h = height_map;
-		game->w_sq = 10;
-		game->h_sq = 10;
-		game->data = glob->mlx_cub->data2;
-	}
-	return (game);
+	calcul_width_height_the_map(glob->ele->map, map);
+	map->x_p_move = 0;
+	map->y_p_move = 0;
+	map->rot_pl = glob->rot_pl;
+	map->w = width_map;
+	map->h = height_map;
+	map->w_sq = 10;
+	map->h_sq = 10;
+	map->data = glob->mlx_cub->data2;
+	glob->data = glob->mlx_cub->data;
+	return (map);
 }
 
-t_gloabl	*init_global(t_gloabl *glob, int ac, char **av)
+t_global	*init_global(t_global *glob, int ac, char **av)
 {
 	glob->mlx_cub = init_mlx();
 	glob->ele = get_map(ac, av, glob);
-	glob->game = init_game(glob, 0);
-	glob->mini_game = init_game(glob, 1);
+	glob->map = init_map(glob, 1);
 	return (glob);
 }

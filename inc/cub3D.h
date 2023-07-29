@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/27 16:59:49 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/29 19:02:31 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct s_ele
 	char		*str;
 }				t_ele;
 
-typedef	struct s_game
+typedef	struct s_map
 {
 	int			w;
 	int			h;
@@ -107,7 +107,7 @@ typedef	struct s_game
 	float		rot_pl;
 	int			i;
 	int			j;
-}			t_game;
+}			t_map;
 
 /*--------- strcut the mlx -----------*/
 
@@ -115,42 +115,23 @@ typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*mlx_win;
-	int			x;
-	int			y;
-	int			x_map;
-	int			y_map;
-	double		x_p_move;
-	double		y_p_move;
-	int			x_p;
-	int			y_p;
-	int			x_p_map;
-	int			y_p_map;
-	float		rot_pl;
-	double		pdx;
-	double		pdy;
-	int			num_of_player;
-	double		endpoint_x;
-	double		endpoint_y;
 	t_data		data;
 	t_data		data2;
-	t_ele		*ele;
-	t_cast_ray	*cast_ray;
-	
-	int		w_sq;
-	int		h_sq;
-	int		w_sq_map;
-	int		h_sq_map;
 }				t_mlx;
 
 typedef	struct s_global
 {
 	t_mlx		*mlx_cub;
-	t_game		*game;
-	t_game		*mini_game;
+	t_map		*map;
 	t_ele		*ele;
 	float		rot_pl;
 	int			num_of_player;
-}				t_gloabl;
+	float		final_dis;
+	float		ra;
+	int			rays;
+	int			h;
+	t_data		data;
+}				t_global;
 
 typedef struct s_vars
 {
@@ -167,7 +148,7 @@ void			free_db(char **arr);
 int				len_of_longest_line(char **pre_map);
 //
 int				space_is_protected(char **map, int x, int y);
-int				if_bet_first_and_last(char **map, int i, int *j, t_gloabl *glob);
+int				if_bet_first_and_last(char **map, int i, int *j, t_global *glob);
 int				check_rgb(char *rgb);
 int				check_img(char *textures);
 int				is_element(char *line, int *ele);
@@ -175,40 +156,38 @@ char			*ret_element(char *line, int num_of_ele);
 char			*is_element_and_saveit(char **cnt_file, int which_ele,
 					char ***save_map);
 char			**ver_and_ret_map(int ac, char **av);
-int				check_the_map(char **cnt_file, t_ele *ele, t_gloabl *glob);
+int				check_the_map(char **cnt_file, t_ele *ele, t_global *glob);
 /*----- mlx utils -------*/
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int				close_window(t_mlx *mlx_cub);
-int				key_hock(int keycode, t_gloabl *glob);
+int				close_window(t_global *glob);
+int				key_hock(int keycode, t_global *glob);
 
 /*----- drawing map -------*/
-t_ele			*get_map(int ac, char **av, t_gloabl *glob);
-void			init(t_mlx *mlx_cub);
-void			drawing_map(char **map, t_mlx *mlx_cub, t_data *data);
+t_ele			*get_map(int ac, char **av, t_global *glob);
 void			free_ele(t_ele *ele);
-void			cast_rays(t_game *game, char **map, int check);
-int				draw_line(t_game *game, int beginX, int beginY, int check);
+void			cast_rays(t_global *glob, t_map *map_draw, char **map);
+int				draw_line(t_map *map_draw, int beginX, int beginY);
 
 /*-------- cast rays ------------*/
-t_cast_ray		*init_strcut_cast_ray(t_game *game, int check);
+t_cast_ray		*init_strcut_cast_ray(t_map *map_draw);
 float			calc_dist(float px, float py, float dx, float dy);
-void			set_the_min_pos(t_game *game);
+void			set_the_min_pos(t_map *map_draw);
 
 /*--------- key hooks ------------*/
-void			key_w(t_game *game, char **map, int tmp_xp, int tmp_yp);
-void			key_s(t_game *game, char **map, int tmp_xp, int tmp_yp);
-void			key_a(t_game *game, char **map, int tmp_xp, int tmp_yp);
-void			key_d(t_game *game, char **map, int tmp_xp, int tmp_yp);
+void			key_w(t_map *map_draw, char **map, int tmp_xp, int tmp_yp);
+void			key_s(t_map *map_draw, char **map, int tmp_xp, int tmp_yp);
+void			key_a(t_map *map_draw, char **map, int tmp_xp, int tmp_yp);
+void			key_d(t_map *map_draw, char **map, int tmp_xp, int tmp_yp);
 
 
 /*--------- last update ------------*/
-t_gloabl	*init_global(t_gloabl *glob, int ac, char **av);
-void		draw_game(t_game *game, char **map, int check);
-t_ele		*get_map(int ac, char **av, t_gloabl *glob);
-void		finish(t_gloabl *glob);
-void		check_size(t_gloabl *glob, t_game *game);
-void		draw(t_gloabl *glob);
+t_global	*init_global(t_global *glob, int ac, char **av);
+void		draw_map(t_global *glob, t_map *map_draw, char **map);
+t_ele		*get_map(int ac, char **av, t_global *glob);
+void		finish(t_global *glob);
+void		check_size(t_global *glob, t_map *map_draw);
+void		draw(t_global *glob);
 t_mlx		*init_mlx(void);
-void		free_all(t_gloabl *global);
+void		free_all(t_global *global);
 
 #endif

@@ -6,36 +6,35 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:45 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/27 19:54:29 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:59:54 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/cub3D.h"
 
-void	draw(t_gloabl *glob)
+void	draw(t_global *glob)
 {
-	draw_game(glob->game, glob->ele->map, 0);
-	draw_game(glob->mini_game, glob->ele->map, 1);
+	draw_map(glob, glob->map, glob->ele->map);
 	mlx_put_image_to_window(glob->mlx_cub->mlx_ptr, glob->mlx_cub->mlx_win,\
-		glob->game->data.img, 0, 0);
+		glob->data.img, 0, 0);
 	mlx_put_image_to_window(glob->mlx_cub->mlx_ptr, glob->mlx_cub->mlx_win,\
-		glob->mini_game->data.img, 0, 0);
+		glob->map->data.img, 0, 0);
 }
 
-void	finish(t_gloabl *glob)
+void	finish(t_global *glob)
 {
-	check_size(glob, glob->mini_game);
+	check_size(glob, glob->map);
 	draw(glob);
 	mlx_hook(glob->mlx_cub->mlx_win, 2, 0, key_hock, glob);
-	mlx_hook(glob->mlx_cub->mlx_win, ON_DESTROY, 0, close_window, glob->mlx_cub);
+	mlx_hook(glob->mlx_cub->mlx_win, ON_DESTROY, 0, close_window, glob);
 	mlx_loop(glob->mlx_cub->mlx_ptr);
 }
 
 int	main(int ac, char **av)
 {
-	t_gloabl	*glob;
+	t_global	*glob;
 
-	glob = malloc(sizeof(t_gloabl));
+	glob = malloc(sizeof(t_global));
 	if (!glob)
 		exit(1);
 	glob = init_global(glob, ac, av);

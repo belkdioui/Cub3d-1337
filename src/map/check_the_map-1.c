@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:48:04 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/28 12:38:52 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:06:20 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	check_img(char *textures)
 	return (free(textures), 1);
 }
 
-int	in_loop(char **map, int i, int *j, t_gloabl *glob)
+int	in_loop(char **map, int i, int *j, t_global *glob)
 {
 	if (map[i][*j] != '1' && map[i][*j] != ' ' && map[i][*j] != '\n'
 			&& map[i][*j] != '0' && map[i][*j] != 'N' && map[i][*j] != 'S'
@@ -68,7 +68,7 @@ int	in_loop(char **map, int i, int *j, t_gloabl *glob)
 		if (map[i][*j] == 'N')
 			glob->rot_pl = ((3 * M_PI) / 2) - 000.3;
 		if (map[i][*j] == 'E')
-			glob->rot_pl = 0003;
+			glob->rot_pl = 0;
 		if (map[i][*j] == 'W')
 			glob->rot_pl = M_PI - 000.3;
 		glob->num_of_player++;
@@ -76,7 +76,7 @@ int	in_loop(char **map, int i, int *j, t_gloabl *glob)
 	return (1);
 }
 
-int	if_bet_first_and_last(char **map, int i, int *j, t_gloabl *glob)
+int	if_bet_first_and_last(char **map, int i, int *j, t_global *glob)
 {
 	int	last;
 

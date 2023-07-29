@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/26 13:31:49 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:05:39 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	if_first_and_last(char **map, int i, int *j)
 	return (1);
 }
 
-int	check_map(char **map, t_gloabl *glob)
+int	check_map(char **map, t_global *glob)
 {
 	int	num_lines;
 	int	i;
@@ -96,7 +96,7 @@ void	convert_the_map_to_rect(char ***new_map, char **pre_map)
 	free_db(pre_map);
 }
 
-int	check_the_map(char **cnt_file, t_ele *ele, t_gloabl *glob)
+int	check_the_map(char **cnt_file, t_ele *ele, t_global *glob)
 {
 	char	*check;
 	char	**map;

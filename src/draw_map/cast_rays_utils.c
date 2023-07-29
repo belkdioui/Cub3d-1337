@@ -6,13 +6,13 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:48:40 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/28 16:40:43 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:21:17 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-t_cast_ray	*init_strcut_cast_ray(t_game *game, int check)
+t_cast_ray	*init_strcut_cast_ray(t_map *map_draw)
 {
 	t_cast_ray	*ca_ray;
 
@@ -21,22 +21,14 @@ t_cast_ray	*init_strcut_cast_ray(t_game *game, int check)
 		exit(1);
 	ca_ray->num_of_rays = 1920;
 	ca_ray->dr = ((2 * PI) / ca_ray->num_of_rays) / ((float)360 / 90);
-	ca_ray->ra = game->rot_pl - (ca_ray->dr * ca_ray->num_of_rays / 2);
+	ca_ray->ra = map_draw->rot_pl - (ca_ray->dr * ca_ray->num_of_rays / 2);
 	if (ca_ray->ra > 2 * PI)
 		ca_ray->ra -= 2 * PI;
 	if (ca_ray->ra < 0)
 		ca_ray->ra += 2 * PI;
 	ca_ray->rays = 0;
-	if (check == 0)
-	{
-		game->pdx = cos(game->rot_pl) * 6;
-		game->pdy = sin(game->rot_pl) * 6;
-	}
-	else
-	{
-		game->pdx = cos(game->rot_pl) * 1.2;
-		game->pdy = sin(game->rot_pl) * 1.2;
-	}
+	map_draw->pdx = cos(map_draw->rot_pl) * 3;
+	map_draw->pdy = sin(map_draw->rot_pl) * 3;
 	return (ca_ray);
 }
 
@@ -52,18 +44,18 @@ float	calc_dist(float px, float py, float dx, float dy)
 	return (c);
 }
 
-void	set_the_min_pos(t_game *game)
+void	set_the_min_pos(t_map *map_draw)
 {
-	if (game->cast_ray->dish < game->cast_ray->disv)
+	if (map_draw->cast_ray->dish < map_draw->cast_ray->disv)
 	{
-		game->endpoint_x = game->cast_ray->hx;
-		game->endpoint_y = game->cast_ray->hy;
-		game->cast_ray->final_dis = game->cast_ray->dish;
+		map_draw->endpoint_x = map_draw->cast_ray->hx;
+		map_draw->endpoint_y = map_draw->cast_ray->hy;
+		map_draw->cast_ray->final_dis = map_draw->cast_ray->dish;
 	}
 	else
 	{
-		game->endpoint_x = game->cast_ray->vx;
-		game->endpoint_y = game->cast_ray->vy;
-		game->cast_ray->final_dis = game->cast_ray->disv;
+		map_draw->endpoint_x = map_draw->cast_ray->vx;
+		map_draw->endpoint_y = map_draw->cast_ray->vy;
+		map_draw->cast_ray->final_dis = map_draw->cast_ray->disv;
 	}
 }

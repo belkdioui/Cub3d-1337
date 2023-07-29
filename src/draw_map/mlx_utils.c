@@ -6,18 +6,18 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/27 17:01:16 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:59:29 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-int	close_window(t_mlx *mlx_cub)
+int	close_window(t_global *glob)
 {
-	mlx_destroy_image(mlx_cub->mlx_ptr, mlx_cub->data.img);
-	mlx_destroy_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win);
-	free_ele(mlx_cub->ele);
-	free(mlx_cub);
+	mlx_destroy_image(glob->mlx_cub->mlx_ptr, glob->mlx_cub->data.img);
+	mlx_destroy_window(glob->mlx_cub->mlx_ptr, glob->mlx_cub->mlx_win);
+	free_ele(glob->ele);
+	free(glob->mlx_cub);
 	system("leaks cub3D");
 	exit(0);
 	return (0);
@@ -31,7 +31,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-t_ele	*get_map(int ac, char **av, t_gloabl *glob)
+t_ele	*get_map(int ac, char **av, t_global *glob)
 {
 	char	**cnt_file;
 	t_ele	*ele;
@@ -54,9 +54,9 @@ t_ele	*get_map(int ac, char **av, t_gloabl *glob)
 	return (ele);
 }
 
-void		check_size(t_gloabl *glob, t_game *game)
+void		check_size(t_global *glob, t_map *map_draw)
 {
-	if (game->w_sq * game->j > game->w || game->h_sq * game->i > game->h)
+	if (map_draw->w_sq * map_draw->j > map_draw->w || map_draw->h_sq * map_draw->i > map_draw->h)
 	{
 		// free here
 		printf("error\n");
@@ -76,12 +76,10 @@ void	free_ele(t_ele *ele)
 	free(ele);
 }
 
-void	free_all(t_gloabl *global)
+void	free_all(t_global *global)
 {
 	free_ele(global->ele);
-	free(global->game->cast_ray);
-	free(global->mini_game->cast_ray);
-	free(global->game);
-	free(global->mini_game);
+	free(global->map->cast_ray);
+	free(global->map);
 	free(global->mlx_cub);
 }
