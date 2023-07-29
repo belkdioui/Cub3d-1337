@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/29 18:08:28 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/29 19:36:43 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,11 @@ int	key_hock(int keycode, t_global *glob)
 	else if (keycode == W || keycode == S || keycode == A || keycode == D)
 	{
 		free(glob->map->cast_ray);
-		// glob->game->cast_ray = NULL;
-		// glob->mini_game->cast_ray = NULL;
 		check_keys(keycode, glob->map, glob->ele->map);
 	}
 	else if (keycode == ARROW_LEFT || keycode == ARROW_RIGHT)
 	{
 		free(glob->map->cast_ray);
-		// glob->game->cast_ray = NULL;
-		// glob->mini_game->cast_ray = NULL;
 		rotation_player(keycode, glob->map, glob);
 	}
 	draw_after_event(glob->mlx_cub, glob);
