@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/25 16:15:09 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:50:55 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,22 @@ typedef struct s_cast_ray
 	float	xo;
 	float	yo;
 	float	ra;
+	int		direction;
 }				t_cast_ray;
+
+
+typedef struct s_data_tex
+{
+	char		*dire;
+	void		*img;
+	char		*addr;
+	int			width;
+	int			height;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_data_tex;
+
 /*----- data the my_mlx_pixel_put --------*/
 
 typedef struct s_data
@@ -102,6 +117,7 @@ typedef struct s_mlx
 	double		endpoint_x;
 	double		endpoint_y;
 	t_data		data;
+	t_data_tex	*textures;
 	t_ele		*ele;
 	t_cast_ray	*cast_ray;
 }				t_mlx;

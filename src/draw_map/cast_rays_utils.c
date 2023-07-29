@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:48:40 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/25 16:06:56 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/26 12:43:46 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_cast_ray	*init_strcut_cast_ray(t_mlx *mlx_cub)
 	if (ca_ray->ra < 0)
 		ca_ray->ra += 2 * PI;
 	ca_ray->rays = 0;
-	mlx_cub->pdx = cos(mlx_cub->rot_pl) * 6;
-	mlx_cub->pdy = sin(mlx_cub->rot_pl) * 6;
+	mlx_cub->pdx = cos(mlx_cub->rot_pl) * 20;
+	mlx_cub->pdy = sin(mlx_cub->rot_pl) * 20;
 	return (ca_ray);
 }
 
@@ -51,12 +51,20 @@ void	set_the_min_pos(t_mlx *mlx_cub)
 {
 	if (mlx_cub->cast_ray->dish < mlx_cub->cast_ray->disv)
 	{
+		if (mlx_cub->cast_ray->ra > M_PI)
+			mlx_cub->cast_ray->direction = 1;
+		else
+			mlx_cub->cast_ray->direction = 2;
 		mlx_cub->endpoint_x = mlx_cub->cast_ray->hx;
 		mlx_cub->endpoint_y = mlx_cub->cast_ray->hy;
 		mlx_cub->cast_ray->final_dis = mlx_cub->cast_ray->dish;
 	}
 	else
 	{
+		if(mlx_cub->cast_ray->ra > M_PI / 2 && mlx_cub->cast_ray->ra < (3 * M_PI / 2))
+			mlx_cub->cast_ray->direction = 3;
+		else
+			mlx_cub->cast_ray->direction = 4;
 		mlx_cub->endpoint_x = mlx_cub->cast_ray->vx;
 		mlx_cub->endpoint_y = mlx_cub->cast_ray->vy;
 		mlx_cub->cast_ray->final_dis = mlx_cub->cast_ray->disv;

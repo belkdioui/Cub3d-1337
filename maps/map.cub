@@ -1,9 +1,9 @@
-NO textures/black.png
-SO textures/blue.jpeg
+NO textures/wall_1.xpm
+SO textures/wall_2.xpm
 
 
-WE textures/red.png
-EA                          textures/white.png
+WE textures/wall_3.xpm
+EA                          textures/wall_4.xpm
 
 
 F 20,100,0

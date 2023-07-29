@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/25 16:07:08 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/27 00:33:42 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,30 @@ static void	width_and_height(int *width, int *height, char **map)
 		i++;
 	}
 	*height = i;
+}
+
+void	set_textures(t_mlx *mlx_cub)
+{
+	int		i;
+	char	*path;
+
+	i = 0;
+	mlx_cub->textures = malloc(sizeof(t_data_tex) * 4);
+	while (i < 4)
+	{
+		if(i == 0)
+			path = ft_strdup(mlx_cub->ele->no);
+		if(i == 1)
+			path = ft_strdup(mlx_cub->ele->so);
+		if(i == 2)
+			path = ft_strdup(mlx_cub->ele->we);
+		if(i == 3)
+			path = ft_strdup(mlx_cub->ele->ea);
+		mlx_cub->textures[i].img = mlx_xpm_file_to_image(mlx_cub->mlx_ptr, path, &mlx_cub->textures[i].width, &mlx_cub->textures[i].height);
+    	mlx_cub->textures[i].addr = mlx_get_data_addr(mlx_cub->textures[i].img, &mlx_cub->textures[i].bits_per_pixel, &mlx_cub->textures[i].line_length, &mlx_cub->textures[i].endian);
+		free(path);
+		i++;
+	}
 }
 
 void	init(t_mlx *mlx_cub, char **map)
@@ -65,4 +89,5 @@ void	init(t_mlx *mlx_cub, char **map)
 			&mlx_cub->data.endian);
 	if (!mlx_cub->data.addr)
 		protection(mlx_cub);
+	set_textures(mlx_cub);
 }

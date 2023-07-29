@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:19:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/25 16:52:21 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/29 12:48:29 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,12 +145,36 @@ void	cast_rays(t_mlx *mlx_cub)
 			lineH = HIGHT;
 		float	celling = HIGHT/2 - lineH/2;
 		float	floor = lineH + celling;
-		printf("%d   %f   %f\n", HIGHT, lineH, celling);
 		float y = 0;
 		while(y < lineH)
 		{
-			my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, 0xFF00000);
-			y++;
+			// float texture_y = y / lineH;
+			// int color;
+			// int texture_x = 0 ;
+			if (mlx_cub->cast_ray->direction == 1)
+			{
+					// color = get_texture_pixel_color(mlx_cub->textures[0], texture_x, texture_y);
+					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, 0xFF0000);
+					y++;
+			}
+			else if (mlx_cub->cast_ray->direction == 2)
+			{
+					// color = get_texture_pixel_color(mlx_cub->textures[1], texture_x, texture_y);
+					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, 0x00FF00);
+					y++;
+			}
+			else if (mlx_cub->cast_ray->direction == 3)
+			{
+					// color = get_texture_pixel_color(mlx_cub->textures[2], texture_x, texture_y);
+					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, 0x00FFFF);
+					y++;
+			}
+			else if (mlx_cub->cast_ray->direction == 4)
+			{
+					// color = get_texture_pixel_color(mlx_cub->textures[3], texture_x, texture_y);
+					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, 0x000000);
+					y++;
+			}
 		}
 		while(celling > 0)
 		{

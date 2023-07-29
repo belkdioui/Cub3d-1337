@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/25 16:16:06 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/26 12:04:21 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	window_coloring(t_mlx *mlx_cub)
 	int	y;
 
 	x = 0;
-	while (x < WIDTH)
+	while (x < 1920)
 	{
 		y = 0;
-		while (y < HIGHT)
+		while (y < 1080)
 		{
 			// my_mlx_pixel_put(&mlx_cub->data, x, y, 0xFFFFFF);
 			my_mlx_pixel_put(&mlx_cub->data, x, y, 0x000000);
@@ -54,13 +54,13 @@ static void	drawing_player(t_mlx *mlx_cub)
 	int	i;
 	int	j;
 
-	x = mlx_cub->x_p - 50 / 2;
-	y = mlx_cub->y_p - 50 / 2;
+	x = mlx_cub->x_p - 10 / 2;
+	y = mlx_cub->y_p - 10 / 2;
 	i = 0;
-	while (x + 50 <= mlx_cub->w && i < 50)
+	while (x + 10 <= mlx_cub->w && i < 10)
 	{
 		j = 0;
-		while (y + 50 <= mlx_cub->h && j < 50)
+		while (y + 10 <= mlx_cub->h && j < 10)
 		{
 			// my_mlx_pixel_put(&mlx_cub->data, x + i, y + j, 0xFF0000);
 			j++;
@@ -88,7 +88,7 @@ int	draw_line(t_mlx *mlx_cub, int beginX, int beginY)
 	{
 		// if (pixelx >= 0 && pixelx < mlx_cub->w && pixely >= 0
 		// 	&& pixely < mlx_cub->h)
-		// 	my_mlx_pixel_put(&mlx_cub->data, pixelx, pixely, 0x4ff507);
+			// my_mlx_pixel_put(&mlx_cub->data, pixelx, pixely, 0x4ff507);
 		pixelx += deltax;
 		pixely += deltay;
 		--pixels;

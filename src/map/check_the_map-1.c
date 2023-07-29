@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:48:04 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/25 16:20:58 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:27:42 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ int	in_loop(char **map, int i, int *j, t_mlx *mlx_cub)
 		|| map[i][*j] == 'W')
 	{
 		if (map[i][*j] == 'S')
-			mlx_cub->rot_pl = (M_PI / 2) - 000.3;
+			mlx_cub->rot_pl = (M_PI / 2);
 		if (map[i][*j] == 'N')
-			mlx_cub->rot_pl = ((3 * M_PI) / 2) - 000.3;
+			mlx_cub->rot_pl = ((3 * M_PI) / 2);
 		if (map[i][*j] == 'E')
 			mlx_cub->rot_pl = 0003;
 		if (map[i][*j] == 'W')
-			mlx_cub->rot_pl = M_PI - 000.3;
+			mlx_cub->rot_pl = M_PI;
 		mlx_cub->num_of_player++;
 	}
 	return (1);
