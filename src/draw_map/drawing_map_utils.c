@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/26 12:04:21 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/29 13:48:47 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	draw_line(t_mlx *mlx_cub, int beginX, int beginY)
 	{
 		// if (pixelx >= 0 && pixelx < mlx_cub->w && pixely >= 0
 		// 	&& pixely < mlx_cub->h)
-			// my_mlx_pixel_put(&mlx_cub->data, pixelx, pixely, 0x4ff507);
+		// 	my_mlx_pixel_put(&mlx_cub->data, pixelx, pixely, 0x4ff507);
 		pixelx += deltax;
 		pixely += deltay;
 		--pixels;

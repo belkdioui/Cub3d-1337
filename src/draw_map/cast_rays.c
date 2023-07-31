@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:19:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/29 12:48:29 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/31 09:51:13 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,33 @@ void	check_vertical(t_mlx *mlx_cub, t_cast_ray *ca_ray)
 	}
 }
 
+unsigned int rgbToHex(char *color_rgb)
+{
+	char **split_color;
+	int	rgb[3];
+	
+	split_color = ft_split(color_rgb, ',');
+	rgb[0] = ft_atoi(split_color[0]);
+	rgb[1] = ft_atoi(split_color[1]);
+	rgb[2] = ft_atoi(split_color[2]);
+	free_db(split_color);
+    return ((rgb[0] & 0xFF) << 16) | ((rgb[1] & 0xFF) << 8) | (rgb[2] & 0xFF);
+}
+
+unsigned int get_texture_pixel_color(t_data_tex text,int x, int y)
+{
+    unsigned int hex_color;
+
+    int pos = (y * text.line_length + x * (text.bits_per_pixel / 8));
+
+    unsigned char r = text.addr[pos + 2];  // Red
+    unsigned char g = text.addr[pos + 1];  // Green
+    unsigned char b = text.addr[pos];      // Blue
+
+    hex_color = (r << 16) | (g << 8) | b;
+    return hex_color;
+}
+
 void	cast_rays(t_mlx *mlx_cub)
 {
 	mlx_cub->cast_ray = init_strcut_cast_ray(mlx_cub);
@@ -133,8 +160,13 @@ void	cast_rays(t_mlx *mlx_cub)
 		draw_line(mlx_cub, mlx_cub->x_p, mlx_cub->y_p);
 		
 
-		
+
 		float fish_eye = mlx_cub->rot_pl - mlx_cub->cast_ray->ra;
+		unsigned int	color_floor;
+		color_floor = rgbToHex(mlx_cub->ele->f);
+		unsigned int	color_ciel;
+		color_ciel = rgbToHex(mlx_cub->ele->c);
+		unsigned int color;
 		if(fish_eye > 2 * PI)
 			fish_eye -= 2 * PI;
 		else if(fish_eye < 0)
@@ -148,42 +180,43 @@ void	cast_rays(t_mlx *mlx_cub)
 		float y = 0;
 		while(y < lineH)
 		{
-			// float texture_y = y / lineH;
-			// int color;
-			// int texture_x = 0 ;
+			float texture_y = y / lineH;
+			// printf("%f -- %f \n", texture_y, y);
+			int texture_x = mlx_cub->cast_ray->rays ;
 			if (mlx_cub->cast_ray->direction == 1)
 			{
-					// color = get_texture_pixel_color(mlx_cub->textures[0], texture_x, texture_y);
-					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, 0xFF0000);
+			// printf("x : %d\n",mlx_cub->cast_ray->rays);
+					color = get_texture_pixel_color(mlx_cub->textures[0], texture_x, texture_y);
+					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
 					y++;
 			}
 			else if (mlx_cub->cast_ray->direction == 2)
 			{
-					// color = get_texture_pixel_color(mlx_cub->textures[1], texture_x, texture_y);
-					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, 0x00FF00);
+					color = get_texture_pixel_color(mlx_cub->textures[1], texture_x, texture_y);
+					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
 					y++;
 			}
 			else if (mlx_cub->cast_ray->direction == 3)
 			{
-					// color = get_texture_pixel_color(mlx_cub->textures[2], texture_x, texture_y);
-					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, 0x00FFFF);
+					color = get_texture_pixel_color(mlx_cub->textures[2], texture_x, texture_y);
+					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
 					y++;
 			}
 			else if (mlx_cub->cast_ray->direction == 4)
 			{
-					// color = get_texture_pixel_color(mlx_cub->textures[3], texture_x, texture_y);
-					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, 0x000000);
+					color = get_texture_pixel_color(mlx_cub->textures[3], texture_x, texture_y);
+					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
 					y++;
 			}
 		}
 		while(celling > 0)
 		{
-			my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling, 0xb3cde0);
+			my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling, color_ciel);
 			celling--;
 		}
 		while(floor < HIGHT)
 		{
-			my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, floor, 0x011f4b);
+			my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, floor, color_floor);
 			floor++;
 		}
 
