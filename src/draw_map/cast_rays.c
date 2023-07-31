@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:19:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/31 09:51:13 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:37:56 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,40 +173,47 @@ void	cast_rays(t_mlx *mlx_cub)
 			fish_eye += 2 * PI;
 		mlx_cub->cast_ray->final_dis = mlx_cub->cast_ray->final_dis * cos(fish_eye);
 		float lineH = (HIGHT*72)/mlx_cub->cast_ray->final_dis;
+		
+		
 		if(lineH > HIGHT)
+		{
+			
 			lineH = HIGHT;
+		}
 		float	celling = HIGHT/2 - lineH/2;
 		float	floor = lineH + celling;
-		float y = 0;
+		float	y = 0;
 		while(y < lineH)
 		{
-			float texture_y = y / lineH;
-			// printf("%f -- %f \n", texture_y, y);
-			int texture_x = mlx_cub->cast_ray->rays ;
+			float	texture_y ;
+		    int		texture_x = mlx_cub->cast_ray->ray_pos_x * ((float)mlx_cub->textures[2].width / 50);
 			if (mlx_cub->cast_ray->direction == 1)
 			{
-			// printf("x : %d\n",mlx_cub->cast_ray->rays);
-					color = get_texture_pixel_color(mlx_cub->textures[0], texture_x, texture_y);
-					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
-					y++;
+				texture_y = y / lineH * (mlx_cub->textures[0].height - 1);
+				color = get_texture_pixel_color(mlx_cub->textures[0], texture_x, texture_y);
+				my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
+				y++;
 			}
 			else if (mlx_cub->cast_ray->direction == 2)
 			{
-					color = get_texture_pixel_color(mlx_cub->textures[1], texture_x, texture_y);
-					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
-					y++;
+				texture_y = y / lineH * (mlx_cub->textures[1].height - 1);					
+				color = get_texture_pixel_color(mlx_cub->textures[1], texture_x, texture_y);
+				my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
+				y++;
 			}
 			else if (mlx_cub->cast_ray->direction == 3)
 			{
-					color = get_texture_pixel_color(mlx_cub->textures[2], texture_x, texture_y);
-					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
-					y++;
+				texture_y = y / lineH * (mlx_cub->textures[2].height - 1);
+				color = get_texture_pixel_color(mlx_cub->textures[2], texture_x, texture_y);
+				my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
+				y++;
 			}
 			else if (mlx_cub->cast_ray->direction == 4)
 			{
-					color = get_texture_pixel_color(mlx_cub->textures[3], texture_x, texture_y);
-					my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
-					y++;
+				texture_y = y / lineH * (mlx_cub->textures[3].height - 1);
+				color = get_texture_pixel_color(mlx_cub->textures[3], texture_x, texture_y);
+				my_mlx_pixel_put(&mlx_cub->data, mlx_cub->cast_ray->rays, celling + y, color);
+				y++;
 			}
 		}
 		while(celling > 0)

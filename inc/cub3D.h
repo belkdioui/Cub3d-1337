@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/26 16:50:55 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:41:59 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_cast_ray
 	float	yo;
 	float	ra;
 	int		direction;
+	float	ray_pos_x;
 }				t_cast_ray;
 
 

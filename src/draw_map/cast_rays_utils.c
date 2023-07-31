@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:48:40 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/26 12:43:46 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:04:34 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ void	set_the_min_pos(t_mlx *mlx_cub)
 			mlx_cub->cast_ray->direction = 1;
 		else
 			mlx_cub->cast_ray->direction = 2;
+		mlx_cub->cast_ray->ray_pos_x = mlx_cub->cast_ray->hx - (int)(mlx_cub->cast_ray->hx / 50) * 50; 
 		mlx_cub->endpoint_x = mlx_cub->cast_ray->hx;
 		mlx_cub->endpoint_y = mlx_cub->cast_ray->hy;
 		mlx_cub->cast_ray->final_dis = mlx_cub->cast_ray->dish;
+		
 	}
 	else
 	{
@@ -65,6 +67,7 @@ void	set_the_min_pos(t_mlx *mlx_cub)
 			mlx_cub->cast_ray->direction = 3;
 		else
 			mlx_cub->cast_ray->direction = 4;
+		mlx_cub->cast_ray->ray_pos_x = mlx_cub->cast_ray->vy - (int)(mlx_cub->cast_ray->vy / 50) * 50;
 		mlx_cub->endpoint_x = mlx_cub->cast_ray->vx;
 		mlx_cub->endpoint_y = mlx_cub->cast_ray->vy;
 		mlx_cub->cast_ray->final_dis = mlx_cub->cast_ray->disv;
