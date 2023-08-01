@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:25:55 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/01 11:05:26 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/01 21:26:27 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,5 @@ void	draw_view(t_global *glob)
 		i++;
 	}
 	draw_sky_and_floor (glob);
+	// free_data_textures(glob);
 }

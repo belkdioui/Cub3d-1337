@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_the_map-1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:48:04 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/01 10:13:04 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/01 20:10:18 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@ int	check_rgb(char *rgb)
 	int		j;
 	int		num_rgb;
 
+	i = 0;
+	j = 0;
+	while (rgb && rgb[i])
+	{
+		if (rgb[i] == ',')
+			j++;
+		i++;
+	}
+	if (j != 2)
+		return (0);
 	i = 0;
 	split_rgb = ft_split(rgb, ',');
 	while (split_rgb[i])

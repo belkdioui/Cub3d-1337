@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/01 10:48:03 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/01 21:24:33 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ int				search_and_ret_place(char *av);
 int				cal_number_of_lines_map(char **cnt_file);
 void			free_db(char **arr);
 int				len_of_longest_line(char **pre_map);
+void			free_data_textures(t_global *glob);
 //
 int				space_is_protected(char **map, int x, int y);
 int				if_bet_first_and_last(char **map, int i, int *j, t_global *glob);

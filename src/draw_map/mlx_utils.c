@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/30 10:11:22 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/01 20:25:34 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ t_ele	*get_map(int ac, char **av, t_global *glob)
 {
 	char	**cnt_file;
 	t_ele	*ele;
-
 	cnt_file = ver_and_ret_map(ac, av);
-	if (!cnt_file)
+	if (!cnt_file || !cnt_file[0])
 	{
+		system("leaks cub3D");
 		ft_putstr_fd("error in the name\n", 2);
 		exit(1);
 	}
@@ -47,6 +47,7 @@ t_ele	*get_map(int ac, char **av, t_global *glob)
 		exit(1);
 	if (!check_the_map(cnt_file, ele, glob))
 	{
+		system("leaks cub3D");
 		ft_putstr_fd("error in the map\n", 2);
 		exit(1);
 	}

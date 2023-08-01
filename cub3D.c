@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:45 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/30 10:10:22 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/01 20:18:14 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	main(int ac, char **av)
 	if (!glob)
 		exit(1);
 	glob = init_global(glob, ac, av);
+	if (!glob)
+		return (0);
 	finish(glob);
 	return (1);
 }
