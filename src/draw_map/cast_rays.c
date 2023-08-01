@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:19:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/29 19:29:33 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/01 00:07:01 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,38 +118,6 @@ void	check_vertical(t_map *map_draw, t_cast_ray *ca_ray, char **map)
 	}
 }
 
-void	draw_view(t_global *glob)
-{
-	float fish_eye = glob->rot_pl - glob->ra;
-	if(fish_eye > 2 * PI)
-		fish_eye -= 2 * PI;
-	else if(fish_eye < 0)
-		fish_eye += 2 * PI;
-	glob->final_dis = (glob->final_dis * cos(fish_eye)) * 8;
-	float lineH = (glob->h*72)/glob->final_dis;
-	if(lineH > glob->h)
-		lineH = glob->h;
-	float	celling = glob->h/2 - lineH/2;
-	float	floor = lineH + celling;
-	float y = 0;
-	while(y < lineH)
-	{
-		//0xFF00000
-		my_mlx_pixel_put(&glob->data, glob->rays, celling + y, 0x000000);
-		y++;
-	}
-	while(celling > 0)
-	{
-		my_mlx_pixel_put(&glob->data, glob->rays, celling, 0xb3cde0);
-		celling--;
-	}
-	while(floor < glob->h)
-	{
-		my_mlx_pixel_put(&glob->data, glob->rays, floor, 0x011f4b);
-		floor++;
-	}
-}
-
 void	cast_rays(t_global *glob, t_map *map_draw, char **map)
 {
 	map_draw->cast_ray = init_strcut_cast_ray(map_draw);
@@ -166,6 +134,8 @@ void	cast_rays(t_global *glob, t_map *map_draw, char **map)
 		glob->ra = map_draw->cast_ray->ra;
 		glob->rays = map_draw->cast_ray->rays;
 		glob->h = height;
+		glob->direction = map_draw->cast_ray->direction;
+
 		draw_view(glob);
 		map_draw->cast_ray->ra += map_draw->cast_ray->dr;
 		if (map_draw->cast_ray->ra > 2 * PI)

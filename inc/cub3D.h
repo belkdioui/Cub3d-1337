@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/29 19:02:31 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:26:54 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,25 @@ typedef struct s_cast_ray
 	int		my;
 	float	xo;
 	float	yo;
+	int		direction;
+	float	ray_pos_x;
 	float	ra;
 }				t_cast_ray;
+
+/*-------- struct the textures -------------*/
+
+typedef struct s_data_tex
+{
+	char		*dire;
+	void		*img;
+	char		*addr;
+	int			wid;
+	int			hei;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_data_tex;
+
 /*----- data the my_mlx_pixel_put --------*/
 
 typedef struct s_data
@@ -130,6 +147,8 @@ typedef	struct s_global
 	float		ra;
 	int			rays;
 	int			h;
+	int			direction;
+	t_data_tex	*textures;
 	t_data		data;
 }				t_global;
 
@@ -189,5 +208,6 @@ void		check_size(t_global *glob, t_map *map_draw);
 void		draw(t_global *glob);
 t_mlx		*init_mlx(void);
 void		free_all(t_global *global);
+void		draw_view(t_global *glob);
 
 #endif

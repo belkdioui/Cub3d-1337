@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/29 18:59:29 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/07/30 10:11:22 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,20 @@ void		check_size(t_global *glob, t_map *map_draw)
 	{
 		// free here
 		printf("error\n");
+		free_ele(glob->ele);
+		free(glob->map);
+		// mlx_destroy_image(glob->mlx_cub->mlx_ptr, glob->mlx_cub->data2.img);
+		// mlx_destroy_image(glob->mlx_cub->mlx_ptr, glob->data.img);
+		// mlx_destroy_window(glob->mlx_cub->mlx_ptr, glob->mlx_cub->mlx_win);
+		// free(glob->mlx_cub->mlx_ptr);
+		// free(glob->mlx_cub->mlx_win);
+		// free(glob->mlx_cub->data2.img);
+		// free(glob->mlx_cub->data.img);
+		// free(glob->mlx_cub->data.addr);
+		// free(glob->mlx_cub->data2.addr);
+		free(glob->mlx_cub);
+		free(glob);
+		system("leaks cub3D");
 		exit(1);
 	}
 }
@@ -82,4 +96,5 @@ void	free_all(t_global *global)
 	free(global->map->cast_ray);
 	free(global->map);
 	free(global->mlx_cub);
+	free(global);
 }

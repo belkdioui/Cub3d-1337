@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:48:40 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/29 18:21:17 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/01 01:46:18 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_cast_ray	*init_strcut_cast_ray(t_map *map_draw)
 	if (ca_ray->ra < 0)
 		ca_ray->ra += 2 * PI;
 	ca_ray->rays = 0;
-	map_draw->pdx = cos(map_draw->rot_pl) * 3;
-	map_draw->pdy = sin(map_draw->rot_pl) * 3;
+	map_draw->pdx = cos(map_draw->rot_pl) * 1;
+	map_draw->pdy = sin(map_draw->rot_pl) * 1;
 	return (ca_ray);
 }
 
@@ -48,12 +48,22 @@ void	set_the_min_pos(t_map *map_draw)
 {
 	if (map_draw->cast_ray->dish < map_draw->cast_ray->disv)
 	{
+		if (map_draw->cast_ray->ra > M_PI)
+			map_draw->cast_ray->direction = 1;
+		else
+			map_draw->cast_ray->direction = 2;
+		map_draw->cast_ray->ray_pos_x = map_draw->cast_ray->hx - (int)(map_draw->cast_ray->hx / 10) * 10;
 		map_draw->endpoint_x = map_draw->cast_ray->hx;
 		map_draw->endpoint_y = map_draw->cast_ray->hy;
 		map_draw->cast_ray->final_dis = map_draw->cast_ray->dish;
 	}
 	else
 	{
+		if(map_draw->cast_ray->ra > M_PI / 2 && map_draw->cast_ray->ra < (3 * M_PI / 2))
+			map_draw->cast_ray->direction = 3;
+		else
+			map_draw->cast_ray->direction = 4;
+		map_draw->cast_ray->ray_pos_x = map_draw->cast_ray->vy - (int)(map_draw->cast_ray->vy / 10) * 10;
 		map_draw->endpoint_x = map_draw->cast_ray->vx;
 		map_draw->endpoint_y = map_draw->cast_ray->vy;
 		map_draw->cast_ray->final_dis = map_draw->cast_ray->disv;
