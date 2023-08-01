@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 17:19:17 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/30 09:38:27 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/01 10:03:26 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@ void	key_w(t_map *map_draw, char **map, int tmp_xp, int tmp_yp)
 	float degree = map_draw->rot_pl * (180 / M_PI);
 	tmp_yp = map_draw->y_p + map_draw->pdy;
 	tmp_xp = map_draw->x_p + map_draw->pdx;
-	if (degree >= 0 && degree < 90)
-	{
-		tmp_yp += 2;
-		tmp_xp += 2;
-	}
-	else if (degree >= 90 && degree < 180)
-	{
-		tmp_yp += 2;
-		tmp_xp -= 2;
-	}
-	else if (degree >= 180 && degree < 270)
-	{
-		tmp_yp -= 2;
-		tmp_xp -= 2;
-	}
-	else if (degree >= 270 && degree < 360)
-	{
-		tmp_yp -= 2;
-		tmp_xp += 2;
-	}
+	// if (degree >= 0 && degree < 90)
+	// {
+	// 	tmp_yp += 2;
+	// 	tmp_xp += 2;
+	// }
+	// else if (degree >= 90 && degree < 180)
+	// {
+	// 	tmp_yp += 2;
+	// 	tmp_xp -= 2;
+	// }
+	// else if (degree >= 180 && degree < 270)
+	// {
+	// 	tmp_yp -= 2;
+	// 	tmp_xp -= 2;
+	// }
+	// else if (degree >= 270 && degree < 360)
+	// {
+	// 	tmp_yp -= 2;
+	// 	tmp_xp += 2;
+	// }
 	if (tmp_yp >= 0 && tmp_yp <= map_draw->h && tmp_xp >= 0
 		&& tmp_xp <= map_draw->w)
 	{
@@ -53,26 +53,26 @@ void	key_s(t_map *map_draw, char **map, int tmp_xp, int tmp_yp)
 	float degree = map_draw->rot_pl * (180 / M_PI);
 	tmp_yp = map_draw->y_p - map_draw->pdy;
 	tmp_xp = map_draw->x_p - map_draw->pdx;
-	if (degree >= 0 && degree < 90)
-	{
-		tmp_yp -= 2;
-		tmp_xp -= 2;
-	}
-	else if (degree >= 90 && degree < 180)
-	{
-		tmp_yp -= 2;
-		tmp_xp += 2;
-	}
-	else if (degree >= 180 && degree < 270)
-	{
-		tmp_yp += 2;
-		tmp_xp += 2;
-	}
-	else if (degree >= 270 && degree < 360)
-	{
-		tmp_yp += 2;
-		tmp_xp -= 2;
-	}
+	// if (degree >= 0 && degree < 90)
+	// {
+	// 	tmp_yp -= 2;
+	// 	tmp_xp -= 2;
+	// }
+	// else if (degree >= 90 && degree < 180)
+	// {
+	// 	tmp_yp -= 2;
+	// 	tmp_xp += 2;
+	// }
+	// else if (degree >= 180 && degree < 270)
+	// {
+	// 	tmp_yp += 2;
+	// 	tmp_xp += 2;
+	// }
+	// else if (degree >= 270 && degree < 360)
+	// {
+	// 	tmp_yp += 2;
+	// 	tmp_xp -= 2;
+	// }
 	
 	if (tmp_yp >= 0 && tmp_yp <= map_draw->h && tmp_xp >= 0
 		&& tmp_xp <= map_draw->w)

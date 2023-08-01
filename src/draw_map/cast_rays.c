@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:19:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/01 00:07:01 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/01 10:23:28 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,7 @@ void	cast_rays(t_global *glob, t_map *map_draw, char **map)
 		check_vertical(map_draw, map_draw->cast_ray, map);
 		set_the_min_pos(map_draw);
 		draw_line(map_draw, map_draw->x_p, map_draw->y_p);
-		glob->rot_pl = map_draw->rot_pl;
-		glob->final_dis = map_draw->cast_ray->final_dis;
-		glob->ra = map_draw->cast_ray->ra;
-		glob->rays = map_draw->cast_ray->rays;
-		glob->h = height;
-		glob->direction = map_draw->cast_ray->direction;
+		
 
 		draw_view(glob);
 		map_draw->cast_ray->ra += map_draw->cast_ray->dr;

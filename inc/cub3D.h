@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/31 15:26:54 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/01 10:48:03 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,18 +138,26 @@ typedef struct s_mlx
 
 typedef	struct s_global
 {
-	t_mlx		*mlx_cub;
-	t_map		*map;
-	t_ele		*ele;
-	float		rot_pl;
-	int			num_of_player;
-	float		final_dis;
-	float		ra;
-	int			rays;
-	int			h;
-	int			direction;
-	t_data_tex	*textures;
-	t_data		data;
+	t_mlx			*mlx_cub;
+	t_map			*map;
+	t_ele			*ele;
+	float			rot_pl;
+	int				num_of_player;
+	float			ra;
+	int				rays;
+	t_data_tex		*textures;
+	t_data			data;
+	float			final_dis;
+	int				direction;
+	float			lineH;
+	unsigned int	color_floor;
+	unsigned int	color_ciel;
+	unsigned int 	color;
+	float			start;
+	float			floor;
+	float			y;
+	float			texture_x;
+	float			pixel;
 }				t_global;
 
 typedef struct s_vars
