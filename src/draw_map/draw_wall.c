@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:25:55 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/01 11:02:12 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:05:26 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,5 @@ void	draw_view(t_global *glob)
 		glob->y += glob->pixel;
 		i++;
 	}
+	draw_sky_and_floor (glob);
 }
