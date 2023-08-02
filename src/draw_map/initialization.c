@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/02 11:51:06 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:35:08 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	free_data_textures(t_global *glob)
 	while (i < 4)
 	{
 		free(glob->textures[i].addr);
-		// free(glob->textures[i]);
-		// mlx_destroy_image(glob-, glob->textures[i].img);
 		i++;
 	}
 	free(glob->textures);

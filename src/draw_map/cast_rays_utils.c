@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:48:40 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/01 10:05:43 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:39:46 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_cast_ray	*init_strcut_cast_ray(t_map *map_draw)
 	if (ca_ray->ra < 0)
 		ca_ray->ra += 2 * PI;
 	ca_ray->rays = 0;
-	map_draw->pdx = cos(map_draw->rot_pl) * 3;
-	map_draw->pdy = sin(map_draw->rot_pl) * 3;
+	map_draw->pdx = cos(map_draw->rot_pl) * 4;
+	map_draw->pdy = sin(map_draw->rot_pl) * 4;
 	return (ca_ray);
 }
 

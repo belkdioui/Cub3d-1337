@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/02 12:25:54 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:39:26 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	rotation_player(int keycode, t_map *map_draw, t_global *glob)
 {
 	if (keycode == ARROW_RIGHT)
 	{
-		map_draw->rot_pl += 0.1;
+		map_draw->rot_pl += 0.08;
 		if (map_draw->rot_pl >= M_PI * 2)
 			map_draw->rot_pl -= M_PI * 2;
 	}
 	if (keycode == ARROW_LEFT)
 	{
-		map_draw->rot_pl -= 0.1;
+		map_draw->rot_pl -= 0.08;
 		if (map_draw->rot_pl < 0)
 			map_draw->rot_pl += M_PI * 2;
 	}

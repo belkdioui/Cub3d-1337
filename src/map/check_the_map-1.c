@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_the_map-1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:48:04 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/01 20:10:18 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:38:00 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ int	in_loop(char **map, int i, int *j, t_global *glob)
 		|| map[i][*j] == 'W')
 	{	
 		if (map[i][*j] == 'S')
-			glob->rot_pl = (M_PI / 2) - 0000.3;
+			glob->rot_pl = (M_PI / 2) - 0.003;
 		if (map[i][*j] == 'N')
-			glob->rot_pl = ((3 * M_PI) / 2) - 000.3;
+			glob->rot_pl = ((3 * M_PI) / 2) - 0.003;
 		if (map[i][*j] == 'E')
 			glob->rot_pl = 0;
 		if (map[i][*j] == 'W')
-			glob->rot_pl = M_PI - 000.3;
+			glob->rot_pl = M_PI - 0.003;
 		glob->num_of_player++;
 	}
 	return (1);
