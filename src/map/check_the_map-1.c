@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:48:04 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/29 13:48:21 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/01 20:10:18 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@ int	check_rgb(char *rgb)
 	int		j;
 	int		num_rgb;
 
+	i = 0;
+	j = 0;
+	while (rgb && rgb[i])
+	{
+		if (rgb[i] == ',')
+			j++;
+		i++;
+	}
+	if (j != 2)
+		return (0);
 	i = 0;
 	split_rgb = ft_split(rgb, ',');
 	while (split_rgb[i])
@@ -51,7 +61,7 @@ int	check_img(char *textures)
 	return (free(textures), 1);
 }
 
-int	in_loop(char **map, int i, int *j, t_mlx *mlx_cub)
+int	in_loop(char **map, int i, int *j, t_global *glob)
 {
 	if (map[i][*j] != '1' && map[i][*j] != ' ' && map[i][*j] != '\n'
 			&& map[i][*j] != '0' && map[i][*j] != 'N' && map[i][*j] != 'S'
@@ -62,21 +72,21 @@ int	in_loop(char **map, int i, int *j, t_mlx *mlx_cub)
 			return (0);
 	if (map[i][*j] == 'N' || map[i][*j] == 'S' || map[i][*j] == 'E'
 		|| map[i][*j] == 'W')
-	{
+	{	
 		if (map[i][*j] == 'S')
-			mlx_cub->rot_pl = (M_PI / 2) + 0.003;
+			glob->rot_pl = (M_PI / 2) - 0000.3;
 		if (map[i][*j] == 'N')
-			mlx_cub->rot_pl = ((3 * M_PI) / 2) + 0.003;
+			glob->rot_pl = ((3 * M_PI) / 2) - 000.3;
 		if (map[i][*j] == 'E')
-			mlx_cub->rot_pl = 0 + 0.003;
+			glob->rot_pl = 0;
 		if (map[i][*j] == 'W')
-			mlx_cub->rot_pl = M_PI + 0.003;
-		mlx_cub->num_of_player++;
+			glob->rot_pl = M_PI - 000.3;
+		glob->num_of_player++;
 	}
 	return (1);
 }
 
-int	if_bet_first_and_last(char **map, int i, int *j, t_mlx *mlx_cub)
+int	if_bet_first_and_last(char **map, int i, int *j, t_global *glob)
 {
 	int	last;
 
@@ -91,7 +101,7 @@ int	if_bet_first_and_last(char **map, int i, int *j, t_mlx *mlx_cub)
 		return (0);
 	while (map[i][*j] != '\n')
 	{
-		if (!in_loop(map, i, j, mlx_cub))
+		if (!in_loop(map, i, j, glob))
 			return (0);
 		(*j)++;
 	}

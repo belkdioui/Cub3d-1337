@@ -3,139 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 17:19:17 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/29 16:00:47 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:48:12 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-void	key_w(t_mlx *mlx_cub, int tmp_xp, int tmp_yp)
+void	key_w(t_map *map_draw, char **map, int tmp_xp, int tmp_yp)
 {
-	tmp_yp = mlx_cub->y_p + mlx_cub->pdy;
-	tmp_xp = mlx_cub->x_p + mlx_cub->pdx;
-	if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
-		&& tmp_xp <= mlx_cub->w)
+	tmp_yp = map_draw->y_p + map_draw->pdy;
+	tmp_xp = map_draw->x_p + map_draw->pdx;
+
+	if (tmp_yp >= 0 && tmp_yp <= map_draw->h && tmp_xp >= 0
+		&& tmp_xp <= map_draw->w)
 	{
-		if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp + 50) / 50][(tmp_xp) / 50] == '1'
-			&& (mlx_cub->h - ((tmp_yp / 50) * 50) + 10 - 50 > mlx_cub->h
-				- tmp_yp))
-			return ;
-		if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp - 50) / 50] == '1'
-			&& (((tmp_xp / 50) * 50) + 10 > tmp_xp))
-			return ;
-		if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp - 50) / 50][(tmp_xp) / 50] == '1'
-			&& ((tmp_yp / 50) * 50 + 5 >= tmp_yp))
-			return ;
-		if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp + 50) / 50] == '1'
-			&& (mlx_cub->w - ((tmp_xp / 50) * 50) + 10 - 50 > mlx_cub->w
-				- tmp_xp))
-			return ;
-		if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
-		&& tmp_xp <= mlx_cub->w)
+		if (map[(tmp_yp) / 10][(tmp_xp - 2) / 10] != '1' && 
+			map[(tmp_yp) / 10][(tmp_xp + 2) / 10] != '1' &&
+			map[(tmp_yp + 2) / 10][(tmp_xp) / 10] != '1' &&
+			map[(tmp_yp - 2) / 10][(tmp_xp) / 10] != '1')
 		{
-			if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
-			{
-				mlx_cub->x_p_move += mlx_cub->pdx;
-				mlx_cub->y_p_move += mlx_cub->pdy;
-			}
+			map_draw->x_p_move += map_draw->pdx;
+			map_draw->y_p_move += map_draw->pdy;
 		}
 	}
 }
 
-void	key_s(t_mlx *mlx_cub, int tmp_xp, int tmp_yp)
+void	key_s(t_map *map_draw, char **map, int tmp_xp, int tmp_yp)
 {
-	tmp_yp = mlx_cub->y_p - mlx_cub->pdy;
-	tmp_xp = mlx_cub->x_p - mlx_cub->pdx;
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp + 50) / 50][(tmp_xp) / 50] == '1'
-		&& (mlx_cub->h - ((tmp_yp / 50) * 50) + 10 - 50 > mlx_cub->h
-			- tmp_yp))
-		return ;
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp - 50) / 50] == '1'
-		&& (((tmp_xp / 50) * 50) + 10 > tmp_xp))
-		return ;
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp - 50) / 50][(tmp_xp) / 50] == '1'
-		&& ((tmp_yp / 50) * 50 + 5 >= tmp_yp))
-		return ;
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp + 50) / 50] == '1'
-		&& (mlx_cub->w - ((tmp_xp / 50) * 50) + 10 - 50 > mlx_cub->w
-			- tmp_xp))
-		return ;
-	if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
-		&& tmp_xp <= mlx_cub->w)
+	tmp_yp = map_draw->y_p - map_draw->pdy;
+	tmp_xp = map_draw->x_p - map_draw->pdx;
+	
+	if (tmp_yp >= 0 && tmp_yp <= map_draw->h && tmp_xp >= 0
+		&& tmp_xp <= map_draw->w)
 	{
-		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
+		if (map[(tmp_yp) / 10][(tmp_xp - 2) / 10] != '1' && 
+			map[(tmp_yp) / 10][(tmp_xp + 2) / 10] != '1' &&
+			map[(tmp_yp + 2) / 10][(tmp_xp) / 10] != '1' &&
+			map[(tmp_yp - 2) / 10][(tmp_xp) / 10] != '1')
 		{
-			mlx_cub->x_p_move -= mlx_cub->pdx;
-			mlx_cub->y_p_move -= mlx_cub->pdy;
+			map_draw->x_p_move -= map_draw->pdx;
+			map_draw->y_p_move -= map_draw->pdy;
 		}
 	}
 }
 
-void	key_a(t_mlx *mlx_cub, int tmp_xp, int tmp_yp)
+void	key_a(t_map *map_draw, char **map, int tmp_xp, int tmp_yp)
 {
-	tmp_xp = mlx_cub->x_p + (mlx_cub->pdx * cos(-M_PI / 2) - mlx_cub->pdy
+	tmp_xp = map_draw->x_p + (map_draw->pdx * cos(-M_PI / 2) - map_draw->pdy
 			* sin(-M_PI / 2));
-	tmp_yp = mlx_cub->y_p + (mlx_cub->pdx * sin(-M_PI / 2) + mlx_cub->pdy
+	tmp_yp = map_draw->y_p + (map_draw->pdx * sin(-M_PI / 2) + map_draw->pdy
 			* cos(-M_PI / 2));
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp + 50) / 50][(tmp_xp) / 50] == '1'
-		&& (mlx_cub->h - ((tmp_yp / 50) * 50) + 10 - 50 > mlx_cub->h
-			- tmp_yp))
-		return ;
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp - 50) / 50] == '1'
-		&& (((tmp_xp / 50) * 50) + 10 > tmp_xp))
-		return ;
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp - 50) / 50][(tmp_xp) / 50] == '1'
-		&& (((tmp_yp / 50) * 50) + 10 >= tmp_yp))
-		return ;
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp + 50) / 50] == '1'
-		&& (mlx_cub->w - ((tmp_xp / 50) * 50) + 10 - 50 > mlx_cub->w
-			- tmp_xp))
-		return ;
-	if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
-		&& tmp_xp <= mlx_cub->w)
+	if (tmp_yp >= 0 && tmp_yp <= map_draw->h && tmp_xp >= 0
+		&& tmp_xp <= map_draw->w)
 	{
-		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
+		if (map[(tmp_yp) / 10][(tmp_xp - 2) / 10] != '1' && 
+			map[(tmp_yp) / 10][(tmp_xp + 2) / 10] != '1' &&
+			map[(tmp_yp + 2) / 10][(tmp_xp) / 10] != '1' &&
+			map[(tmp_yp - 2) / 10][(tmp_xp) / 10] != '1')
 		{
-			mlx_cub->x_p_move += (mlx_cub->pdx * cos(-M_PI / 2)
-					- mlx_cub->pdy * sin(-M_PI / 2));
-			mlx_cub->y_p_move += (mlx_cub->pdx * sin(-M_PI / 2)
-					+ mlx_cub->pdy * cos(-M_PI / 2));
+			map_draw->x_p_move += (map_draw->pdx * cos(-M_PI / 2)
+					- map_draw->pdy * sin(-M_PI / 2));
+			map_draw->y_p_move += (map_draw->pdx * sin(-M_PI / 2)
+					+ map_draw->pdy * cos(-M_PI / 2));
 		}
 	}
 }
 
-void	key_d(t_mlx *mlx_cub, int tmp_xp, int tmp_yp)
+void	key_d(t_map *map_draw, char **map, int tmp_xp, int tmp_yp)
 {
-	tmp_xp = mlx_cub->x_p + (mlx_cub->pdx * cos(M_PI / 2) - mlx_cub->pdy
+	tmp_xp = map_draw->x_p + (map_draw->pdx * cos(M_PI / 2) - map_draw->pdy
 			* sin(M_PI / 2));
-	tmp_yp = mlx_cub->y_p + (mlx_cub->pdx * sin(M_PI / 2) + mlx_cub->pdy
+	tmp_yp = map_draw->y_p + (map_draw->pdx * sin(M_PI / 2) + map_draw->pdy
 			* cos(M_PI / 2));
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp + 50) / 50][(tmp_xp) / 50] == '1'
-		&& (mlx_cub->h - ((tmp_yp / 50) * 50) + 10 - 50 > mlx_cub->h
-			- tmp_yp))
-		return ;
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp - 50) / 50] == '1'
-		&& (((tmp_xp / 50) * 50) + 10 > tmp_xp))
-		return ;
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp - 50) / 50][(tmp_xp) / 50] == '1'
-		&& (((tmp_yp / 50) * 50) + 10 >= tmp_yp))
-		return ;
-	if (mlx_cub->ele->map[(tmp_yp + 50) / 50] && mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp + 50) / 50] == '1'
-		&& (mlx_cub->w - ((tmp_xp / 50) * 50) + 10 - 50 > mlx_cub->w
-			- tmp_xp))
-		return ;
-	if (tmp_yp >= 0 && tmp_yp <= mlx_cub->h && tmp_xp >= 0
-		&& tmp_xp <= mlx_cub->w)
+	
+	if (tmp_yp >= 0 && tmp_yp <= map_draw->h && tmp_xp >= 0
+		&& tmp_xp <= map_draw->w)
 	{
-		if (mlx_cub->ele->map[(tmp_yp) / 50][(tmp_xp) / 50] != '1')
+		if (map[(tmp_yp) / 10][(tmp_xp - 2) / 10] != '1' && 
+			map[(tmp_yp) / 10][(tmp_xp + 2) / 10] != '1' &&
+			map[(tmp_yp + 2) / 10][(tmp_xp) / 10] != '1' &&
+			map[(tmp_yp - 2) / 10][(tmp_xp) / 10] != '1')
 		{
-			mlx_cub->x_p_move += (mlx_cub->pdx * cos(M_PI / 2)
-					- mlx_cub->pdy * sin(M_PI / 2));
-			mlx_cub->y_p_move += (mlx_cub->pdx * sin(M_PI / 2)
-					+ mlx_cub->pdy * cos(M_PI / 2));
+			map_draw->x_p_move += (map_draw->pdx * cos(M_PI / 2)
+					- map_draw->pdy * sin(M_PI / 2));
+			map_draw->y_p_move += (map_draw->pdx * sin(M_PI / 2)
+					+ map_draw->pdy * cos(M_PI / 2));
 		}
 	}
 }

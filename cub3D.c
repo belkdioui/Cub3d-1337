@@ -6,54 +6,40 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:45 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/25 17:30:19 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/02 11:43:46 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/cub3D.h"
 
-t_ele	*get_map(int ac, char **av, t_mlx *mlx_cub)
+void	draw(t_global *glob)
 {
-	char	**cnt_file;
-	t_ele	*ele;
-
-	cnt_file = ver_and_ret_map(ac, av);
-	if (!cnt_file)
-	{
-		ft_putstr_fd("error in the name\n", 2);
-		exit(1);
-	}
-	ele = malloc(sizeof(t_ele));
-	if (!ele)
-		exit(1);
-	if (!check_the_map(cnt_file, ele, mlx_cub))
-	{
-		ft_putstr_fd("error in the map\n", 2);
-		exit(1);
-	}
-	free_db(cnt_file);
-	return (ele);
+	draw_map(glob, glob->map, glob->ele->map);
+	mlx_put_image_to_window(glob->mlx_cub->mlx_ptr, glob->mlx_cub->mlx_win,\
+		glob->data.img, 0, 0);
+	mlx_put_image_to_window(glob->mlx_cub->mlx_ptr, glob->mlx_cub->mlx_win,\
+		glob->map->data.img, 0, 0);
 }
 
-void	draw_map(t_mlx *mlx_cub, t_ele *ele)
+void	finish(t_global *glob)
 {
-	init(mlx_cub, ele->map);
-	drawing_map(ele->map, mlx_cub);
-	mlx_put_image_to_window(mlx_cub->mlx_ptr, mlx_cub->mlx_win,
-		mlx_cub->data.img, 0, 0);
-	mlx_hook(mlx_cub->mlx_win, 2, 0, key_hock, mlx_cub);
-	mlx_hook(mlx_cub->mlx_win, ON_DESTROY, 0, close_window, mlx_cub);
-	mlx_loop(mlx_cub->mlx_ptr);
+	check_size(glob, glob->map);
+	draw(glob);
+	mlx_hook(glob->mlx_cub->mlx_win, 2, 0, key_hock, glob);
+	mlx_hook(glob->mlx_cub->mlx_win, ON_DESTROY, 0, close_window, glob);
+	mlx_loop(glob->mlx_cub->mlx_ptr);
 }
 
 int	main(int ac, char **av)
 {
-	t_mlx	*mlx_cub;
+	t_global	*glob;
 
-	mlx_cub = malloc(sizeof(t_mlx));
-	if (!mlx_cub)
+	glob = malloc(sizeof(t_global));
+	if (!glob)
 		exit(1);
-	mlx_cub->ele = get_map(ac, av, mlx_cub);
-	draw_map(mlx_cub, mlx_cub->ele);
+	glob = init_global(glob, ac, av);
+	if (!glob)
+		return (0);
+	finish(glob);
 	return (1);
 }

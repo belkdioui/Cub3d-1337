@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/24 16:12:11 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/01 20:22:46 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	if_first_and_last(char **map, int i, int *j)
 	return (1);
 }
 
-int	check_map(char **map, t_mlx *mlx_cub)
+int	check_map(char **map, t_global *glob)
 {
 	int	num_lines;
 	int	i;
 	int	j;
 
 	i = 0;
-	mlx_cub->num_of_player = 0;
+	glob->num_of_player = 0;
 	num_lines = cal_number_of_lines_map(map) - 1;
 	while (map[i])
 	{
@@ -44,11 +44,11 @@ int	check_map(char **map, t_mlx *mlx_cub)
 				return (0);
 		}
 		else
-			if (!if_bet_first_and_last(map, i, &j, mlx_cub))
+			if (!if_bet_first_and_last(map, i, &j, glob))
 				return (0);
 		i++;
 	}
-	if (mlx_cub->num_of_player != 1)
+	if (glob->num_of_player != 1)
 		return (0);
 	return (1);
 }
@@ -96,7 +96,7 @@ void	convert_the_map_to_rect(char ***new_map, char **pre_map)
 	free_db(pre_map);
 }
 
-int	check_the_map(char **cnt_file, t_ele *ele, t_mlx *mlx_cub)
+int	check_the_map(char **cnt_file, t_ele *ele, t_global *glob)
 {
 	char	*check;
 	char	**map;
@@ -116,7 +116,7 @@ int	check_the_map(char **cnt_file, t_ele *ele, t_mlx *mlx_cub)
 	if (!check_img(ele->ea) || !check_img(ele->no) || !check_img(ele->so)
 		|| !check_img(ele->we))
 		return (0);
-	if (!check_map(ele->map, mlx_cub))
+	if (!check_map(ele->map, glob))
 		return (0);
 	return (1);
 }
