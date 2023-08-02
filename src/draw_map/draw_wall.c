@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:25:55 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/01 21:26:27 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:19:43 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ void	init_utils_draw_3d(t_global *glob, t_map *map_draw)
 
 void	draw_sky_and_floor(t_global *glob)
 {
-	while (glob->start > 0)
+	while (glob->start > 0 && glob->start < height)
 	{
 		my_mlx_pixel_put(&glob->data, glob->map->cast_ray->rays, glob->start, glob->color_ciel);
 		glob->start--;
 	}
-	while (glob->floor < height)
+	while (glob->floor > 0 && glob->floor < height)
 	{
 		my_mlx_pixel_put(&glob->data, glob->map->cast_ray->rays, glob->floor, glob->color_floor);
 		glob->floor++;
