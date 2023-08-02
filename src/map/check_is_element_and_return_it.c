@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:51:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/02 19:07:46 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:23:30 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,24 @@ char	*boucle_in_map(t_vars *vars, char **cnt_file, int which_ele,
 	return ((char *)1);
 }
 
+void	init_var_value(t_vars *vars)
+{
+	vars->is_ele = 0;
+	vars->check = 0;
+	vars->check_1 = 0;
+	vars->check_2 = 0;
+	vars->j = 0;
+	vars->i = 0;
+}
+
 char	*is_element_and_saveit(char **cnt_file, int which_ele, char ***save_map)
 {
 	t_vars	*vars;
 	char	*save;
 
 	vars = malloc(sizeof(t_vars));
-	vars->is_ele = 0;
-	vars->check = 0;
-	vars->check_1 = 0;
-	vars->check_2 = 0;
+	init_var_value(vars);
 	save = NULL;
-	vars->j = 0;
-	vars->i = 0;
 	if (which_ele == 7)
 		*save_map = allocate_save_map(cnt_file);
 	while (cnt_file[vars->i])

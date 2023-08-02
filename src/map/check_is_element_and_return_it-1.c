@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:56:11 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/02 15:59:28 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:20:32 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ char	*ret_element(char *line, int num_of_ele)
 	save_ele = NULL;
 	while (line[i] == ' ')
 		i++;
-	if (num_of_ele >= 1)
-	{
-	}
 	if (num_of_ele >= 1 && num_of_ele <= 4)
 	{
 		i += 3;
