@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_is_element_and_return_it.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:51:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/30 10:13:28 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:32:45 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	check_some_error(char **cnt_file, t_vars *vars)
 
 	num_of_ele = 0;
 	num_of_ele = is_element(cnt_file[vars->i], &vars->is_ele);
+	if (vars->is_ele)
+		return (0);
 	if (!num_of_ele)
 		return (0);
 	if (num_of_ele == 7 && vars->is_ele != 6)
