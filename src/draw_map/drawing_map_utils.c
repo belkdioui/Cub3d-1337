@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:58:14 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/07/29 17:13:45 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:53:54 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	draw_line(t_map *map_draw, int beginX, int beginY)
 	pixely = beginY;
 	while (pixels)
 	{
-		if (pixelx >= 0 && pixelx < width && pixely >= 0 && pixely < height)
+		if (pixelx >= 0 && pixelx < WIDTH && pixely >= 0 && pixely < HEIGHT)
 			my_mlx_pixel_put(&map_draw->data, pixelx, pixely, 0xebf1f2);
 		pixelx += deltax;
 		pixely += deltay;

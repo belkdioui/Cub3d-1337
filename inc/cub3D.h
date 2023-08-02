@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/01 21:24:33 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:58:32 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-#define  height 1080
-#define	width 1920
-#define  height_map 250
-#define	width_map 350
+# define HEIGHT 1080
+# define WIDTH 1920
+# define HEIGHT_MAP 250
+# define WIDTH_MAP 350
 
 # define ESC 53
 # define PI M_PI
@@ -36,8 +36,6 @@
 # define ARROW_DOWN 125
 # define ARROW_RIGHT 124
 # define ARROW_LEFT 123
-
-
 
 /*---------- struct cast rays ---------*/
 typedef struct s_cast_ray
@@ -103,7 +101,7 @@ typedef struct s_ele
 	char		*str;
 }				t_ele;
 
-typedef	struct s_map
+typedef struct s_map
 {
 	int			w;
 	int			h;
@@ -136,7 +134,7 @@ typedef struct s_mlx
 	t_data		data2;
 }				t_mlx;
 
-typedef	struct s_global
+typedef struct s_global
 {
 	t_mlx			*mlx_cub;
 	t_map			*map;
@@ -149,10 +147,10 @@ typedef	struct s_global
 	t_data			data;
 	float			final_dis;
 	int				direction;
-	float			lineH;
+	float			lineh;
 	unsigned int	color_floor;
 	unsigned int	color_ciel;
-	unsigned int 	color;
+	unsigned int	color;
 	float			start;
 	float			floor;
 	float			y;
@@ -166,6 +164,8 @@ typedef struct s_vars
 	int			j;
 	int			is_ele;
 	int			check;
+	int			check_1;
+	int			check_2;
 }				t_vars;
 
 // utils
@@ -176,7 +176,8 @@ int				len_of_longest_line(char **pre_map);
 void			free_data_textures(t_global *glob);
 //
 int				space_is_protected(char **map, int x, int y);
-int				if_bet_first_and_last(char **map, int i, int *j, t_global *glob);
+int				if_bet_first_and_last(char **map, int i, int *j,
+					t_global *glob);
 int				check_rgb(char *rgb);
 int				check_img(char *textures);
 int				is_element(char *line, int *ele);
@@ -207,16 +208,15 @@ void			key_s(t_map *map_draw, char **map, int tmp_xp, int tmp_yp);
 void			key_a(t_map *map_draw, char **map, int tmp_xp, int tmp_yp);
 void			key_d(t_map *map_draw, char **map, int tmp_xp, int tmp_yp);
 
-
 /*--------- last update ------------*/
-t_global	*init_global(t_global *glob, int ac, char **av);
-void		draw_map(t_global *glob, t_map *map_draw, char **map);
-t_ele		*get_map(int ac, char **av, t_global *glob);
-void		finish(t_global *glob);
-void		check_size(t_global *glob, t_map *map_draw);
-void		draw(t_global *glob);
-t_mlx		*init_mlx(void);
-void		free_all(t_global *global);
-void		draw_view(t_global *glob);
+t_global		*init_global(t_global *glob, int ac, char **av);
+void			draw_map(t_global *glob, t_map *map_draw, char **map);
+t_ele			*get_map(int ac, char **av, t_global *glob);
+void			finish(t_global *glob);
+void			check_size(t_global *glob, t_map *map_draw);
+void			draw(t_global *glob);
+t_mlx			*init_mlx(void);
+void			free_all(t_global *global);
+void			draw_view(t_global *glob);
 
 #endif

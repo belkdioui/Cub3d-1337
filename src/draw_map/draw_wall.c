@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:25:55 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/02 12:36:49 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:03:38 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-unsigned int	rgbToHex(char *color_rgb)
+unsigned int	rgbtohex(char *color_rgb)
 {
 	char	**split_color;
 	int		rgb[3];
@@ -53,31 +53,34 @@ void	init_utils_draw_3d(t_global *glob, t_map *map_draw)
 	glob->rays = map_draw->cast_ray->rays;
 	glob->direction = map_draw->cast_ray->direction;
 	glob->final_dis = (glob->final_dis * cos(fish_eye) / glob->map->h_sq);
-	glob->lineH = height / (glob->final_dis);
-	glob->color_floor = rgbToHex(glob->ele->f);
-	glob->color_ciel = rgbToHex(glob->ele->c);
-	glob->start = height / 2 - glob->lineH / 2;
+	glob->lineh = HEIGHT / (glob->final_dis);
+	glob->color_floor = rgbtohex(glob->ele->f);
+	glob->color_ciel = rgbtohex(glob->ele->c);
+	glob->start = HEIGHT / 2 - glob->lineh / 2;
 	if (glob->start < 0)
 		glob->start = 0;
-	glob->floor = glob->lineH + glob->start;
-	glob->texture_x = glob->map->cast_ray->ray_pos_x * ((float)glob->textures[2].wid / 10);
-	err = glob->lineH / 2 - height / 2;
+	glob->floor = glob->lineh + glob->start;
+	glob->texture_x = glob->map->cast_ray->ray_pos_x
+		* ((float)glob->textures[2].wid / 10);
+	err = glob->lineh / 2 - HEIGHT / 2;
 	if (err < 0)
 		err = 0;
-	glob->pixel = glob->textures[0].hei / glob->lineH;
+	glob->pixel = glob->textures[0].hei / glob->lineh;
 	glob->y = err * glob->pixel;
 }
 
 void	draw_sky_and_floor(t_global *glob)
 {
-	while (glob->start > 0 && glob->start < height)
+	while (glob->start > 0 && glob->start < HEIGHT)
 	{
-		my_mlx_pixel_put(&glob->data, glob->map->cast_ray->rays, glob->start, glob->color_ciel);
+		my_mlx_pixel_put(&glob->data, glob->map->cast_ray->rays, glob->start,
+			glob->color_ciel);
 		glob->start--;
 	}
-	while (glob->floor > 0 && glob->floor < height)
+	while (glob->floor > 0 && glob->floor < HEIGHT)
 	{
-		my_mlx_pixel_put(&glob->data, glob->map->cast_ray->rays, glob->floor, glob->color_floor);
+		my_mlx_pixel_put(&glob->data, glob->map->cast_ray->rays, glob->floor,
+			glob->color_floor);
 		glob->floor++;
 	}
 }
@@ -88,30 +91,38 @@ void	draw_view(t_global *glob)
 
 	i = 0;
 	init_utils_draw_3d(glob, glob->map);
-	while (i < glob->lineH && i < height)
+	while (i < glob->lineh && i < HEIGHT)
 	{
 		if (glob->map->cast_ray->direction == 1)
 		{
-			glob->color = get_texture_pixel_color(glob->textures[0], glob->texture_x, glob->y);
-			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i, glob->color);
+			glob->color = get_texture_pixel_color(glob->textures[0],
+					glob->texture_x, glob->y);
+			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i,
+				glob->color);
 		}
 		else if (glob->map->cast_ray->direction == 2)
 		{
-			glob->color = get_texture_pixel_color(glob->textures[1], glob->texture_x, glob->y);
-			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i, glob->color);
+			glob->color = get_texture_pixel_color(glob->textures[1],
+					glob->texture_x, glob->y);
+			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i,
+				glob->color);
 		}
 		else if (glob->map->cast_ray->direction == 3)
 		{
-			glob->color = get_texture_pixel_color(glob->textures[2], glob->texture_x, glob->y);
-			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i, glob->color);
+			glob->color = get_texture_pixel_color(glob->textures[2],
+					glob->texture_x, glob->y);
+			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i,
+				glob->color);
 		}
 		else if (glob->map->cast_ray->direction == 4)
 		{
-			glob->color = get_texture_pixel_color(glob->textures[3], glob->texture_x, glob->y);
-			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i, glob->color);
+			glob->color = get_texture_pixel_color(glob->textures[3],
+					glob->texture_x, glob->y);
+			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i,
+				glob->color);
 		}
 		glob->y += glob->pixel;
 		i++;
 	}
-	draw_sky_and_floor (glob);
+	draw_sky_and_floor(glob);
 }

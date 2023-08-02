@@ -18,7 +18,7 @@ void	top(int *copy, int y, char **map, int *protect)
 	{
 		if (map[*copy][y] == '1')
 		{
-			(*protect)++ ;
+			(*protect)++;
 			break ;
 		}
 		if (map[*copy][y] != ' ' && map[*copy][y] != '\n')
@@ -38,7 +38,7 @@ void	bottom(int *copy, int y, char **map, int *protect)
 	{
 		if (map[*copy][y] == '1')
 		{
-			(*protect)++ ;
+			(*protect)++;
 			break ;
 		}
 		if (map[*copy][y] != ' ' && map[*copy][y] != '\n')
@@ -55,7 +55,7 @@ void	left(int x, int *copy, char **map, int *protect)
 	{
 		if (map[x][*copy] == '1')
 		{
-			(*protect)++ ;
+			(*protect)++;
 			break ;
 		}
 		if (map[x][*copy] != ' ' && map[x][*copy] != '\n')
@@ -77,7 +77,7 @@ void	right(int x, int *copy, char **map, int *protect)
 	{
 		if (map[x][*copy] == '1')
 		{
-			(*protect)++ ;
+			(*protect)++;
 			break ;
 		}
 		if (map[x][*copy] != ' ' && map[x][*copy] != '\n')

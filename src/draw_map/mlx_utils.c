@@ -36,6 +36,7 @@ t_ele	*get_map(int ac, char **av, t_global *glob)
 {
 	char	**cnt_file;
 	t_ele	*ele;
+
 	cnt_file = ver_and_ret_map(ac, av);
 	if (!cnt_file || !cnt_file[0])
 	{
@@ -58,7 +59,8 @@ t_ele	*get_map(int ac, char **av, t_global *glob)
 
 void	check_size(t_global *glob, t_map *map_draw)
 {
-	if (map_draw->w_sq * map_draw->j > map_draw->w || map_draw->h_sq * map_draw->i > map_draw->h)
+	if (map_draw->w_sq * map_draw->j > map_draw->w || map_draw->h_sq
+		* map_draw->i > map_draw->h)
 	{
 		printf("error\n");
 		free_ele(glob->ele);

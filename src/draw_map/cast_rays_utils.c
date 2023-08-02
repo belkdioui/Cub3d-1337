@@ -52,18 +52,21 @@ void	set_the_min_pos(t_map *map_draw)
 			map_draw->cast_ray->direction = 1;
 		else
 			map_draw->cast_ray->direction = 2;
-		map_draw->cast_ray->ray_pos_x = map_draw->cast_ray->hx - (int)(map_draw->cast_ray->hx / 10) * 10;
+		map_draw->cast_ray->ray_pos_x = map_draw->cast_ray->hx
+			- (int)(map_draw->cast_ray->hx / 10) * 10;
 		map_draw->endpoint_x = map_draw->cast_ray->hx;
 		map_draw->endpoint_y = map_draw->cast_ray->hy;
 		map_draw->cast_ray->final_dis = map_draw->cast_ray->dish;
 	}
 	else
 	{
-		if(map_draw->cast_ray->ra > M_PI / 2 && map_draw->cast_ray->ra < (3 * M_PI / 2))
+		if (map_draw->cast_ray->ra > M_PI / 2 && map_draw->cast_ray->ra < (3
+				* M_PI / 2))
 			map_draw->cast_ray->direction = 3;
 		else
 			map_draw->cast_ray->direction = 4;
-		map_draw->cast_ray->ray_pos_x = map_draw->cast_ray->vy - (int)(map_draw->cast_ray->vy / 10) * 10;
+		map_draw->cast_ray->ray_pos_x = map_draw->cast_ray->vy
+			- (int)(map_draw->cast_ray->vy / 10) * 10;
 		map_draw->endpoint_x = map_draw->cast_ray->vx;
 		map_draw->endpoint_y = map_draw->cast_ray->vy;
 		map_draw->cast_ray->final_dis = map_draw->cast_ray->disv;

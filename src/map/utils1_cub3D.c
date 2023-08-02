@@ -19,10 +19,10 @@ void	free_db(char **arr)
 	i = 0;
 	while (arr[i])
 	{
-		free (arr[i]);
+		free(arr[i]);
 		i++;
 	}
-	free (arr);
+	free(arr);
 }
 
 int	cal_number_of_lines_map(char **cnt_file)
@@ -70,7 +70,7 @@ int	search_and_ret_place(char *av)
 	{
 		if (av[i] == '.')
 			break ;
-		i++ ;
+		i++;
 	}
 	return (i);
 }

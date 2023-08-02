@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_the_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/02 17:33:02 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:31:40 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ int	check_map(char **map, t_global *glob)
 			if (!if_first_and_last(map, i, &j))
 				return (0);
 		}
-		else
-			if (!if_bet_first_and_last(map, i, &j, glob))
-				return (0);
+		else if (!if_bet_first_and_last(map, i, &j, glob))
+			return (0);
 		i++;
 	}
 	if (glob->num_of_player != 1)
@@ -70,10 +69,10 @@ void	set_esp_and_nl(int *i, int *j, int len, char ***new_map)
 
 void	convert_the_map_to_rect(char ***new_map, char **pre_map)
 {
-	int		i;
-	int		len;
-	int		lines;
-	int		j;
+	int	i;
+	int	len;
+	int	lines;
+	int	j;
 
 	i = 0;
 	len = len_of_longest_line(pre_map);

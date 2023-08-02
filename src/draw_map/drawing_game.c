@@ -36,10 +36,12 @@ void	drawing_square(t_map *map_draw, int x, int y)
 	int	tmp_y;
 
 	tmp_y = y;
-	while (tmp_y < (y + map_draw->h_sq - 1) && (y + map_draw->h_sq) <= map_draw->h)
+	while (tmp_y < (y + map_draw->h_sq - 1) && (y
+			+ map_draw->h_sq) <= map_draw->h)
 	{
 		tmp_x = x;
-		while (tmp_x < (x + map_draw->w_sq - 1) && (x + map_draw->w_sq) <= map_draw->w)
+		while (tmp_x < (x + map_draw->w_sq - 1) && (x
+				+ map_draw->w_sq) <= map_draw->w)
 		{
 			my_mlx_pixel_put(&map_draw->data, tmp_x, tmp_y, 0x00cc1a);
 			tmp_x++;
@@ -73,8 +75,8 @@ void	drawing_player(t_map *map_draw, int i, int j)
 
 void	draw_map(t_global *glob, t_map *map_draw, char **map)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = -1;
 	map_draw->x = 0;
@@ -92,8 +94,10 @@ void	draw_map(t_global *glob, t_map *map_draw, char **map)
 			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
 			{
-				map_draw->x_p = map_draw->x + (map_draw->w_sq / 2) + map_draw->x_p_move;
-				map_draw->y_p = map_draw->y + (map_draw->h_sq / 2) + map_draw->y_p_move;
+				map_draw->x_p = map_draw->x + (map_draw->w_sq / 2)
+					+ map_draw->x_p_move;
+				map_draw->y_p = map_draw->y + (map_draw->h_sq / 2)
+					+ map_draw->y_p_move;
 				drawing_player(map_draw, 0, 0);
 			}
 			map_draw->x += map_draw->w_sq;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_the_map-1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:48:04 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/02 12:38:00 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/02 15:56:11 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,15 @@ int	check_img(char *textures)
 int	in_loop(char **map, int i, int *j, t_global *glob)
 {
 	if (map[i][*j] != '1' && map[i][*j] != ' ' && map[i][*j] != '\n'
-			&& map[i][*j] != '0' && map[i][*j] != 'N' && map[i][*j] != 'S'
-			&& map[i][*j] != 'E' && map[i][*j] != 'W')
+		&& map[i][*j] != '0' && map[i][*j] != 'N' && map[i][*j] != 'S'
+		&& map[i][*j] != 'E' && map[i][*j] != 'W')
 		return (0);
 	if (map[i][*j] == ' ')
 		if (!space_is_protected(map, i, *j))
 			return (0);
 	if (map[i][*j] == 'N' || map[i][*j] == 'S' || map[i][*j] == 'E'
 		|| map[i][*j] == 'W')
-	{	
+	{
 		if (map[i][*j] == 'S')
 			glob->rot_pl = (M_PI / 2) - 0.003;
 		if (map[i][*j] == 'N')
