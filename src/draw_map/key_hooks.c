@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:18:48 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/02 12:39:26 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:26:44 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	key_hock(int keycode, t_global *glob)
 	if (keycode == ESC)
 	{
 		mlx_destroy_image(glob->mlx_cub->mlx_ptr, glob->mlx_cub->data.img);
+		mlx_destroy_image(glob->mlx_cub->mlx_ptr, glob->mlx_cub->data2.img);
 		mlx_destroy_window(glob->mlx_cub->mlx_ptr, glob->mlx_cub->mlx_win);
 		free_data_textures(glob);
 		free_all(glob);

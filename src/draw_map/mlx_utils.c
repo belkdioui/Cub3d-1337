@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/02 15:11:20 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:32:46 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 int	close_window(t_global *glob)
 {
 	mlx_destroy_image(glob->mlx_cub->mlx_ptr, glob->mlx_cub->data.img);
+	mlx_destroy_image(glob->mlx_cub->mlx_ptr, glob->mlx_cub->data2.img);
 	mlx_destroy_window(glob->mlx_cub->mlx_ptr, glob->mlx_cub->mlx_win);
-	free_ele(glob->ele);
-	free(glob->mlx_cub);
+	free_data_textures(glob);
+	free_all(glob);
 	system("leaks cub3D");
 	exit(0);
 	return (0);
@@ -55,24 +56,13 @@ t_ele	*get_map(int ac, char **av, t_global *glob)
 	return (ele);
 }
 
-void		check_size(t_global *glob, t_map *map_draw)
+void	check_size(t_global *glob, t_map *map_draw)
 {
 	if (map_draw->w_sq * map_draw->j > map_draw->w || map_draw->h_sq * map_draw->i > map_draw->h)
 	{
-		// free here
 		printf("error\n");
 		free_ele(glob->ele);
 		free(glob->map);
-		// mlx_destroy_image(glob->mlx_cub->mlx_ptr, glob->mlx_cub->data2.img);
-		// mlx_destroy_image(glob->mlx_cub->mlx_ptr, glob->data.img);
-		// mlx_destroy_window(glob->mlx_cub->mlx_ptr, glob->mlx_cub->mlx_win);
-		// free(glob->mlx_cub->mlx_ptr);
-		// free(glob->mlx_cub->mlx_win);
-		// free(glob->mlx_cub->data2.img);
-		// free(glob->mlx_cub->data.img);
-		// free(glob->mlx_cub->data.addr);
-		// free(glob->mlx_cub->data2.addr);
-		free(glob->mlx_cub);
 		free(glob);
 		system("leaks cub3D");
 		exit(1);

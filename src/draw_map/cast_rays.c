@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:19:10 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/01 21:35:53 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:27:59 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,7 @@ void	cast_rays(t_global *glob, t_map *map_draw, char **map)
 		check_horiental(map_draw, map_draw->cast_ray, map);
 		check_vertical(map_draw, map_draw->cast_ray, map);
 		set_the_min_pos(map_draw);
-		draw_line(map_draw, map_draw->x_p, map_draw->y_p);
-		
+		// draw_line(map_draw, map_draw->x_p, map_draw->y_p);
 
 		draw_view(glob);
 		map_draw->cast_ray->ra += map_draw->cast_ray->dr;

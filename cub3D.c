@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:45 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/02 12:57:41 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:26:02 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	draw(t_global *glob)
 
 void	finish(t_global *glob)
 {
-	check_size(glob, glob->map);
 	draw(glob);
 	mlx_hook(glob->mlx_cub->mlx_win, 2, 0, key_hock, glob);
 	mlx_hook(glob->mlx_cub->mlx_win, ON_DESTROY, 0, close_window, glob);

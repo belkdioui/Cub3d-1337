@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/02 12:35:08 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/02 17:24:59 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	calcul_width_height_the_map(char **map, t_map *mapp)
 
 
 
-t_map	*init_map(t_global *glob, int check)
+t_map	*init_map(t_global *glob)
 {
 	t_map	*map;
 	int		i;
@@ -48,8 +48,6 @@ t_map	*init_map(t_global *glob, int check)
 	map->h = height_map;
 	map->w_sq = 10;
 	map->h_sq = 10;
-	map->data = glob->mlx_cub->data2;
-	glob->data = glob->mlx_cub->data;
 	return (map);
 }
 
@@ -97,9 +95,12 @@ int	set_textures(t_global *glob)
 
 t_global	*init_global(t_global *glob, int ac, char **av)
 {
-	glob->mlx_cub = init_mlx();
 	glob->ele = get_map(ac, av, glob);
-	glob->map = init_map(glob, 1);
+	glob->map = init_map(glob);
+	check_size(glob, glob->map);
+	glob->mlx_cub = init_mlx();
+	glob->map->data = glob->mlx_cub->data2;
+	glob->data = glob->mlx_cub->data;
 	if (!set_textures(glob))
 	{
 		system("leaks cub3D");
