@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/03 17:44:17 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 19:11:05 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_global	*init_global(t_global *glob, int ac, char **av)
 	glob->data = glob->mlx_cub->data;
 	if (!set_textures(glob))
 	{
-		printf("error in textures \n");
+		ft_putstr_fd("error in textures \n", 2);
 		return (NULL);
 	}
 	return (glob);
