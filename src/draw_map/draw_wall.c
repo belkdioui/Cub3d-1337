@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:25:55 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/03 09:37:12 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:05:41 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,14 @@ unsigned int	get_texture_pixel_color(t_data_tex text, int x, int y)
 	unsigned char	g;
 	unsigned char	b;
 
-	pos = (y * text.line_length + x * (text.bits_per_pixel / 8));
-	r = text.addr[pos + 2];
-	g = text.addr[pos + 1];
-	b = text.addr[pos];
-	hex_color = (r << 16) | (g << 8) | b;
+	if (y < 1000)
+	{
+		pos = (y * text.line_length + x * (text.bits_per_pixel / 8));
+		r = text.addr[pos + 2];
+		g = text.addr[pos + 1];
+		b = text.addr[pos];
+		hex_color = (r << 16) | (g << 8) | b;
+	}
 	return (hex_color);
 }
 
@@ -34,12 +37,12 @@ void	init_utils_draw_3d(t_global *glob, t_map *map_draw)
 	float	err;
 
 	glob->rot_pl = map_draw->rot_pl;
+	glob->ra = map_draw->cast_ray->ra;
 	fish_eye = glob->ra - glob->rot_pl;
 	glob->final_dis = map_draw->cast_ray->final_dis;
-	glob->ra = map_draw->cast_ray->ra;
 	glob->rays = map_draw->cast_ray->rays;
 	glob->direction = map_draw->cast_ray->direction;
-	glob->final_dis = (glob->final_dis * cos(fish_eye) / glob->map->h_sq);
+	glob->final_dis = (glob->final_dis * cos(fish_eye)) / glob->map->h_sq;
 	glob->lineh = HEIGHT / (glob->final_dis);
 	glob->color_floor = rgbtohex(glob->ele->f);
 	glob->color_ciel = rgbtohex(glob->ele->c);
@@ -53,7 +56,7 @@ void	init_utils_draw_3d(t_global *glob, t_map *map_draw)
 	if (err < 0)
 		err = 0;
 	glob->pixel = glob->textures[0].hei / glob->lineh;
-	glob->y = err * glob->pixel;
+	glob->y = err * glob->pixel - 1;
 }
 
 void	draw_sky_and_floor(t_global *glob)

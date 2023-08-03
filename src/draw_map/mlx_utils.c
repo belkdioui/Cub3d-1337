@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/03 09:35:10 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:12:13 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	check_size(t_global *glob, t_map *map_draw)
 	if (map_draw->w_sq * map_draw->j > map_draw->w || map_draw->h_sq
 		* map_draw->i > map_draw->h)
 	{
-		printf("error\n");
+		ft_putstr_fd("error\n", 2);
 		free_ele(glob->ele);
 		free(glob->map);
 		free(glob);
