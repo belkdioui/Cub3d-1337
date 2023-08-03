@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/02 18:31:40 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:44:37 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ int	check_the_map(char **cnt_file, t_ele *ele, t_global *glob)
 	check = is_element_and_saveit(cnt_file, 7, &map);
 	if (!check)
 	{
-		system("leaks cub3D");
 		ft_putstr_fd("error in the map\n", 2);
 		exit(1);
 	}

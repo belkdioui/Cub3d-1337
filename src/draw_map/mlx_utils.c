@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/03 13:12:13 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:44:34 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	close_window(t_global *glob)
 	mlx_destroy_window(glob->mlx_cub->mlx_ptr, glob->mlx_cub->mlx_win);
 	free_data_textures(glob);
 	free_all(glob);
-	system("leaks cub3D");
 	exit(0);
 	return (0);
 }
@@ -40,7 +39,6 @@ t_ele	*get_map(int ac, char **av, t_global *glob)
 	cnt_file = ver_and_ret_map(ac, av);
 	if (!cnt_file || !cnt_file[0])
 	{
-		system("leaks cub3D");
 		ft_putstr_fd("error in the name\n", 2);
 		exit(1);
 	}
@@ -49,7 +47,6 @@ t_ele	*get_map(int ac, char **av, t_global *glob)
 		exit(1);
 	if (!check_the_map(cnt_file, ele, glob))
 	{
-		system("leaks cub3D");
 		ft_putstr_fd("error in the map\n", 2);
 		exit(1);
 	}
@@ -66,7 +63,6 @@ void	check_size(t_global *glob, t_map *map_draw)
 		free_ele(glob->ele);
 		free(glob->map);
 		free(glob);
-		system("leaks cub3D");
 		exit(1);
 	}
 }

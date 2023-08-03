@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:48:40 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/02 12:39:46 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:43:36 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_cast_ray	*init_strcut_cast_ray(t_map *map_draw)
 	if (!ca_ray)
 		exit(1);
 	ca_ray->num_of_rays = 1920;
-	ca_ray->dr = ((2 * PI) / ca_ray->num_of_rays) / ((float)360 / 90);
-	ca_ray->ra = map_draw->rot_pl - (ca_ray->dr * ca_ray->num_of_rays / 2);
+	ca_ray->dr = ((PI / 180) * 60) / ca_ray->num_of_rays;
+	ca_ray->ra = map_draw->rot_pl - ((PI / 180) * 60) / 2;
 	if (ca_ray->ra > 2 * PI)
 		ca_ray->ra -= 2 * PI;
 	if (ca_ray->ra < 0)
