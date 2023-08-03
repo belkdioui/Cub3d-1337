@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+         #
+#    By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 12:10:58 by bel-kdio          #+#    #+#              #
-#    Updated: 2022/10/19 12:35:03 by bel-kdio         ###   ########.fr        #
+#    Updated: 2023/08/03 19:06:31 by rrhnizar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC_B = ft_lstnew.c ft_lstadd_front.c ft_lstadd_back.c ft_lstclear.c ft_lstdelon
 OBJ_B = $(SRC_B:.c=.o)
 
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = libft.a 
 AR = ar rc

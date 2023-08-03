@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_the_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:00:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/03 17:44:37 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:46:17 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ void	set_esp_and_nl(int *i, int *j, int len, char ***new_map)
 		(*j)++;
 	}
 	if (!diff)
+	{
 		(*new_map)[*i][*j] = '\n';
+	}
 }
 
 void	convert_the_map_to_rect(char ***new_map, char **pre_map)

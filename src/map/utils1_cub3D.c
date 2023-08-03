@@ -6,7 +6,7 @@
 /*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 18:38:08 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/30 10:16:48 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:47:10 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,22 @@ int	len_of_longest_line(char **pre_map)
 {
 	int		i;
 	size_t	len;
+	int		check;
 
 	i = 0;
+	check = 0;
 	len = 0;
 	while (pre_map[i])
 	{
-		if (len < ft_strlen(pre_map[i]))
+		if (len <= ft_strlen(pre_map[i]))
+		{
+			check = i;
 			len = ft_strlen(pre_map[i]);
+		}
 		i++;
 	}
+	if (!ft_strchr(pre_map[check], '\n'))
+		len++;
 	return (len);
 }
 
