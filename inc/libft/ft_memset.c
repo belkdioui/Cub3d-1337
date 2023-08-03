@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:58:13 by bel-kdio          #+#    #+#             */
-/*   Updated: 2022/10/05 09:14:22 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:44:16 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 void	*ft_memset(void *b, int c, size_t len)
-{	
+{
 	size_t	i;
 
 	i = len;

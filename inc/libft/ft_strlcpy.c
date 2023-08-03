@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 17:53:30 by bel-kdio          #+#    #+#             */
-/*   Updated: 2022/10/19 16:00:19 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:45:10 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
@@ -27,7 +27,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 			i++;
 			dstsize--;
 		}
-	dst[i] = '\0';
+		dst[i] = '\0';
 	}
 	return (x);
 }

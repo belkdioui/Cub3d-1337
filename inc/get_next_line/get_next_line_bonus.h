@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:28:35 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/07/14 11:45:44 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:42:20 by rrhnizar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
-# include<unistd.h>
-# include<limits.h>
-# include<fcntl.h>
-# include<stdlib.h>
-# include<string.h>
+# include <unistd.h>
+# include <limits.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <string.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
