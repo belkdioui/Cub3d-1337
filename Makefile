@@ -6,7 +6,7 @@
 #    By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 14:46:36 by bel-kdio          #+#    #+#              #
-#    Updated: 2023/08/02 15:16:05 by bel-kdio         ###   ########.fr        #
+#    Updated: 2023/08/03 09:36:02 by bel-kdio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIBFT = ./inc/libft/libft.a
 
 SRC = cub3D.c src/draw_map/initialization.c src/draw_map/drawing_game.c src/draw_map/mlx_utils.c \
 		src/draw_map/key_hooks.c src/draw_map/key_hooks_utils.c src/draw_map/initialization2.c\
-		src/draw_map/draw_wall.c \
+		src/draw_map/draw_wall.c src/draw_map/mlx_utils_2.c\
 		src/draw_map/cast_rays.c src/draw_map/cast_rays_utils.c src/draw_map/drawing_map_utils.c \
 		inc/get_next_line/get_next_line.c inc/get_next_line/get_next_line_utils.c\
 		src/map/verifaction_and_return_map.c src/map/utils1_cub3D.c src/map/check_the_map.c\

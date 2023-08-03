@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:04:20 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/02 18:58:32 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 09:37:45 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,8 @@ void			free_data_textures(t_global *glob);
 int				space_is_protected(char **map, int x, int y);
 int				if_bet_first_and_last(char **map, int i, int *j,
 					t_global *glob);
+char			**allocate_save_map(char **cnt_file);
+unsigned int	rgbtohex(char *color_rgb);
 int				check_rgb(char *rgb);
 int				check_img(char *textures);
 int				is_element(char *line, int *ele);

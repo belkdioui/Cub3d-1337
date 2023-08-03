@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:33:58 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/02 19:04:46 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 09:18:20 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ int	set_textures(t_global *glob)
 	int		i;
 	char	*path;
 
-	i = 0;
+	i = -1;
 	glob->textures = malloc(sizeof(t_data_tex) * 4);
-	while (i < 4)
+	while (++i < 4)
 	{
 		if (i == 0)
 			path = ft_strdup(glob->ele->no);
@@ -81,14 +81,12 @@ int	set_textures(t_global *glob)
 			path = ft_strdup(glob->ele->ea);
 		glob->textures[i].img = mlx_xpm_file_to_image(glob->mlx_cub->mlx_ptr,
 				path, &glob->textures[i].wid, &glob->textures[i].hei);
-		if (glob->textures[i].img != NULL)
-			glob->textures[i].addr = mlx_get_data_addr(glob->textures[i].img,
-					&glob->textures[i].bits_per_pixel,
-					&glob->textures[i].line_length, &glob->textures[i].endian);
-		else
+		if (glob->textures[i].img == NULL)
 			return (free(path), 0);
+		glob->textures[i].addr = mlx_get_data_addr(glob->textures[i].img,
+				&glob->textures[i].bits_per_pixel,
+				&glob->textures[i].line_length, &glob->textures[i].endian);
 		free(path);
-		i++;
 	}
 	return (1);
 }

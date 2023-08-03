@@ -6,22 +6,11 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:51:19 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/02 19:23:30 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 09:32:28 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
-
-char	**allocate_save_map(char **cnt_file)
-{
-	int		num_of_line_map;
-	char	**save_map;
-
-	num_of_line_map = cal_number_of_lines_map(cnt_file);
-	save_map = malloc(sizeof(char *) * (num_of_line_map + 1));
-	save_map[num_of_line_map] = NULL;
-	return (save_map);
-}
 
 int	check_some_error(char **cnt_file, t_vars *vars)
 {
@@ -41,6 +30,14 @@ int	check_some_error(char **cnt_file, t_vars *vars)
 	return (num_of_ele);
 }
 
+int	norm_check_some_err(int *num_of_ele, char **cnt_file, t_vars *vars)
+{
+	*num_of_ele = check_some_error(cnt_file, vars);
+	if (!*num_of_ele)
+		return (0);
+	return (1);
+}
+
 char	*boucle_in_map(t_vars *vars, char **cnt_file, int which_ele,
 		char ***save_map)
 {
@@ -48,8 +45,7 @@ char	*boucle_in_map(t_vars *vars, char **cnt_file, int which_ele,
 	int		num_of_ele;
 
 	save = NULL;
-	num_of_ele = check_some_error(cnt_file, vars);
-	if (!num_of_ele)
+	if (!norm_check_some_err(&num_of_ele, cnt_file, vars))
 		return (0);
 	if (which_ele && num_of_ele == which_ele)
 	{

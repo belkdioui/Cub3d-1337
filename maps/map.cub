@@ -3,12 +3,13 @@ SO textures/wall_2.xpm
 
 
 WE textures/wall_3.xpm
+
 EA textures/wall_3.xpm
 
 
 F 20,100,0
-C 247,164,55
 
+C 247,164,55
 
         1111111111111111111111111
        1000000000110000000000001

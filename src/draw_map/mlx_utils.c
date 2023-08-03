@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rrhnizar <rrhnizar@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 13:16:56 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/02 17:32:46 by rrhnizar         ###   ########.fr       */
+/*   Updated: 2023/08/03 09:35:10 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,25 +69,4 @@ void	check_size(t_global *glob, t_map *map_draw)
 		system("leaks cub3D");
 		exit(1);
 	}
-}
-
-void	free_ele(t_ele *ele)
-{
-	free(ele->c);
-	free(ele->f);
-	free(ele->ea);
-	free(ele->we);
-	free(ele->no);
-	free(ele->so);
-	free_db(ele->map);
-	free(ele);
-}
-
-void	free_all(t_global *global)
-{
-	free_ele(global->ele);
-	free(global->map->cast_ray);
-	free(global->map);
-	free(global->mlx_cub);
-	free(global);
 }

@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:27:08 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/02 13:30:30 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 09:11:52 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ void	drawing_player(t_map *map_draw, int i, int j)
 	}
 }
 
+void	if_player(t_map *map_draw)
+{
+	map_draw->x_p = map_draw->x + (map_draw->w_sq / 2) + map_draw->x_p_move;
+	map_draw->y_p = map_draw->y + (map_draw->h_sq / 2) + map_draw->y_p_move;
+	drawing_player(map_draw, 0, 0);
+}
+
 void	draw_map(t_global *glob, t_map *map_draw, char **map)
 {
 	int	i;
@@ -93,13 +100,7 @@ void	draw_map(t_global *glob, t_map *map_draw, char **map)
 				drawing_square(map_draw, map_draw->x, map_draw->y);
 			else if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
-			{
-				map_draw->x_p = map_draw->x + (map_draw->w_sq / 2)
-					+ map_draw->x_p_move;
-				map_draw->y_p = map_draw->y + (map_draw->h_sq / 2)
-					+ map_draw->y_p_move;
-				drawing_player(map_draw, 0, 0);
-			}
+				if_player(map_draw);
 			map_draw->x += map_draw->w_sq;
 		}
 	}

@@ -6,24 +6,11 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 15:25:55 by rrhnizar          #+#    #+#             */
-/*   Updated: 2023/08/02 19:03:38 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 09:37:12 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
-
-unsigned int	rgbtohex(char *color_rgb)
-{
-	char	**split_color;
-	int		rgb[3];
-
-	split_color = ft_split(color_rgb, ',');
-	rgb[0] = ft_atoi(split_color[0]);
-	rgb[1] = ft_atoi(split_color[1]);
-	rgb[2] = ft_atoi(split_color[2]);
-	free_db(split_color);
-	return (((rgb[0] & 0xFF) << 16) | ((rgb[1] & 0xFF) << 8) | (rgb[2] & 0xFF));
-}
 
 unsigned int	get_texture_pixel_color(t_data_tex text, int x, int y)
 {
@@ -85,6 +72,14 @@ void	draw_sky_and_floor(t_global *glob)
 	}
 }
 
+void	get_the_color_and_put_it(t_global *glob, int i, t_data_tex text)
+{
+	glob->color = get_texture_pixel_color(text,
+			glob->texture_x, glob->y);
+	my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i,
+		glob->color);
+}
+
 void	draw_view(t_global *glob)
 {
 	int	i;
@@ -94,33 +89,13 @@ void	draw_view(t_global *glob)
 	while (i < glob->lineh && i < HEIGHT)
 	{
 		if (glob->map->cast_ray->direction == 1)
-		{
-			glob->color = get_texture_pixel_color(glob->textures[0],
-					glob->texture_x, glob->y);
-			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i,
-				glob->color);
-		}
+			get_the_color_and_put_it(glob, i, glob->textures[0]);
 		else if (glob->map->cast_ray->direction == 2)
-		{
-			glob->color = get_texture_pixel_color(glob->textures[1],
-					glob->texture_x, glob->y);
-			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i,
-				glob->color);
-		}
+			get_the_color_and_put_it(glob, i, glob->textures[1]);
 		else if (glob->map->cast_ray->direction == 3)
-		{
-			glob->color = get_texture_pixel_color(glob->textures[2],
-					glob->texture_x, glob->y);
-			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i,
-				glob->color);
-		}
+			get_the_color_and_put_it(glob, i, glob->textures[2]);
 		else if (glob->map->cast_ray->direction == 4)
-		{
-			glob->color = get_texture_pixel_color(glob->textures[3],
-					glob->texture_x, glob->y);
-			my_mlx_pixel_put(&glob->data, glob->rays, glob->start + i,
-				glob->color);
-		}
+			get_the_color_and_put_it(glob, i, glob->textures[3]);
 		glob->y += glob->pixel;
 		i++;
 	}

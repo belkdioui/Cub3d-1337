@@ -6,18 +6,16 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 23:48:04 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/02 15:56:11 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 09:30:38 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-int	check_rgb(char *rgb)
+int	if_there_is_more_than_com(char *rgb)
 {
-	char	**split_rgb;
-	int		i;
-	int		j;
-	int		num_rgb;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -29,9 +27,21 @@ int	check_rgb(char *rgb)
 	}
 	if (j != 2)
 		return (0);
-	i = 0;
+	return (1);
+}
+
+int	check_rgb(char *rgb)
+{
+	char	**split_rgb;
+	int		i;
+	int		j;
+	int		num_rgb;
+
+	if (!if_there_is_more_than_com(rgb))
+		return (0);
+	i = -1;
 	split_rgb = ft_split(rgb, ',');
-	while (split_rgb[i])
+	while (split_rgb[++i])
 	{
 		j = 0;
 		while (split_rgb[i][j])
@@ -43,7 +53,6 @@ int	check_rgb(char *rgb)
 		num_rgb = ft_atoi(split_rgb[i]);
 		if (!(num_rgb >= 0 && num_rgb <= 255))
 			return (free_db(split_rgb), 0);
-		i++;
 	}
 	if (i != 3)
 		return (free_db(split_rgb), 0);

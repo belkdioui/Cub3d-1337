@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:56:11 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/08/02 19:20:32 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/08/03 09:32:38 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,15 @@ int	is_element(char *line, int *ele)
 	else if (!ft_strncmp(element, "C ", 3))
 		return (free(element), (*ele)++, 6);
 	return (free(element), 0);
+}
+
+char	**allocate_save_map(char **cnt_file)
+{
+	int		num_of_line_map;
+	char	**save_map;
+
+	num_of_line_map = cal_number_of_lines_map(cnt_file);
+	save_map = malloc(sizeof(char *) * (num_of_line_map + 1));
+	save_map[num_of_line_map] = NULL;
+	return (save_map);
 }
