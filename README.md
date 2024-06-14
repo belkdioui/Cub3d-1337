@@ -36,7 +36,7 @@ Cub3D is a simple 3D game engine inspired by Wolfenstein 3D, created as part of 
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/cub3d.git
+    git clone https://github.com/belkdioui-111/cub3d_1337.git
     cd cub3d
     ```
 
@@ -49,7 +49,7 @@ Cub3D is a simple 3D game engine inspired by Wolfenstein 3D, created as part of 
 
 To run the game:
 ```sh
-./cub3d maps/map.cub
+./cub3d_1337 maps/map.cub
 ```
 
 ## Controls
